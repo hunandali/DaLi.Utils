@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+	<Import Project="..\DaLi.Utils.props" />
+
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<RootNamespace>DaLi.Utils.App</RootNamespace>
+		<Title>大沥网络 · 公共库 · 应用 · 插件接口</Title>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<Import Include="DaLi.Utils.App.Attribute" />
+		<Import Include="DaLi.Utils.App.Base" />
+		<Import Include="DaLi.Utils.App.Extension" />
+		<Import Include="DaLi.Utils.App.Helper" />
+		<Import Include="DaLi.Utils.App.Interface" />
+		<Import Include="DaLi.Utils.App.Model" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\DaLi.Utils.Core\DaLi.Utils.Core.vbproj" />
+	</ItemGroup>
+</Project>

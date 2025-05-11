@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<Title>大沥网络 · 公共库 · 核心 C#</Title>
+		<AssemblyName>DaLi.Utils.Core.CSharp</AssemblyName>
+	</PropertyGroup>
+
+	<Import Project="..\DaLi.Utils.props" />
+</Project>

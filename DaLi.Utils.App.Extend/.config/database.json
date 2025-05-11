@@ -1,0 +1,7 @@
+﻿{
+	"Connections": {
+		"default": "mysql://Server=10.10.10.1;Database=dali.app;uid=dali.app;password=meYeYs4rk5Rb2mzJ;ConvertZeroDateTime=True;Charset=utf8mb4",
+		"log": "mysql://Server=10.10.10.1;Database=dali.app.log;uid=dali.app.log;password=jZmYG2KsestDZzx2;ConvertZeroDateTime=True;Charset=utf8mb4"
+	},
+	"prefix": ""
+}

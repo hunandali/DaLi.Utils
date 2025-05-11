@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<RootNamespace>DaLi.Utils.Redis</RootNamespace>
+		<Title>大沥网络 · 公共库 · Redis</Title>
+	</PropertyGroup>
+
+	<Import Project="..\DaLi.Utils.props" />
+
+	<ItemGroup>
+	  <PackageReference Include="FreeRedis" Version="1.3.7" />
+	  <!--<PackageReference Include="FreeRedis.TimeSeries" Version="1.24.702.649" />-->
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\DaLi.Utils.Core\DaLi.Utils.Core.vbproj" />
+	</ItemGroup>
+</Project>

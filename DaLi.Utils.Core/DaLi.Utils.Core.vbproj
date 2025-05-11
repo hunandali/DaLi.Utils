@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<RootNamespace>DaLi.Utils</RootNamespace>
+		<Title>大沥网络 · 公共库 · 核心</Title>
+		<NoWarn>$(NoWarn);SYSLIB0014;CA1861</NoWarn>
+	</PropertyGroup>
+
+	<Import Project="..\DaLi.Utils.props" />
+
+	<ItemGroup>
+	  <ProjectReference Include="..\DaLi.Utils.Core.CSharp\DaLi.Utils.Core.CSharp.csproj" />
+	</ItemGroup>
+</Project>

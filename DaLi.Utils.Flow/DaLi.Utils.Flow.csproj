@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="..\DaLi.Utils.props" />
+
+	<PropertyGroup>
+		<RootNamespace>DaLi.Utils.Flow</RootNamespace>
+		<Title>大沥网络 · 公共库 · 工作流</Title>
+		<Description>流程任务基础包</Description>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="~\**" />
+	  <EmbeddedResource Remove="~\**" />
+	  <None Remove="~\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\DaLi.Utils.Core\DaLi.Utils.Core.vbproj" />
+	</ItemGroup>
+
+</Project>

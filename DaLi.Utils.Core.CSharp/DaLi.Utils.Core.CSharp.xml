@@ -1,0 +1,1212 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DaLi.Utils.Core.CSharp</name>
+    </assembly>
+    <members>
+        <member name="T:DaLi.Utils.Extension.DictionaryExtension">
+            <summary>字典扩展操作</summary>
+        </member>
+        <member name="M:DaLi.Utils.Extension.DictionaryExtension.SafeAdd``2(System.Collections.Generic.Dictionary{``0,``1},``0,``1)">
+            <summary>使用线程安全添加数据</summary>
+        </member>
+        <member name="M:DaLi.Utils.Extension.DictionaryExtension.SafeAdd``2(System.Collections.Generic.Dictionary{``0,``1},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{``0,``1}})">
+            <summary>使用线程安全添加一组数据，如果存在则不添加</summary>
+        </member>
+        <member name="M:DaLi.Utils.Extension.DictionaryExtension.SafeAdd``2(System.Collections.Generic.Dictionary{``0,``1},System.Collections.Generic.IDictionary{``0,``1})">
+            <summary>使用线程安全添加一组数据，如果存在则不添加</summary>
+        </member>
+        <member name="M:DaLi.Utils.Extension.DictionaryExtension.Add``2(System.Collections.Generic.Dictionary{``0,``1},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{``0,``1}})">
+            <summary>添加一组数据，如果存在则不添加；需要注意线程安全</summary>
+        </member>
+        <member name="M:DaLi.Utils.Extension.DictionaryExtension.Add``2(System.Collections.Generic.Dictionary{``0,``1},System.Collections.Generic.IDictionary{``0,``1})">
+            <summary>添加一组数据，如果存在则不添加；需要注意线程安全</summary>
+        </member>
+        <member name="M:DaLi.Utils.Extension.DictionaryExtension.Update``2(System.Collections.Generic.Dictionary{``0,``1},``0,``1,System.Boolean)">
+            <summary>更新数据；需要注意线程安全</summary>
+            <param name="input"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+            <param name="force">数据不存在时是否强制添加，默认不添加</param>
+        </member>
+        <member name="M:DaLi.Utils.Extension.DictionaryExtension.Update``2(System.Collections.Generic.Dictionary{``0,``1},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{``0,``1}},System.Boolean)">
+            <summary>更新一组数据；需要注意线程安全</summary>
+            <param name="input"></param>
+            <param name="collection"></param>
+            <param name="force">数据不存在时是否强制添加，默认不添加</param>
+        </member>
+        <member name="M:DaLi.Utils.Extension.DictionaryExtension.Update``2(System.Collections.Generic.Dictionary{``0,``1},System.Collections.Generic.IDictionary{``0,``1},System.Boolean)">
+            <summary>更新一组数据；需要注意线程安全</summary>
+            <param name="input"></param>
+            <param name="dictionary"></param>
+            <param name="force">数据不存在时是否强制添加，默认不添加</param>
+        </member>
+        <member name="M:DaLi.Utils.Extension.DictionaryExtension.Update``2(System.Collections.Generic.Dictionary{``0,``1},System.Func{``0,``1,``1})">
+            <summary>遍历更新全部值；需要注意线程安全</summary>
+            <param name="input"></param>
+            <param name="action">更新函数（键，值，返回值）</param>
+        </member>
+        <member name="M:DaLi.Utils.Extension.DictionaryExtension.SafeUpdate``2(System.Collections.Generic.Dictionary{``0,``1},``0,``1,System.Boolean)">
+            <summary>使用线程安全更新数据</summary>
+            <param name="input"></param>
+            <param name="key">键</param>
+            <param name="value">值</param>
+            <param name="force">数据不存在时是否强制添加，默认不添加</param>
+        </member>
+        <member name="M:DaLi.Utils.Extension.DictionaryExtension.SafeUpdate``2(System.Collections.Generic.Dictionary{``0,``1},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{``0,``1}},System.Boolean)">
+            <summary>使用线程安全更新一组数据</summary>
+            <param name="input"></param>
+            <param name="collection"></param>
+            <param name="force">数据不存在时是否强制添加，默认不添加</param>
+        </member>
+        <member name="M:DaLi.Utils.Extension.DictionaryExtension.SafeUpdate``2(System.Collections.Generic.Dictionary{``0,``1},System.Collections.Generic.IDictionary{``0,``1},System.Boolean)">
+            <summary>使用线程安全更新一组数据</summary>
+            <param name="input"></param>
+            <param name="dictionary"></param>
+            <param name="force">数据不存在时是否强制添加，默认不添加</param>
+        </member>
+        <member name="M:DaLi.Utils.Extension.DictionaryExtension.SafeUpdate``2(System.Collections.Generic.Dictionary{``0,``1},System.Func{``0,``1,``1})">
+            <summary>使用线程安全遍历更新全部值</summary>
+            <param name="input"></param>
+            <param name="action">更新函数（键，值，返回值）</param>
+        </member>
+        <member name="M:DaLi.Utils.Extension.DictionaryExtension.Remove``2(System.Collections.Generic.Dictionary{``0,``1},``0[])">
+            <summary>一次移除多个键</summary>
+        </member>
+        <member name="M:DaLi.Utils.Extension.DictionaryExtension.Remove``2(System.Collections.Generic.Dictionary{``0,``1},System.Collections.Generic.IEnumerable{``0})">
+            <summary>一次移除多个键</summary>
+        </member>
+        <member name="M:DaLi.Utils.Extension.DictionaryExtension.Remove``1(System.Collections.Generic.Dictionary{System.String,``0},System.String,System.String)">
+            <summary>一次移除两个键</summary>
+            <remarks>注意与 Dictionary.Remove(Key, Value) 的差异，此函数目的是防止直接执行内置的 Remove(Key, Value)</remarks>
+        </member>
+        <member name="M:DaLi.Utils.Extension.DictionaryExtension.Keep``1(System.Collections.Generic.Dictionary{System.String,``0},System.String[])">
+            <summary>仅保留指定键的值</summary>
+        </member>
+        <member name="M:DaLi.Utils.Extension.DictionaryExtension.Merge``2(System.Collections.Generic.IDictionary{``0,``1},System.Collections.Generic.IDictionary{``0,``1})">
+            <summary>字典值合并，存在替换，不存在添加</summary>
+            <param name="input">原始内容</param>
+            <param name="other">用于合并的内容</param>
+            <returns>合并后的字典</returns>
+        </member>
+        <member name="M:DaLi.Utils.Extension.DictionaryExtension.TryMerge(System.Collections.Generic.IDictionary{System.String,System.Object}@,System.Collections.Generic.IDictionary{System.String,System.Object},System.Boolean)">
+            <summary>字典合并并修改原始字典</summary>
+            <param name="input">原始内容</param>
+            <param name="other">用于合并的内容</param>
+            <param name="convertJson">数据是否需要转换成 JSON 字典</param>
+            <remarks>先尝试转换成 JSON 字典后合并</remarks>
+            <returns>合并后的字典</returns>
+        </member>
+        <member name="M:DaLi.Utils.Extension.DictionaryExtension.ForEach``2(System.Collections.Generic.IDictionary{``0,``1},System.Action{``0,``1})">
+            <summary>遍历项目</summary>
+        </member>
+        <member name="M:DaLi.Utils.Extension.DictionaryExtension.TryGetComparer``2(System.Collections.Generic.IDictionary{``0,``1})">
+            <summary>获取字典数据的键排序比较(Comparer)的扩展方法</summary>
+        </member>
+        <member name="T:DaLi.Utils.Extension.ListExtension">
+            <summary>集合扩展操作</summary>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ListExtension.Merge``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0})">
+            <summary>字典值合并，存在替换，不存在添加</summary>
+            <param name="input">原始内容</param>
+            <param name="other">用于合并的内容</param>
+            <returns>合并后的字典</returns>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ListExtension.TryMerge(System.Collections.Generic.IList{System.Object}@,System.Collections.Generic.IList{System.Object},System.Boolean)">
+            <summary>字典值合并，存在替换，不存在添加</summary>
+            <param name="input">原始内容</param>
+            <param name="other">用于合并的内容</param>
+            <param name="convertJson">数据是否需要转换成 JSON 字典</param>
+            <remarks>先尝试转换成 JSON 字典后合并</remarks>
+            <returns>合并后的字典</returns>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ListExtension.Distinct``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+            <summary>移除重复数据 - 根据指定的键选择器函数去除集合中的重复元素</summary>
+            <typeparam name="T">集合元素类型</typeparam>
+            <typeparam name="V">键选择器返回的键类型</typeparam>
+            <param name="source">要操作的源集合</param>
+            <param name="keySelector">用于从元素中提取键的函数</param>
+            <returns>去除重复元素后的集合，如果源集合或键选择器为 null 则返回原始集合</returns>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ListExtension.Distinct``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IEqualityComparer{``1})">
+            <summary>移除重复数据 - 根据指定的键选择器函数和比较器去除集合中的重复元素</summary>
+            <typeparam name="T">集合元素类型</typeparam>
+            <typeparam name="V">键选择器返回的键类型</typeparam>
+            <param name="source">要操作的源集合</param>
+            <param name="keySelector">用于从元素中提取键的函数</param>
+            <param name="comparer">用于比较源元素的比较器</param>
+            <returns>去除重复元素后的集合，如果源集合或键选择器为 null 则返回原始集合</returns>
+        </member>
+        <member name="T:DaLi.Utils.Extension.ListExtension.CommonEqualityComparer`2">
+            <summary>自定义相等比较器，用于根据指定的键选择器比较对象</summary>
+            <typeparam name="T">要比较的对象类型</typeparam>
+            <typeparam name="V">键的类型</typeparam>
+            <param name="keySelector">用于从对象中提取键的函数</param>
+            <param name="comparer">用于比较键的比较器</param>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ListExtension.CommonEqualityComparer`2.#ctor(System.Func{`0,`1},System.Collections.Generic.IEqualityComparer{`1})">
+            <summary>自定义相等比较器，用于根据指定的键选择器比较对象</summary>
+            <typeparam name="T">要比较的对象类型</typeparam>
+            <typeparam name="V">键的类型</typeparam>
+            <param name="keySelector">用于从对象中提取键的函数</param>
+            <param name="comparer">用于比较键的比较器</param>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ListExtension.CommonEqualityComparer`2.#ctor(System.Func{`0,`1})">
+            <summary>初始化比较器，只使用键选择器</summary>
+            <param name="keySelector">用于从对象中提取键的函数</param>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ListExtension.CommonEqualityComparer`2.Equals(`0,`0)">
+            <summary>确定指定的对象是否相等</summary>
+            <param name="x">要比较的第一个对象</param>
+            <param name="y">要比较的第二个对象</param>
+            <returns>如果指定的对象相等，则为 true；否则为 false</returns>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ListExtension.CommonEqualityComparer`2.GetHashCode(`0)">
+            <summary>返回指定对象的哈希代码</summary>
+            <param name="obj">要获取哈希代码的对象</param>
+            <returns>指定对象的哈希代码</returns>
+        </member>
+        <member name="T:DaLi.Utils.Extension.PropertyExtension">
+            <summary>属性相关扩展操作</summary>
+        </member>
+        <member name="F:DaLi.Utils.Extension.PropertyExtension._PropertyCache">
+            <summary>属性缓存</summary>
+        </member>
+        <member name="M:DaLi.Utils.Extension.PropertyExtension.GetAllProperties(System.Type)">
+            <summary>获取类型的所有属性（包含实例/静态、公共/非公共属性）</summary>
+            <param name="type">目标类型</param>
+            <returns>属性信息数组</returns>
+        </member>
+        <member name="M:DaLi.Utils.Extension.PropertyExtension.GetSingleProperty(System.Type,System.String)">
+            <summary>获取指定名称的属性（不区分大小写）</summary>
+            <param name="type">目标类型</param>
+            <param name="name">属性名称</param>
+            <returns>匹配的第一个属性或null</returns>
+        </member>
+        <member name="M:DaLi.Utils.Extension.PropertyExtension.GetSingleProperty(System.Type,System.Func{System.Reflection.PropertyInfo,System.Boolean})">
+            <summary>通过条件表达式获取属性</summary>
+            <param name="type">目标类型</param>
+            <param name="predicate">筛选条件</param>
+            <returns>匹配的第一个属性或null</returns>
+        </member>
+        <member name="M:DaLi.Utils.Extension.PropertyExtension.IsPublic(System.Reflection.PropertyInfo)">
+            <summary>判断属性是否为公共可读属性</summary>
+        </member>
+        <member name="T:DaLi.Utils.Extension.TypeExtensions">
+            <summary>类型相关扩展操作</summary>
+        </member>
+        <member name="M:DaLi.Utils.Extension.TypeExtensions.IsComeFrom(System.Type,System.Type,System.Boolean,System.Boolean)">
+            <summary>判断指定类型是否来源于某个基类型</summary>
+            <param name="type">当前类型</param>
+            <param name="baseType">要验证的基类型</param>
+            <param name="enabledEquals">是否允许当前类型与要验证的基类型相同，默认为 true</param>
+            <param name="enabledAbstract">是否允许当前类型为抽象类，默认为 false</param>
+            <returns>如果当前类型来源于指定的基类型，则返回 true；否则返回 false</returns>
+        </member>
+        <member name="M:DaLi.Utils.Extension.TypeExtensions.IsComeFrom``1(System.Type,System.Boolean,System.Boolean)">
+            <summary>判断指定类型是否来源于泛型参数指定的基类型</summary>
+            <typeparam name="T">要验证的基类型</typeparam>
+            <param name="type">当前类型</param>
+            <param name="enabledEquals">是否允许当前类型与要验证的基类型相同，默认为true</param>
+            <param name="enabledAbstract">是否允许当前类型为抽象类，默认为false</param>
+            <returns>如果当前类型来源于指定的基类型，则返回true；否则返回false</returns>
+        </member>
+        <member name="M:DaLi.Utils.Extension.TypeExtensions.IsExtendClass(System.Type)">
+            <summary>判断是否为自定义类型，非系统内置类型</summary>
+            <param name="type">要检查的类型</param>
+            <returns>如果是自定义类型则返回 true，否则返回 false</returns>
+        </member>
+        <member name="T:DaLi.Utils.Extension.ValueExtension">
+            <summary>值相关的扩展操作</summary>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ValueExtension.IsNull(System.String)">
+            <summary>是否为 null 或空字符串</summary>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ValueExtension.NotNull(System.String)">
+            <summary>是否不为 null 或空字符串</summary>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ValueExtension.IsEmpty(System.String)">
+            <summary>是否为 null、空字符串或纯空格</summary>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ValueExtension.NotEmpty(System.String)">
+            <summary>是否非空且包含非空格内容</summary>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ValueExtension.IsSame(System.String,System.String,System.Boolean)">
+            <summary>字符串等效性验证（支持大小写敏感模式）</summary>
+            <param name="input"></param>
+            <param name="target">对比字符串</param>
+            <param name="ignoreCase">是否检查大小写（默认不检查）</param>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ValueExtension.IsSame(System.String,System.Collections.Generic.IEnumerable{System.String},System.Boolean,System.Boolean)">
+            <summary>字符串等效性验证（支持大小写敏感模式）</summary>
+            <param name="input"></param>
+            <param name="values">用于匹配的内容，无数据时返回 false</param>
+            <param name="all">是否每条都需要匹配，默认值需要其中一条匹配</param>
+            <param name="ignoreCase">是否区分大小写，默认不区分</param>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ValueExtension.IsLike(System.String,System.String,System.Boolean)">
+            <summary>数据是否存在指定内容，仅作简单比较</summary>
+            <param name="input">原始内容</param>
+            <param name="value">用于匹配的内容</param>
+            <param name="ignoreCase">是否区分大小写，默认不区分</param>
+            <remarks>
+            1. 如果原始内容与匹配内容完全相同则返回 true（原始为 null 且匹配为 null；原始为空字符串且匹配为空字符串）；<para />
+            2. 括号包含的内容则使用正则表达式匹配；<para />
+            3. 使用星号 * 作为通配符，匹配任何内容；<para />
+            4. 使用星号 *xxx* 作为通配符，匹配任何包含 xxx 的内容;<para />
+            5. 使用星号 *xxx*yyy* 作为通配符，匹配任何包含 xxx 开头，yyy 结尾的内容;<para />
+            6. 使用星号 xxx* 作为通配符，匹配任何以 xxx 开头的内容;<para />
+            7. 使用星号 *xxx 作为通配符，匹配任何以 xxx 结尾的内容;<para />
+            8. 使用星号 xxx*yyy 作为通配符，匹配任何以 xxx 开头，yyy 结尾的内容;<para />
+            9. 都不匹配时返回 false。
+            </remarks>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ValueExtension.IsLike(System.String,System.Collections.Generic.IEnumerable{System.String},System.Boolean,System.Boolean)">
+            <summary>数据是否存在指定内容，仅作简单比较</summary>
+            <param name="input">原始内容</param>
+            <param name="values">用于匹配的内容，无数据时返回 false</param>
+            <param name="all">是否每条都需要匹配，默认值需要其中一条匹配</param>
+            <param name="ignoreCase">是否区分大小写，默认不区分</param>
+            <remarks>
+            1. 如果原始内容与匹配内容完全相同则返回 true（原始为 null 且匹配为 null；原始为空字符串且匹配为空字符串）；<para />
+            2. 括号包含的内容则使用正则表达式匹配；<para />
+            3. 使用星号 * 作为通配符，匹配任何内容；<para />
+            4. 使用星号 *xxx* 作为通配符，匹配任何包含 xxx 的内容;<para />
+            5. 使用星号 *xxx*yyy* 作为通配符，匹配任何包含 xxx 开头，yyy 结尾的内容;<para />
+            6. 使用星号 xxx* 作为通配符，匹配任何以 xxx 开头的内容;<para />
+            7. 使用星号 *xxx 作为通配符，匹配任何以 xxx 结尾的内容;<para />
+            8. 使用星号 xxx*yyy 作为通配符，匹配任何以 xxx 开头，yyy 结尾的内容;<para />
+            9. 都不匹配时返回 false。
+            </remarks>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ValueExtension.IsMatch(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
+            <summary>是否匹配正则表达式</summary>
+            <param name="input">原始内容</param>
+            <param name="pattern">正则表达式</param>
+            <param name="options">匹配选项，默认忽略大小写</param>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ValueExtension.IsEmpty``1(System.Nullable{``0})">
+            <summary>是否为 null、空字符串</summary>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ValueExtension.NotEmpty``1(System.Nullable{``0})">
+            <summary>是否非空且包含非空格内容</summary>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ValueExtension.IsEmpty(System.Array)">
+            <summary>数组是否为空</summary>
+            <param name="input">数组</param>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ValueExtension.IsEmpty(System.Collections.ICollection)">
+            <summary>集合是否为空</summary>
+            <param name="input">数组</param>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ValueExtension.IsEmpty(System.Collections.IEnumerable)">
+            <summary>集合是否为空</summary>
+            <param name="input">数组</param>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ValueExtension.NotEmpty(System.Array)">
+            <summary>数组存在数据</summary>
+            <param name="input">数组</param>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ValueExtension.NotEmpty(System.Collections.ICollection)">
+            <summary>集合存在数据</summary>
+            <param name="input">数组</param>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ValueExtension.NotEmpty(System.Collections.IEnumerable)">
+            <summary>集合存在数据</summary>
+            <param name="input">数组</param>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ValueExtension.Count(System.Collections.IEnumerable)">
+            <summary>获取集合的数量长度</summary>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ValueExtension.IsEmpty(System.Collections.IDictionary)">
+            <summary>集合是否为空</summary>
+            <param name="input">数组</param>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ValueExtension.NotEmpty(System.Collections.IDictionary)">
+            <summary>集合存在数据</summary>
+            <param name="input">数组</param>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ValueExtension.IsEmptyValue(System.Object)">
+            <summary>判断当前数据是否无内容</summary>
+            <param name="value">要判断的对象</param>
+            <returns>如果对象为空或具有默认值则返回true，否则返回false</returns>
+            <remarks>
+            针对不同类型的判断标准如下：
+            - 文本：空值或空字符串
+            - 数字：0
+            - 布尔：False
+            - 对象、字典：无任何键
+            - 数组、集合：长度为0
+            - GUID：空值
+            - 时间：初始时间
+            - 其他：空值
+            </remarks>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ValueExtension.IsEmptyValue``1(``0,System.Func{``0,System.Boolean})">
+            <summary>
+            判断当前数据是否无内容，支持自定义验证逻辑
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="value">要判断的对象</param>
+            <param name="validate">自定义验证函数，返回true则认为无内容</param>
+            <returns>如果对象为空或验证函数返回true则返回true，否则返回false</returns>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ValueExtension.GetDefaultValue(System.Type,System.Object)">
+            <summary>
+            获取指定类型的默认值
+            </summary>
+            <param name="type">类型</param>
+            <param name="defaultValue">当无法创建默认值时的替代值</param>
+            <returns>类型的默认值或指定的替代值</returns>
+            <remarks>
+            对于值类型和字符串类型，始终存在默认值，此时defaultValue参数无效
+            </remarks>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ValueExtension.GetDefaultValue``1(``0)">
+            <summary>
+            获取指定类型的默认值
+            </summary>
+            <typeparam name="T">类型</typeparam>
+            <param name="defaultValue">当无法创建默认值时的替代值</param>
+            <returns>类型的默认值或指定的替代值</returns>
+        </member>
+        <member name="M:DaLi.Utils.Extension.ValueExtension.GetDefaultValue(System.TypeCode)">
+            <summary>
+            获取常用系统数据类型的默认值
+            </summary>
+            <param name="typeCode">类型代码</param>
+            <returns>对应类型的默认值</returns>
+        </member>
+        <member name="T:DaLi.Utils.Helper.ConvertHelper">
+            <summary>类型转换</summary>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ConvertHelper.ChangeType(System.Object,System.Type,System.Object)">
+            <summary>数据类型转换</summary>
+            <param name="input">要转换的数据</param>
+            <param name="type">指定类型</param>
+            <param name="defaultValue">转换失败的默认值</param>
+            <remarks>尝试直接转换，如果失败则尝试通过 JSON 序列化和反序列化</remarks>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ConvertHelper.ChangeType``1(System.Object,``0)">
+            <summary>数据类型转换</summary>
+            <typeparam name="T">类型</typeparam>
+            <param name="input">要转换的数据</param>
+            <param name="defaultValue">转换失败的默认值</param>
+            <remarks>尝试直接转换，如果失败则尝试通过 JSON 序列化和反序列化</remarks>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ConvertHelper.ToFlatStringDictionary(System.Object,System.StringComparer)">
+            <summary>将对象转换为扁平的文本键值字典</summary>
+            <param name="obj">要转换的对象</param>
+            <param name="comparer">字符串比较器(键是否区分大小写)</param>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ConvertHelper.ToFlatStringDictionary``1(System.Object)">
+            <summary>将对象转换为扁平的文本键值字典</summary>
+            <param name="obj">要转换的对象</param>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ConvertHelper.ToFlatDictionary(System.Object,System.StringComparer)">
+            <summary>将对象转换为扁平的字典</summary>
+            <param name="obj">要转换的对象</param>
+            <param name="comparer">字符串比较器(键是否区分大小写)</param>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ConvertHelper.ToFlatDictionary``1(System.Object)">
+            <summary>将对象转换为扁平的字典</summary>
+            <param name="obj">要转换的对象</param>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ConvertHelper.ToFlatDictionary``1(System.Object,System.String,``0)">
+            <summary>将对象转换为扁平的字典</summary>
+            <typeparam name="T">文本键值对字典</typeparam>
+            <param name="obj">要转换的对象</param>
+            <param name="prefix">前缀</param>
+            <param name="dictionary">转换后的字典</param>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ConvertHelper.ParsePath(System.String)">
+            <summary>简单路径解析，支持 . 和 [ ]</summary>
+            <param name="path">要解析的路径</param>
+            <remarks>
+            用 . 表示字典键
+            用 [ ] 如果内容为数值，则表示数组下标，如果为其他内容则表示字典键
+            对于 [] 内的内容，如果为负数则无效
+            </remarks>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ConvertHelper.StringToObject(System.String)">
+            <summary>文本转值</summary>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ConvertHelper.FromFlatStringDictionary``1(``0,System.Boolean,System.StringComparer)">
+            <summary>将扁平的字典转换为对象</summary>
+            <param name="input"></param>
+            <param name="convertValue">是否将值转换成最相近的类型，如将日期字符串转换成日期，数字字符串转成数字</param>
+            <param name="comparer">字符串比较器(键是否区分大小写)</param>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ConvertHelper.FromFlatDictionary``1(``0,System.StringComparer)">
+            <summary>将扁平的字典转换为对象</summary>
+            <param name="input"></param>
+            <param name="comparer">字符串比较器(键是否区分大小写)</param>
+        </member>
+        <member name="T:DaLi.Utils.Helper.FunctionHelper">
+            <summary>C# 函数扩展</summary>
+        </member>
+        <member name="M:DaLi.Utils.Helper.FunctionHelper.ForEachAsync``1(System.Collections.Generic.IAsyncEnumerable{``0},System.Action{``0})">
+            <summary>异步遍历</summary>
+            <param name="source">异步列表数据</param>
+            <param name="action">数据操作</param>
+        </member>
+        <member name="T:DaLi.Utils.Helper.LockerHelper">
+            <summary>对象锁，为任意对象提供动态绑定的独立锁</summary>
+        </member>
+        <member name="F:DaLi.Utils.Helper.LockerHelper._LockTable">
+            <summary>核心存储结构：对象实例 -> 锁对象</summary>
+        </member>
+        <member name="M:DaLi.Utils.Helper.LockerHelper.GetLock(System.Object)">
+            <summary>获取与特定实例关联的锁对象（通用版）</summary>
+        </member>
+        <member name="M:DaLi.Utils.Helper.LockerHelper.GetLock``1(``0)">
+            <summary>获取与特定实例关联的锁对象（泛型版）</summary>
+        </member>
+        <member name="M:DaLi.Utils.Helper.LockerHelper.Lock(System.Object,System.Action)">
+            <summary>锁操作</summary>
+        </member>
+        <member name="M:DaLi.Utils.Helper.LockerHelper.Lock``1(``0,System.Action)">
+            <summary>锁操作</summary>
+        </member>
+        <member name="M:DaLi.Utils.Helper.LockerHelper.Lock``1(System.Object,System.Func{``0})">
+            <summary>锁操作</summary>
+        </member>
+        <member name="M:DaLi.Utils.Helper.LockerHelper.Lock``2(``0,System.Func{``1})">
+            <summary>锁操作</summary>
+        </member>
+        <member name="T:DaLi.Utils.Helper.LockerHelper.LockContainer">
+            <summary>锁容器（确保值类型不会被共享）</summary>
+        </member>
+        <member name="T:DaLi.Utils.Helper.ReflectionHeler">
+            <summary>反射操作</summary>
+        </member>
+        <member name="T:DaLi.Utils.Helper.ReflectionHeler.PluginLoadContext">
+            <summary>插件加载上下文对象，以便隔离与主程序的进程，直接加载对于存在外部引用的插件可能导致无法正常使用。具体参考：https://learn.microsoft.com/zh-cn/dotnet/core/tutorials/creating-app-with-plugin-support</summary>
+        </member>
+        <member name="F:DaLi.Utils.Helper.ReflectionHeler.PluginLoadContext._Resolver">
+            <summary>依赖解析器</summary>
+        </member>
+        <member name="F:DaLi.Utils.Helper.ReflectionHeler.PluginLoadContext._Path">
+            <summary>默认路径</summary>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ReflectionHeler.PluginLoadContext.Load(System.Reflection.AssemblyName)">
+            <summary>根据 AssemblyName 解析并加载程序集</summary>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ReflectionHeler.PluginLoadContext.LoadUnmanagedDll(System.String)">
+            <summary>允许派生的类按名称加载非托管库</summary>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ReflectionHeler.PluginLoadContext.LoadAssembly">
+            <summary>加载默认的程序集</summary>
+        </member>
+        <member name="F:DaLi.Utils.Helper.ReflectionHeler._InvalidAssemblies">
+            <summary>系统 Assembly 名，以便过滤掉系统 Assembly</summary>
+        </member>
+        <member name="F:DaLi.Utils.Helper.ReflectionHeler._InvalidTypes">
+            <summary>系统 Type 名，以便过滤掉系统 Type</summary>
+            <remarks>可以使用通配符 *</remarks>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ReflectionHeler.InvalidAssemblyInsert(System.String[])">
+            <summary>添加更多需要过滤的 Assembly 名称</summary>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ReflectionHeler.InvalidTypeInsert(System.String[])">
+            <summary>添加更多需要过滤的 Type 名称</summary>
+            <remarks>可以使用通配符 *</remarks>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ReflectionHeler.IsInvalidName(System.String,System.Boolean)">
+            <summary>滤器无效名称</summary>
+            <returns>首尾都包含或者不含点则只要存在此值即可；如果只有末尾有点则比较开头，如果只有开始有点则比较末尾</returns>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ReflectionHeler.CurrentAssemblies(System.Boolean,System.String,System.Boolean)">
+            <summary>获取当前系统所有程序集</summary>
+            <param name="includeBin">是否包含 Bin 目录</param>
+            <param name="pluginFolder">是否需要加载插件目录，需要则设置插件目录的名称。系统将扫描查询目录下与子目录名相同的程序集。如：plugins 则将扫描 /plugins/xxx/xxx.dll</param>
+            <param name="skipSystemAssembly">是否过滤系统程序集</param>
+            <returns>返回所有程序集列表</returns>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ReflectionHeler.LoadAssembly(System.String,System.String[])">
+            <summary>加载指定文件的程序集</summary>
+            <param name="filepath">指定程序集的路径</param>
+            <param name="includeNames">必须包含的程序集名称，用于过滤无效的程序集</param>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ReflectionHeler.LoadAssemblies(System.String,System.String[])">
+            <summary>加载指定目录下的程序集</summary>
+            <param name="folder">获取目录，未指定则当前启动目录</param>
+            <param name="includeNames">必须包含的程序集名称，用于过滤无效的程序集</param>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ReflectionHeler.GetTypes(System.Reflection.Assembly,System.Type[])">
+            <summary>获取程序集中的类型</summary>
+            <param name="assembly">程序集</param>
+            <param name="baseTypes">必须包含的基类，用于过滤无效的类型</param>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ReflectionHeler.GetTypes(System.String,System.Type[])">
+            <summary>获取指定目录下所有程序集中的类型</summary>
+            <param name="folder">获取目录，未指定则当前启动目录</param>
+            <param name="baseTypes">必须包含的基类，用于过滤无效的类型</param>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ReflectionHeler.CurrentTypes(System.Boolean,System.String,System.Boolean,System.Type[])">
+            <summary>获取当前系统所有程序集</summary>
+            <param name="includeBin">是否包含 Bin 目录</param>
+            <param name="pluginFolder">是否需要加载插件目录，需要则设置插件目录的名称。系统将扫描查询目录下与子目录名相同的程序集。如：plugins 则将扫描 /plugins/xxx/xxx.dll</param>
+            <param name="skipSystemAssembly">是否过滤系统程序集</param>
+            <param name="baseTypes">必须包含的基类，用于过滤无效的类型</param>
+            <returns>返回所有程序集列表</returns>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ReflectionHeler.GetTypes(System.Reflection.Assembly,System.Boolean,System.String[])">
+            <summary>获取程序集中的类型</summary>
+            <param name="assembly">程序集</param>
+            <param name="publicOnly">是否获取此程序集中定义的公共类型的集合，这些公共类型在程序集外可见。</param>
+            <param name="includeNames">必须包含的类型名称，用于过滤无效的类型</param>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ReflectionHeler.GetTypes(System.String,System.Boolean,System.String[])">
+            <summary>获取指定目录下所有程序集中的类型</summary>
+            <param name="folder">获取目录，未指定则当前启动目录</param>
+            <param name="publicOnly">是否获取此程序集中定义的公共类型的集合，这些公共类型在程序集外可见。</param>
+            <param name="includeNames">必须包含的类型名称，用于过滤无效的类型</param>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ReflectionHeler.CurrentTypes(System.Boolean,System.String,System.Boolean,System.Boolean,System.String[])">
+            <summary>获取当前系统所有程序集</summary>
+            <param name="includeBin">是否包含 Bin 目录</param>
+            <param name="pluginFolder">是否需要加载插件目录，需要则设置插件目录的名称。系统将扫描查询目录下与子目录名相同的程序集。如：plugins 则将扫描 /plugins/xxx/xxx.dll</param>
+            <param name="skipSystemAssembly">是否过滤系统程序集</param>
+            <param name="publicOnly">是否获取此程序集中定义的公共类型的集合，这些公共类型在程序集外可见。</param>
+            <param name="includeNames">必须包含的类型名称，用于过滤无效的类型</param>
+            <returns>返回所有程序集列表</returns>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ReflectionHeler.CreateInstance(System.String,System.String)">
+            <summary>根据类型创建实例</summary>
+            <param name="filepath">指定程序集的路径</param>
+            <param name="typeName">类型全名称，忽略大小写</param>
+            <returns>创建的实例</returns>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ReflectionHeler.CreateInstances(System.Reflection.Assembly,System.Boolean,System.String[])">
+            <summary>从程序集加载实例</summary>
+            <param name="assembly">程序集</param>
+            <param name="publicOnly">是否获取此程序集中定义的公共类型的集合，这些公共类型在程序集外可见。</param>
+            <param name="includeNames">必须包含的类型名称，用于过滤无效的类型</param>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ReflectionHeler.CreateInstances(System.Reflection.Assembly,System.Type[])">
+            <summary>从程序集加载实例</summary>
+            <param name="assembly">程序集</param>
+            <param name="baseTypes">必须包含的基类，用于过滤无效的类型</param>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ReflectionHeler.CreateInstances``1(System.Reflection.Assembly,System.Boolean,System.String[])">
+            <summary>从程序集加载实例</summary>
+            <param name="assembly">程序集</param>
+            <param name="publicOnly">是否获取此程序集中定义的公共类型的集合，这些公共类型在程序集外可见。</param>
+            <param name="includeNames">必须包含的类型名称，用于过滤无效的类型</param>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ReflectionHeler.CreateInstances``1(System.Reflection.Assembly)">
+            <summary>从程序集加载实例</summary>
+            <param name="assembly">程序集</param>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ReflectionHeler.CreateInstances(System.String,System.Boolean,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String})">
+            <summary>创建指定目录下的指定类型的实例</summary>
+            <param name="folder">指定目录，未指定则当前启动目录</param>
+            <param name="publicOnly">是否获取此程序集中定义的公共类型的集合，这些公共类型在程序集外可见。</param>
+            <param name="assemblyNames">必须包含的程序集名称，用于过滤无效的程序集</param>
+            <param name="typeNames">必须包含的类型名称，用于过滤无效的类型</param>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ReflectionHeler.CreateInstances(System.String,System.Collections.Generic.IEnumerable{System.String},System.Type[])">
+            <summary>创建指定目录下的指定类型的实例</summary>
+            <param name="folder">指定目录，未指定则当前启动目录</param>
+            <param name="assemblyNames">必须包含的程序集名称，用于过滤无效的程序集</param>
+            <param name="baseTypes">必须包含的基类，用于过滤无效的类型</param>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ReflectionHeler.CreateInstances``1(System.String,System.Boolean,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String})">
+            <summary>创建指定目录下的指定类型的实例</summary>
+            <param name="folder">指定目录，未指定则当前启动目录</param>
+            <param name="publicOnly">是否获取此程序集中定义的公共类型的集合，这些公共类型在程序集外可见。</param>
+            <param name="assemblyNames">必须包含的程序集名称，用于过滤无效的程序集</param>
+            <param name="typeNames">必须包含的类型名称，用于过滤无效的类型</param>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ReflectionHeler.CurrentInstances(System.Boolean,System.String,System.Boolean,System.Boolean,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String})">
+            <summary>创建指定目录下的指定类型的实例</summary>
+            <param name="includeBin">是否包含 Bin 目录</param>
+            <param name="pluginFolder">是否需要加载插件目录，需要则设置插件目录的名称。系统将扫描查询目录下与子目录名相同的程序集。如：plugins 则将扫描 /plugins/xxx/xxx.dll</param>
+            <param name="skipSystemAssembly">是否过滤系统程序集</param>
+            <param name="publicOnly">是否获取此程序集中定义的公共类型的集合，这些公共类型在程序集外可见。</param>
+            <param name="assemblyNames">必须包含的程序集名称，用于过滤无效的程序集</param>
+            <param name="typeNames">必须包含的类型名称，用于过滤无效的类型</param>
+        </member>
+        <member name="M:DaLi.Utils.Helper.ReflectionHeler.CurrentInstances``1(System.Boolean,System.String,System.Boolean,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>创建指定目录下的指定类型的实例</summary>
+            <param name="includeBin">是否包含 Bin 目录</param>
+            <param name="pluginFolder">是否需要加载插件目录，需要则设置插件目录的名称。系统将扫描查询目录下与子目录名相同的程序集。如：plugins 则将扫描 /plugins/xxx/xxx.dll</param>
+            <param name="skipSystemAssembly">是否过滤系统程序集</param>
+            <param name="assemblyNames">必须包含的程序集名称，用于过滤无效的程序集</param>
+        </member>
+        <member name="T:DaLi.Utils.Helper.SystemHelper">
+            <summary>系统操作</summary>
+        </member>
+        <member name="F:DaLi.Utils.Helper.SystemHelper._RootFolder">
+            <summary>系统启动的目录</summary>
+        </member>
+        <member name="P:DaLi.Utils.Helper.SystemHelper.RootFolder">
+            <summary>系统启动的目录</summary>
+        </member>
+        <member name="M:DaLi.Utils.Helper.SystemHelper.FullPath(System.String,System.Boolean,System.Boolean)">
+            <summary>获取完整路径</summary>
+            <param name="path">相对路径</param>
+            <param name="tryCreate">是否尝试创建此路径的上级目录，如：d:\a\b\c True 则自动创建 d:\a\b 的目录</param>
+            <param name="isFolder">当前获取的是目录还是文件地址，以便建立对应的目录</param>
+            <remarks>如果给定的相对路径非绝对路径，则将自动以当前启动目录为基函路径</remarks>
+        </member>
+        <member name="T:DaLi.Utils.Json.JsonBooleanConverter">
+            <summary>JSON 布尔类型转换</summary>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonBooleanConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <summary>读取</summary>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonBooleanConverter.Write(System.Text.Json.Utf8JsonWriter,System.Boolean,System.Text.Json.JsonSerializerOptions)">
+            <summary>写入</summary>
+        </member>
+        <member name="T:DaLi.Utils.Json.JsonConverterBase">
+            <summary>JSON 自定义转换</summary>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonConverterBase.Read(System.Text.Json.JsonElement)">
+            <summary>反序列化</summary>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonConverterBase.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <summary>读取，已经处理基本类型 true, false, null</summary>
+        </member>
+        <member name="T:DaLi.Utils.Json.JsonConverterDefault">
+            <summary>JSON 默认转换</summary>
+        </member>
+        <member name="F:DaLi.Utils.Json.JsonConverterDefault._JsonElementParse">
+            <summary>解析节点</summary>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonConverterDefault.#ctor(System.Func{System.Text.Json.JsonElement,System.Object})">
+            <summary>构造</summary>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonConverterDefault.Write(System.Text.Json.Utf8JsonWriter,System.Object,System.Text.Json.JsonSerializerOptions)">
+            <summary>写入</summary>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonConverterDefault.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <summary>读取</summary>
+        </member>
+        <member name="T:DaLi.Utils.Json.JsonDateTimeConverter">
+            <summary>JSON 时间类型转换</summary>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonDateTimeConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <summary>读取</summary>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonDateTimeConverter.Write(System.Text.Json.Utf8JsonWriter,System.DateTime,System.Text.Json.JsonSerializerOptions)">
+            <summary>写入</summary>
+        </member>
+        <member name="T:DaLi.Utils.Json.JsonExtension">
+            <summary>JSON 扩展操作</summary>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonExtension.Parse(System.Text.Json.JsonElement,System.Boolean,System.Func{System.String,System.Object})">
+            <summary>解析节点</summary>
+            <param name="input">Json 节点</param>
+            <param name="emptyNULL">空值是否用 null 替换</param>
+            <param name="format">对值进行二次格式化的操作，仅针对字符串类型</param>
+            <remarks>
+            JsonValueKind 类型：
+            0:Undefined		1:Object		2:Array
+            3:String		4:Number		5:True
+            6:False			7:Null
+            </remarks>
+        </member>
+        <member name="F:DaLi.Utils.Json.JsonExtension._JsonOptions">
+            <summary>缓存 JSON 序列化选项</summary>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonExtension.GetOption(System.Boolean,System.Boolean,System.Boolean)">
+            <summary>获取 JSON 序列化选项</summary>
+            <param name="indented">是否缩进</param>
+            <param name="camelCase">是否驼峰</param>
+            <param name="skipNull">是否跳过空值</param>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonExtension.ToJson(System.Object,System.Text.Json.JsonSerializerOptions,System.Type)">
+            <summary>序列化 JSON 对象</summary>
+            <param name="input">需要序列化的对象</param>
+            <param name="options">序列化选项</param>
+            <param name="type">序列化类型</param>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonExtension.ToJson(System.Object,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>序列化 JSON 对象</summary>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonExtension.ToJson``1(``0,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>序列化 JSON 对象</summary>
+            <param name="input">要序列化的对象</param>
+            <param name="indented">是否缩进</param>
+            <param name="camelCase">是否驼峰</param>
+            <param name="skipNull">是否跳过空值</param>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonExtension.ToJsonNoQuote``1(``0,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>序列化 JSON 对象，名称不使用引号</summary>
+            <param name="input">要序列化的对象</param>
+            <param name="indented">是否缩进</param>
+            <param name="camelCase">是否驼峰</param>
+            <param name="skipNull">是否跳过空值</param>
+        </member>
+        <member name="P:DaLi.Utils.Json.JsonExtension.DeserializeDefaultOptions">
+            <summary>反序列化默认选项</summary>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonExtension.FromJson(System.String,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <summary>反序列化 JSON 对象</summary>
+            <param name="input">JSON 字符串</param>
+            <param name="type">类型</param>
+            <param name="options">选项</param>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonExtension.FromJson``1(System.String,System.Text.Json.JsonSerializerOptions,``0)">
+            <summary>反序列化 JSON 对象</summary>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonExtension.FromJson(System.String,System.Boolean,System.Func{System.String,System.Object})">
+            <summary>反序列化 JSON 对象</summary>
+            <param name="input">Json 字符串</param>
+            <param name="emptyNULL">空值是否用 null 替换</param>
+            <param name="format">对值进行二次格式化的操作，仅针对字符串类型</param>
+            <returns>解析为 Json 数据集合，根据 Json 内容可能为字典或者列表</returns>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonExtension.ToJsonDictionary(System.String,System.Boolean,System.Func{System.String,System.Object})">
+            <summary>反序列化 JSON 对象为字典数据</summary>
+            <param name="input">Json 字符串</param>
+            <param name="emptyNULL">是否移除无效内容节点</param>
+            <param name="format">对值进行二次格式化的操作，仅针对字符串类型</param>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonExtension.ToJsonList(System.String,System.Boolean,System.Func{System.String,System.Object})">
+            <summary>反序列化 JSON 对象为集合列表数据</summary>
+            <param name="input">Json 字符串</param>
+            <param name="emptyNULL">是否移除无效内容节点</param>
+            <param name="format">对值进行二次格式化的操作，仅针对字符串类型</param>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonExtension.ToFlatDictionary(System.String,System.Boolean,System.StringComparer)">
+            <summary>将 JSON 字符串转换为扁平化字典</summary>
+            <param name="input"></param>
+            <param name="emptyNULL">移除空内容</param>
+            <param name="comparer">字符串比较器(键是否区分大小写)</param>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonExtension.ToFlatStringDictionary(System.String,System.Boolean,System.StringComparer)">
+            <summary>将 JSON 字符串转换为扁平化字典</summary>
+            <param name="input"></param>
+            <param name="emptyNULL">移除空内容</param>
+            <param name="comparer">字符串比较器(键是否区分大小写)</param>
+        </member>
+        <member name="T:DaLi.Utils.Json.JsonLowerCaseNamingPolicy">
+            <summary>JSON 小写命名策略</summary>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonLowerCaseNamingPolicy.ConvertName(System.String)">
+            <summary>转换</summary>
+        </member>
+        <member name="T:DaLi.Utils.Json.JsonObjectConverter">
+            <summary>JSON Object 数据转换</summary>
+        </member>
+        <member name="F:DaLi.Utils.Json.JsonObjectConverter._JsonElementParse">
+            <summary>解析节点</summary>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonObjectConverter.#ctor">
+            <summary>构造</summary>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonObjectConverter.#ctor(System.Func{System.Text.Json.JsonElement,System.Object})">
+            <summary>构造</summary>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonObjectConverter.Write(System.Text.Json.Utf8JsonWriter,System.Object,System.Text.Json.JsonSerializerOptions)">
+            <summary>写入</summary>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonObjectConverter.Read(System.Text.Json.JsonElement)">
+            <inheritdoc/>
+        </member>
+        <member name="T:DaLi.Utils.Json.JsonUpperCaseNamingPolicy">
+            <summary>JSON 大写命名策略</summary>
+        </member>
+        <member name="M:DaLi.Utils.Json.JsonUpperCaseNamingPolicy.ConvertName(System.String)">
+            <summary>转换</summary>
+        </member>
+        <member name="T:DaLi.Utils.Model.ConcurrentStringDictionary`1">
+            <summary>线程安全文本键任意值字典集合</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.ConcurrentStringDictionary`1.#ctor">
+            <summary>构造</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.ConcurrentStringDictionary`1.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,`0}})">
+            <summary>构造</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.ConcurrentStringDictionary`1.#ctor(System.Collections.Generic.IDictionary{System.String,`0})">
+            <summary>构造</summary>
+        </member>
+        <member name="T:DaLi.Utils.Model.SODictionary">
+            <summary>文本键文本值字典集合</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.SODictionary.#ctor">
+            <summary>构造</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.SODictionary.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Object}})">
+            <summary>构造</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.SODictionary.#ctor(System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>构造</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.SODictionary.#ctor(System.String)">
+            <summary>构造</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.SODictionary.GetValue``1(System.String,``0)">
+            <summary>获取项目值，如果不存在则返回默认值</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.SODictionary.GetValue``1(System.Collections.Generic.IEnumerable{System.String},``0)">
+            <summary>通过多个键获取获取项目值，一旦最先的键获取到内容则直接返回</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.SODictionary.GetValue(System.String,System.Type,System.Object)">
+            <summary>获取项目值，如果不存在则返回默认值</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.SODictionary.GetValue(System.Collections.Generic.IEnumerable{System.String},System.Type)">
+            <summary>通过多个键获取获取项目值，一旦最先的键获取到内容则直接返回</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.SODictionary.GetValue(System.String,System.String)">
+            <summary>获取项目文本值，如果不存在则返回空字符</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.SODictionary.GetValue(System.String[])">
+            <summary>通过多个键获取获取项目文本值，一旦最先的键获取到内容则直接返回</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.SODictionary.GetListValue``1(System.String)">
+            <summary>获取列表值</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.SODictionary.GetListValue``1(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>通过多个键获取获取列表值，一旦最先的键获取到内容则直接返回</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.SODictionary.GetListValue(System.String,System.Type)">
+            <summary>获取列表值</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.SODictionary.GetListValue(System.Collections.Generic.IEnumerable{System.String},System.Type)">
+            <summary>通过多个键获取获取列表值，一旦最先的键获取到内容则直接返回</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.SODictionary.GetListValue(System.String)">
+            <summary>获取文本列表值</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.SODictionary.GetListValue(System.String[])">
+            <summary>通过多个键获取获取文本列表值，一旦最先的键获取到内容则直接返回</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.SODictionary.TryMerge(System.Collections.Generic.IDictionary{System.String,System.Object},System.Boolean)">
+            <summary>字典合并并修改原始字典</summary>
+            <param name="data">用于合并的内容</param>
+            <param name="convertJson">数据是否需要转换成 JSON 字典</param>
+            <remarks>先尝试转换成 JSON 字典后合并</remarks>
+            <returns>合并后的字典</returns>
+        </member>
+        <member name="T:DaLi.Utils.Model.SSDictionary">
+            <summary>文本键文本值字典集合</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.SSDictionary.#ctor">
+            <summary>构造</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.SSDictionary.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
+            <summary>构造</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.SSDictionary.#ctor(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>构造</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.SSDictionary.#ctor(System.String)">
+            <summary>构造</summary>
+        </member>
+        <member name="P:DaLi.Utils.Model.SSDictionary.Item(System.String)">
+            <summary>设置 / 获取项目，设置时如果不存在则新建，存在则更新</summary>
+        </member>
+        <member name="T:DaLi.Utils.Model.StringDictionary`1">
+            <summary>文本键任意值字典集合</summary>
+        </member>
+        <member name="F:DaLi.Utils.Model.StringDictionary`1.Locker">
+            <summary>线程锁定对象</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.StringDictionary`1.BadKey(System.String)">
+            <summary>是否无效键</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.StringDictionary`1.#ctor">
+            <summary>构造</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.StringDictionary`1.#ctor(System.String)">
+            <summary>构造</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.StringDictionary`1.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,`0}})">
+            <summary>构造</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.StringDictionary`1.#ctor(System.Collections.Generic.IDictionary{System.String,`0})">
+            <summary>构造</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.StringDictionary`1.Add(System.String,`0)">
+            <summary>添加键值</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.StringDictionary`1.Add(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,`0}})">
+            <summary>添加一组数据</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.StringDictionary`1.Add(System.Collections.Generic.IDictionary{System.String,`0})">
+            <summary>添加一组数据</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.StringDictionary`1.TryUpdate(System.String,`0,System.Boolean)">
+            <summary>更新数据，默认不存在则不修改</summary>
+            <param name="key">键</param>
+            <param name="value">值</param>
+            <param name="force">不存在则强制添加</param>
+        </member>
+        <member name="M:DaLi.Utils.Model.StringDictionary`1.Update(System.String,`0,System.Boolean)">
+            <summary>更新数据，默认不存在则不修改</summary>
+            <param name="key">键</param>
+            <param name="value">值</param>
+            <param name="force">不存在则强制添加</param>
+        </member>
+        <member name="M:DaLi.Utils.Model.StringDictionary`1.Update(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,`0}},System.Boolean)">
+            <summary>更新一组数据，默认不存在则不修改</summary>
+            <param name="collection"></param>
+            <param name="force">不存在则强制添加</param>
+        </member>
+        <member name="M:DaLi.Utils.Model.StringDictionary`1.Update(System.Collections.Generic.IDictionary{System.String,`0},System.Boolean)">
+            <summary>更新一组数据，默认不存在则不修改</summary>
+            <param name="dictionary"></param>
+            <param name="force">不存在则强制添加</param>
+        </member>
+        <member name="M:DaLi.Utils.Model.StringDictionary`1.Update(System.Func{System.String,System.Object,`0})">
+            <summary>遍历更新值</summary>
+            <param name="action">更新函数（键，值，返回值）</param>
+        </member>
+        <member name="P:DaLi.Utils.Model.StringDictionary`1.Item(System.String)">
+            <summary>设置 / 获取项目，设置时如果不存在则新建，存在则更新</summary>
+        </member>
+        <member name="P:DaLi.Utils.Model.StringDictionary`1.Item(System.String,`0)">
+            <summary>获取项目值，如果不存在则返回默认值</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.StringDictionary`1.TryGet(System.String,`0@)">
+            <summary>获取项目</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.StringDictionary`1.Clear">
+            <summary>移除项目</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.StringDictionary`1.Remove(System.String)">
+            <summary>移除项目</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.StringDictionary`1.Remove(System.String[])">
+            <summary>移除项目</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.StringDictionary`1.Remove(System.String,System.String)">
+            <summary>一次移除两个键</summary>
+            <remarks>注意与 Dictionary.Remove(Key, Value) 的差异，此函数目的是防止直接执行内置的 Remove(Key, Value)</remarks>
+        </member>
+        <member name="M:DaLi.Utils.Model.StringDictionary`1.Remove(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>移除项目</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.StringDictionary`1.Keep(System.String[])">
+            <summary>仅保留指定键的值</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.StringDictionary`1.Clone">
+            <summary>克隆</summary>
+            <remarks>注意：如果值为对象，则在克隆的时候可能不会深度克隆。</remarks>
+        </member>
+        <member name="M:DaLi.Utils.Model.StringDictionary`1.ForEach(System.Action{System.String,`0})">
+            <summary>遍历项目</summary>
+        </member>
+        <member name="M:DaLi.Utils.Model.StringDictionary`1.FromJson(System.String)">
+            <summary>通过 JSON 创建字典</summary>
+            <param name="json">JSON 数据</param>
+        </member>
+        <member name="M:DaLi.Utils.Model.StringDictionary`1.ToJson">
+            <summary>将字典转换为 JSON 字符串</summary>
+        </member>
+        <member name="T:DaLi.Utils.Template.TagExtractor">
+            <summary>标签提取器，用于从文本中提取和解析标签</summary>
+            <param name="prefix">标签前缀，默认为'{' 字符</param>
+            <param name="suffix">标签后缀，默认为'}' 字符</param>
+            <param name="escapeChar">转义字符，默认为'\' 字符</param>
+        </member>
+        <member name="M:DaLi.Utils.Template.TagExtractor.#ctor(System.Char,System.Char,System.Char)">
+            <summary>标签提取器，用于从文本中提取和解析标签</summary>
+            <param name="prefix">标签前缀，默认为'{' 字符</param>
+            <param name="suffix">标签后缀，默认为'}' 字符</param>
+            <param name="escapeChar">转义字符，默认为'\' 字符</param>
+        </member>
+        <member name="F:DaLi.Utils.Template.TagExtractor._Prefix">
+            <summary>标签前缀，默认为'{' 字符</summary>
+        </member>
+        <member name="F:DaLi.Utils.Template.TagExtractor._Suffix">
+            <summary>标签后缀，默认为'}' 字符</summary>
+        </member>
+        <member name="F:DaLi.Utils.Template.TagExtractor._EscapeChar">
+            <summary>转义字符，默认为'\' 字符</summary>
+        </member>
+        <member name="M:DaLi.Utils.Template.TagExtractor.ExtractTags(System.String)">
+            <summary>从文本中提取所有符合条件的标签</summary>
+            <param name="text">要分析的文本</param>
+            <returns>提取的标签列表</returns>
+        </member>
+        <member name="M:DaLi.Utils.Template.TagExtractor.RemoveEscapeChars(System.String,System.Boolean)">
+            <summary>移除字符串中的转义字符</summary>
+            <param name="text">包含转义字符的文本</param>
+            <param name="removeAll">是否处理所有转义字符，不仅限于前缀、后缀和转义字符本身</param>
+            <returns>移除转义字符后的文本</returns>
+        </member>
+        <member name="M:DaLi.Utils.Template.TagExtractor.ExtractTagsByName(System.String,System.String)">
+            <summary>从文本中提取指定名称的标签</summary>
+            <param name="text">要分析的文本</param>
+            <param name="tagName">标签名称</param>
+            <returns>提取的标签列表</returns>
+        </member>
+        <member name="M:DaLi.Utils.Template.TagExtractor.CalculateHash(System.String)">
+            <summary>计算内容的哈希值</summary>
+        </member>
+        <member name="M:DaLi.Utils.Template.TagExtractor.ParseTag(System.String)">
+            <summary>解析标签内容，提取标签名和属性</summary>
+        </member>
+        <member name="M:DaLi.Utils.Template.TagExtractor.IsValidNameChar(System.Char)">
+            <summary>检查字符是否为有效的标签名或属性名字符，支持点号，移除冒号</summary>
+        </member>
+        <member name="M:DaLi.Utils.Template.TagExtractor.TagInfoToString(DaLi.Utils.Template.TagInfo)">
+            <summary>将标签信息转换为标签字符串</summary>
+            <param name="tagInfo">标签信息</param>
+            <returns>标签字符串</returns>
+        </member>
+        <member name="M:DaLi.Utils.Template.TagExtractor.EscapeText(System.String)">
+            <summary>对文本中的特殊字符进行转义</summary>
+            <param name="text">需要转义的文本</param>
+            <returns>转义后的文本</returns>
+        </member>
+        <member name="T:DaLi.Utils.Template.TagInfo">
+            <summary>标签信息，包含标签名称、属性列表、原始内容和哈希值</summary>
+        </member>
+        <member name="P:DaLi.Utils.Template.TagInfo.Name">
+            <summary>标签名称</summary>
+        </member>
+        <member name="P:DaLi.Utils.Template.TagInfo.Attributes">
+            <summary>标签属性列表</summary>
+        </member>
+        <member name="P:DaLi.Utils.Template.TagInfo.OriginalContent">
+            <summary>标签原始内容</summary>
+        </member>
+        <member name="P:DaLi.Utils.Template.TagInfo.Hash">
+            <summary>标签内容的哈希值</summary>
+        </member>
+        <member name="M:DaLi.Utils.Template.TagInfo.#ctor">
+            <summary>初始化标签信息</summary>
+        </member>
+        <member name="M:DaLi.Utils.Template.TagInfo.ToString">
+            <summary>获取标签的字符串表示</summary>
+        </member>
+        <member name="M:DaLi.Utils.Template.TagInfo.GetAttributeValue(System.String)">
+            <summary>获取指定名称的属性值</summary>
+            <param name="name">属性名称</param>
+            <returns>属性值，如果不存在则返回 null</returns>
+        </member>
+        <member name="M:DaLi.Utils.Template.TagInfo.HasAttribute(System.String)">
+            <summary>检查是否包含指定名称的属性</summary>
+            <param name="name">属性名称</param>
+            <returns>是否包含该属性</returns>
+        </member>
+        <member name="T:DaLi.Utils.Template.TemplateAction">
+            <summary>模板操作事件处理</summary>
+        </member>
+        <member name="M:DaLi.Utils.Template.TemplateAction.#ctor(System.Text.Encoding)">
+            <summary>模板操作事件处理</summary>
+        </member>
+        <member name="F:DaLi.Utils.Template.TemplateAction.Charset">
+            <summary>默认字符编码，用于文本处理</summary>
+        </member>
+        <member name="F:DaLi.Utils.Template.TemplateAction._Instance">
+            <summary>存储所有注册的模板操作</summary>
+        </member>
+        <member name="M:DaLi.Utils.Template.TemplateAction.Register(System.String,System.Func{System.Object,DaLi.Utils.Model.SSDictionary,System.Object},System.Boolean)">
+            <summary>注册一个新的模板操作</summary>
+            <param name="command">操作命令名称</param>
+            <param name="execute">执行该操作的委托函数</param>
+            <param name="replace">是否替换已存在的同名操作</param>
+            <returns>注册是否成功</returns>
+            <remarks>
+            操作命令会被自动转换为小写以确保大小写不敏感
+            如果操作已存在且 replace 为 false，则注册失败
+            </remarks>
+        </member>
+        <member name="M:DaLi.Utils.Template.TemplateAction.Register(System.Func{System.Object,DaLi.Utils.Model.SSDictionary,System.Object},System.Boolean,System.String)">
+            <summary>注册一个新的模板操作</summary>
+            <param name="callerName"></param>
+            <param name="execute">执行该操作的委托函数</param>
+            <param name="replace">是否替换已存在的同名操作</param>
+            <returns>注册是否成功</returns>
+            <remarks>
+            操作命令会被自动转换为小写以确保大小写不敏感
+            如果操作已存在且 replace 为 false，则注册失败
+            </remarks>
+        </member>
+        <member name="M:DaLi.Utils.Template.TemplateAction.Unregister(System.String)">
+            <summary>注销一个模板操作</summary>
+            <param name="command">要注销的操作命令名称</param>
+            <returns>注销是否成功</returns>
+        </member>
+        <member name="M:DaLi.Utils.Template.TemplateAction.Execute(System.Object,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
+            <summary>执行模板操作</summary>
+            <param name="source">原始内容</param>
+            <param name="attributes">属性元组序列</param>
+            <returns>处理后的内容</returns>
+            <remarks>
+            该方法支持层级化的属性处理，例如：
+            command.subkey=value 将被解析为command操作的子属性
+            </remarks>
+        </member>
+        <member name="M:DaLi.Utils.Template.TemplateAction.Keys">
+            <summary>获取所有已注册的操作命令</summary>
+            <returns>操作命令集合</returns>
+        </member>
+        <member name="F:DaLi.Utils.Template.TemplateAction._Default">
+            <summary>默认实例</summary>
+        </member>
+        <member name="P:DaLi.Utils.Template.TemplateAction.Default">
+            <summary>默认实例</summary>
+        </member>
+        <member name="F:DaLi.Utils.Template.TemplateAction._Cache">
+            <summary>字典数据缓存，用于存储扁平化对象的结果</summary>
+        </member>
+        <member name="M:DaLi.Utils.Template.TemplateAction.FormatTemplate(System.String,System.Collections.Generic.IDictionary{System.String,System.Object},System.Boolean)">
+            <summary>使用数据字典格式化模板，默认使用 {} 前后缀</summary>
+            <param name="template">模板文本</param>
+            <param name="data">数据字典</param>
+            <param name="clearTag">对于字典中不存在的标签是否清除</param>
+            <returns>格式化后的结果</returns>
+        </member>
+        <member name="M:DaLi.Utils.Template.TemplateAction.FormatTemplate(System.String,System.Collections.Generic.IDictionary{System.String,System.Object},System.Char,System.Char,System.Boolean,System.Boolean)">
+            <summary>使用数据字典格式化模板</summary>
+            <param name="template">模板文本</param>
+            <param name="data">数据字典</param>
+            <param name="prefix">前缀字符</param>
+            <param name="suffix">后缀字符</param>
+            <param name="clearTag">对于字典中不存在的标签是否清除</param>
+            <param name="skipAttribute">是否跳过标签属性的处理</param>
+            <returns>格式化后的结果</returns>
+        </member>
+        <member name="T:DaLi.Utils.Template.TemplateCommands">
+            <summary>模板常用命令</summary>
+        </member>
+        <member name="M:DaLi.Utils.Template.TemplateCommands.Register(DaLi.Utils.Template.TemplateAction)">
+            <summary>注册当前所有的命令</summary>
+        </member>
+        <member name="M:DaLi.Utils.Template.TemplateCommands.AllCommands">
+            <summary>获取当前所有的命令</summary>
+        </member>
+        <member name="F:DaLi.Utils.Template.TemplateCommands.Empty">
+            <summary>内容是否为空</summary>
+            <remarks>empty / empty.true / empty.false</remarks>
+        </member>
+        <member name="F:DaLi.Utils.Template.TemplateCommands.Like">
+            <summary>是否与字符串匹配</summary>
+            <remarks>like / like.true / like.false</remarks>
+        </member>
+        <member name="F:DaLi.Utils.Template.TemplateCommands.Replace">
+            <summary>替换</summary>
+            <remarks>replace / replace.to</remarks>
+        </member>
+        <member name="F:DaLi.Utils.Template.TemplateCommands.Equals">
+            <summary>转换成文本，比较是否相等，默认比较大小写</summary>
+            <remarks>
+            equals：用于比较的值
+            equals.case:是否比较大小写 
+            equals.true：比较结果为 true 时返回的值
+            equals.false：比较结果为 false 时返回的值
+            </remarks>
+        </member>
+        <member name="F:DaLi.Utils.Template.TemplateCommands.Length">
+            <summary>长度</summary>
+            <remarks>文本长度，数组长度，集合长度，字典长度，类中包含 length 属性 或者 count 属性</remarks>
+            <returns>存在返回实际长度，数据为 null 返回 -1，不存在相关属性返回 -2</returns>
+        </member>
+        <member name="F:DaLi.Utils.Template.TemplateCommands.Format">
+            <summary>使用 string.Format 将对象按条件格式化</summary>
+        </member>
+        <member name="F:DaLi.Utils.Template.TemplateCommands.Json">
+            <summary>使用 Json 序列或者反序列数据</summary>
+            <remarks>true: 序列化；false 反序列化</remarks>
+        </member>
+    </members>
+</doc>

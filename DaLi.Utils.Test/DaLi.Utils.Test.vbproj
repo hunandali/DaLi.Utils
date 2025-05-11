@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="..\DaLi.Utils.props" />
+
+	<PropertyGroup>
+		<RootNamespace>DaLi.Utils.Test</RootNamespace>
+		<Title>大沥网络 · 公共库 · 测试</Title>
+		<OutputType>Exe</OutputType>
+		<StartupObject>Sub Main</StartupObject>
+		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\DaLi.Utils.App.Extend\DaLi.Utils.App.Extend.vbproj" />
+	</ItemGroup>
+</Project>
