@@ -13,11 +13,17 @@ SET "BASE_DIR=%~dp0"
 SET "PUBLISH_DIR=D:\Design\~Publish"
 SET "CACHE_DIR=T:\Design"
 
+:: 需要排除生成的目录，使用分号间隔
+SET "EXCLUDE_DIRS=.git;.vs;DaLi.Utils.Test"
+
 :: 清理并创建发布目录
 ECHO 正在准备发布环境...
 rd /s /q "%CACHE_DIR%" 2>nul
-rd /s /q "%PUBLISH_DIR%" 2>nul
-MD "%PUBLISH_DIR%"
+
+
+IF NOT EXIST "%PUBLISH_DIR%" (
+    MD "%PUBLISH_DIR%"
+)
 
 :: 从 BASE_DIR 获取盘符并切换
 FOR /F "tokens=1 delims=:" %%i IN ("%BASE_DIR%") DO %%i:
@@ -27,13 +33,13 @@ FOR /F "tokens=1 delims=:" %%i IN ("%BASE_DIR%") DO %%i:
 CALL :CompileProjects "编译项目" "%BASE_DIR%"
 
 :: 清理并创建nuget目录
-rd /s /q "%PUBLISH_DIR%\nuget" 2>nul
-MD "%PUBLISH_DIR%\nuget"
+rd /s /q "%PUBLISH_DIR%\nuget\utils" 2>nul
+MD "%PUBLISH_DIR%\nuget\utils"
 
 :: 复制公共库发行包
 ECHO 复制公共库发行包...
 @FOR /r "%CACHE_DIR%" %%i in (*.nupkg) DO (
-    @COPY "%%i" "%PUBLISH_DIR%\nuget"
+    @COPY "%%i" "%PUBLISH_DIR%\nuget\utils"
     @COPY "%%i" "%PUBLISH_DIR%"
 )
 
@@ -61,9 +67,23 @@ IF NOT EXIST "%~2" (
 )
 
 CD %~2
+:: 遍历目录并排除EXCLUDE_DIRS中指定的目录
 @FOR /f %%i in ('dir /b /ad') DO (
-    ECHO 正在编译: %%i
-    dotnet publish %%i -c Release
-    ECHO.
+    SET "SKIP_DIR=0"
+    
+    :: 检查当前目录是否在排除列表中
+    FOR %%j IN (%EXCLUDE_DIRS:;= %) DO (
+        IF "%%i"=="%%j" (
+            ECHO 跳过排除的目录: %%i
+            SET "SKIP_DIR=1"
+        )
+    )
+    
+    :: 如果不在排除列表中，则执行编译
+    IF !SKIP_DIR! EQU 0 (
+        ECHO 正在编译: %%i
+        dotnet publish %%i -c Release
+        ECHO.
+    )
 )
 GOTO :EOF

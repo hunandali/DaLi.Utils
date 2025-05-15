@@ -32,6 +32,9 @@ namespace DaLi.Utils.Helper {
 	/// <summary>反射操作</summary>
 	public sealed class ReflectionHeler {
 
+		/// <summary>默认程序集加载 bin 目录名称</summary>
+		public static string BIN_FOLDER = "bin";
+
 		#region 插件加载上下文
 
 		/// <summary>插件加载上下文对象，以便隔离与主程序的进程，直接加载对于存在外部引用的插件可能导致无法正常使用。具体参考：https://learn.microsoft.com/zh-cn/dotnet/core/tutorials/creating-app-with-plugin-support</summary>
@@ -121,7 +124,7 @@ namespace DaLi.Utils.Helper {
 		/// <param name="pluginFolder">是否需要加载插件目录，需要则设置插件目录的名称。系统将扫描查询目录下与子目录名相同的程序集。如：plugins 则将扫描 /plugins/xxx/xxx.dll</param>
 		/// <param name="skipSystemAssembly">是否过滤系统程序集</param>
 		/// <returns>返回所有程序集列表</returns>
-		public static HashSet<Assembly> CurrentAssemblies(bool includeBin = false, string pluginFolder = "plugins", bool skipSystemAssembly = true) {
+		public static HashSet<Assembly> CurrentAssemblies(bool includeBin = true, string pluginFolder = "plugins", bool skipSystemAssembly = true) {
 			var assemblies = new HashSet<Assembly>();
 
 			// 添加程序集（过滤无效名称）
@@ -148,7 +151,7 @@ namespace DaLi.Utils.Helper {
 
 			// 加载Bin目录
 			if (includeBin) {
-				var binPath = SystemHelper.FullPath("bin", true, true);
+				var binPath = SystemHelper.FullPath(BIN_FOLDER ?? "bin", true, true);
 				if (Directory.Exists(binPath)) {
 					foreach (var file in Directory.GetFiles(binPath, "*.dll", SearchOption.AllDirectories)) {
 						try {
@@ -278,7 +281,7 @@ namespace DaLi.Utils.Helper {
 		/// <param name="skipSystemAssembly">是否过滤系统程序集</param>
 		/// <param name="baseTypes">必须包含的基类，用于过滤无效的类型</param>
 		/// <returns>返回所有程序集列表</returns>
-		public static HashSet<Type> CurrentTypes(bool includeBin = false, string pluginFolder = "plugins", bool skipSystemAssembly = true, params Type[] baseTypes) => [.. CurrentAssemblies(includeBin, pluginFolder, skipSystemAssembly).SelectMany(assembly => GetTypes(assembly, baseTypes))];
+		public static HashSet<Type> CurrentTypes(bool includeBin = true, string pluginFolder = "plugins", bool skipSystemAssembly = true, params Type[] baseTypes) => [.. CurrentAssemblies(includeBin, pluginFolder, skipSystemAssembly).SelectMany(assembly => GetTypes(assembly, baseTypes))];
 
 		/// <summary>获取程序集中的类型</summary>
 		/// <param name="assembly">程序集</param>
@@ -321,7 +324,7 @@ namespace DaLi.Utils.Helper {
 		/// <param name="publicOnly">是否获取此程序集中定义的公共类型的集合，这些公共类型在程序集外可见。</param>
 		/// <param name="includeNames">必须包含的类型名称，用于过滤无效的类型</param>
 		/// <returns>返回所有程序集列表</returns>
-		public static HashSet<Type> CurrentTypes(bool includeBin = false, string pluginFolder = "plugins", bool skipSystemAssembly = true, bool publicOnly = false, params string[] includeNames) => [.. CurrentAssemblies(includeBin, pluginFolder, skipSystemAssembly).SelectMany(assembly => GetTypes(assembly, publicOnly, includeNames))];
+		public static HashSet<Type> CurrentTypes(bool includeBin = true, string pluginFolder = "plugins", bool skipSystemAssembly = true, bool publicOnly = false, params string[] includeNames) => [.. CurrentAssemblies(includeBin, pluginFolder, skipSystemAssembly).SelectMany(assembly => GetTypes(assembly, publicOnly, includeNames))];
 
 		#endregion
 
@@ -435,7 +438,7 @@ namespace DaLi.Utils.Helper {
 		/// <param name="publicOnly">是否获取此程序集中定义的公共类型的集合，这些公共类型在程序集外可见。</param>
 		/// <param name="assemblyNames">必须包含的程序集名称，用于过滤无效的程序集</param>
 		/// <param name="typeNames">必须包含的类型名称，用于过滤无效的类型</param>
-		public static HashSet<object> CurrentInstances(bool includeBin = false, string pluginFolder = "plugins", bool skipSystemAssembly = true, bool publicOnly = false, IEnumerable<string> assemblyNames = null, IEnumerable<string> typeNames = null) {
+		public static HashSet<object> CurrentInstances(bool includeBin = true, string pluginFolder = "plugins", bool skipSystemAssembly = true, bool publicOnly = false, IEnumerable<string> assemblyNames = null, IEnumerable<string> typeNames = null) {
 			var assNames = assemblyNames?.ToArray() ?? [];
 			var tpNames = typeNames?.ToArray() ?? [];
 			var assemblies = CurrentAssemblies(includeBin, pluginFolder, skipSystemAssembly);
@@ -448,7 +451,7 @@ namespace DaLi.Utils.Helper {
 		/// <param name="pluginFolder">是否需要加载插件目录，需要则设置插件目录的名称。系统将扫描查询目录下与子目录名相同的程序集。如：plugins 则将扫描 /plugins/xxx/xxx.dll</param>
 		/// <param name="skipSystemAssembly">是否过滤系统程序集</param>
 		/// <param name="assemblyNames">必须包含的程序集名称，用于过滤无效的程序集</param>
-		public static HashSet<T> CurrentInstances<T>(bool includeBin = false, string pluginFolder = "plugins", bool skipSystemAssembly = true, IEnumerable<string> assemblyNames = null) {
+		public static HashSet<T> CurrentInstances<T>(bool includeBin = true, string pluginFolder = "plugins", bool skipSystemAssembly = true, IEnumerable<string> assemblyNames = null) {
 			var assNames = assemblyNames?.ToArray() ?? [];
 			var assemblies = CurrentAssemblies(includeBin, pluginFolder, skipSystemAssembly);
 

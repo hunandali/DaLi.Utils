@@ -1,8 +1,0 @@
-﻿<Project>
-	<Import Project="DaLi.Utils.props" />
-	
-	<PropertyGroup>
-		<RootNamespace>DaLi.Utils.App.Plugin</RootNamespace>
-		<Description>大沥网络 · 基础插件</Description>
-	</PropertyGroup>
-</Project>
