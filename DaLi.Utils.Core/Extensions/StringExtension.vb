@@ -1114,9 +1114,9 @@ Namespace Extension
 
 			Dim Pattern As String
 			If enDot Then
-				Pattern = $"^[a-zA-Z]{1}[\w\-\.]{{1,{maxLength}}}$"
+				Pattern = $"^[a-zA-Z]{{1}}[\w\-\.]{{1,{maxLength}}}$"
 			Else
-				Pattern = $"^[a-zA-Z]{1}[\w\-]{{1,{maxLength}}}$"
+				Pattern = $"^[a-zA-Z]{{1}}[\w\-]{{1,{maxLength}}}$"
 			End If
 
 			Return Regex.IsMatch(this, Pattern)
