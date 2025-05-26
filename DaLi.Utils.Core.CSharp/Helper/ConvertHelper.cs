@@ -25,6 +25,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
+using DaLi.Utils.Extension;
 
 namespace DaLi.Utils.Helper {
 	/// <summary>类型转换</summary>
@@ -37,7 +38,7 @@ namespace DaLi.Utils.Helper {
 		/// <param name="type">指定类型</param>
 		/// <param name="defaultValue">转换失败的默认值</param>
 		/// <remarks>尝试直接转换，如果失败则尝试通过 JSON 序列化和反序列化</remarks>
-		public static object ChangeType(object input, Type type, object defaultValue = null) {
+		public static object ChangeObject(object input, Type type, object defaultValue = null) {
 			if (input is null || type is null) { return defaultValue; }
 
 			// 如果输入和目标类型相同，直接返回
@@ -68,9 +69,16 @@ namespace DaLi.Utils.Helper {
 			// 如果输入已经是目标类型，直接返回
 			if (input is T variable) { return variable; }
 
+			var baseType = typeof(T);
+
+			// 如果input的类型可以直接赋值给T，直接进行类型转换
+			if (baseType.IsAssignableFrom(input.GetType())) {
+				return (T) input;
+			}
+
 			try {
 				// 尝试直接转换
-				return (T) (Convert.ChangeType(input, typeof(T)) ?? defaultValue);
+				return (T) (Convert.ChangeType(input, baseType) ?? defaultValue);
 			} catch {
 				try {
 					// 如果直接转换失败，尝试通过 JSON 序列化和反序列化
@@ -144,8 +152,10 @@ namespace DaLi.Utils.Helper {
 				return;
 			}
 
+			var objType = obj.GetType();
+
 			// 处理基本类型和字符串
-			if (obj.GetType().IsPrimitive || obj is string || obj is DateTime || obj is decimal) {
+			if (objType.IsPrimitive || obj is string || obj is DateTime || obj is decimal) {
 				dictionary[prefix] = obj;
 				return;
 			}
@@ -171,10 +181,12 @@ namespace DaLi.Utils.Helper {
 			}
 
 			// 处理对象类型
-			foreach (var prop in obj.GetType().GetProperties()) {
-				var value = prop.GetValue(obj, null);
-				var propPrefix = string.IsNullOrEmpty(prefix) ? prop.Name : $"{prefix}.{prop.Name}";
-				ToFlatDictionary(value, propPrefix, dictionary);
+			if (objType.IsExtendClass()) {
+				foreach (var prop in objType.GetProperties()) {
+					var value = prop.GetValue(obj, null);
+					var propPrefix = string.IsNullOrEmpty(prefix) ? prop.Name : $"{prefix}.{prop.Name}";
+					ToFlatDictionary(value, propPrefix, dictionary);
+				}
 			}
 
 			// 其他不处理

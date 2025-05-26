@@ -33,44 +33,7 @@ namespace DaLi.Utils.Helper {
 	public sealed class ReflectionHeler {
 
 		/// <summary>默认程序集加载 bin 目录名称</summary>
-		public static string BIN_FOLDER = "bin";
-
-		#region 插件加载上下文
-
-		/// <summary>插件加载上下文对象，以便隔离与主程序的进程，直接加载对于存在外部引用的插件可能导致无法正常使用。具体参考：https://learn.microsoft.com/zh-cn/dotnet/core/tutorials/creating-app-with-plugin-support</summary>
-		private class PluginLoadContext : AssemblyLoadContext {
-			/// <summary>依赖解析器</summary>
-			private readonly AssemblyDependencyResolver _Resolver;
-
-			/// <summary>默认路径</summary>
-			private readonly string _Path;
-
-			public PluginLoadContext(string path) : base(isCollectible: true) {
-				if (!string.IsNullOrEmpty(path) && File.Exists(path)) {
-					_Path = path;
-					_Resolver = new AssemblyDependencyResolver(path);
-				}
-			}
-
-			/// <summary>根据 AssemblyName 解析并加载程序集</summary>
-			protected override Assembly Load(AssemblyName assemblyName) {
-				var assemblyPath = _Resolver.ResolveAssemblyToPath(assemblyName);
-				if (string.IsNullOrEmpty(assemblyPath)) { return null; }
-				return LoadFromAssemblyPath(assemblyPath);
-			}
-
-			/// <summary>允许派生的类按名称加载非托管库</summary>
-			protected override IntPtr LoadUnmanagedDll(string unmanagedDllName) {
-				var libraryPath = _Resolver.ResolveUnmanagedDllToPath(unmanagedDllName);
-				if (string.IsNullOrEmpty(libraryPath)) { return IntPtr.Zero; }
-				return LoadUnmanagedDllFromPath(libraryPath);
-			}
-
-			/// <summary>加载默认的程序集</summary>
-			public Assembly LoadAssembly() => string.IsNullOrEmpty(_Path) ? null : LoadFromAssemblyPath(_Path);
-		}
-
-		#endregion
+		public static string BIN_FOLDER { get; set; } = "bin";
 
 		#region 过滤器操作
 
@@ -175,7 +138,7 @@ namespace DaLi.Utils.Helper {
 
 					foreach (var file in pluginFiles) {
 						try {
-							AddAssembly(new PluginLoadContext(file).LoadAssembly());
+							AddAssembly(new PluginLoadContextHelper(file).Load());
 						} catch (Exception ex) {
 							Console.Error.WriteLine($"插件程序集 {file} 加载异常：{ex.Message}");
 						}

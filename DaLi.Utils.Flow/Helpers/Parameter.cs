@@ -141,12 +141,12 @@ namespace DaLi.Utils.Flow {
 
 			// 对于非字典或者集合数据，直接转换
 			if (!baseType.IsDictionary() && !baseType.IsCollection() && !baseType.IsEnumerable()) {
-				return ConvertHelper.ChangeType(value, baseType);
+				return ConvertHelper.ChangeObject(value, baseType);
 			}
 
 			// 转换字典或者集合，并处理每项值
 			var ret = value.ToString().FromJson(true, x => Default.FormatTemplate(x, context, true));
-			return ConvertHelper.ChangeType(ret, baseType);
+			return ConvertHelper.ChangeObject(ret, baseType);
 		}
 
 		/// <summary>获取变量数据并转换成指定类型</summary>

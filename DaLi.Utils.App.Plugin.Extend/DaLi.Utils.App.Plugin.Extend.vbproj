@@ -21,11 +21,11 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-		<PackageReference Include="FreeSql.Extensions.JsonMap" Version="3.5.205" />
-		<PackageReference Include="FreeSql.Provider.MySqlConnector" Version="3.5.205" />
-		<PackageReference Include="FreeSql.Provider.Sqlite" Version="3.5.205" />
-		<PackageReference Include="FreeSql.Provider.SqlServer" Version="3.5.205" />
-		<PackageReference Include="FreeSql.Repository" Version="3.5.205" />
+		<PackageReference Include="FreeSql.Extensions.JsonMap" Version="3.5.206" />
+		<PackageReference Include="FreeSql.Provider.MySqlConnector" Version="3.5.206" />
+		<PackageReference Include="FreeSql.Provider.Sqlite" Version="3.5.206" />
+		<PackageReference Include="FreeSql.Provider.SqlServer" Version="3.5.206" />
+		<PackageReference Include="FreeSql.Repository" Version="3.5.206" />
 		<PackageReference Include="SkiaSharp" Version="3.119.0" />
 		<PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="3.119.0" />
 		<PackageReference Include="SkiaSharp.NativeAssets.macOS" Version="3.119.0" />

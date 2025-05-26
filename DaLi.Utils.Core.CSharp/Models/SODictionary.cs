@@ -71,7 +71,7 @@ namespace DaLi.Utils.Model {
 		/// <summary>获取项目值，如果不存在则返回默认值</summary>
 		public object GetValue(string key, Type baseType, object defaultValue = null) {
 			var value = this[key];
-			return ConvertHelper.ChangeType(value, baseType, defaultValue);
+			return ConvertHelper.ChangeObject(value, baseType, defaultValue);
 		}
 
 		/// <summary>通过多个键获取获取项目值，一旦最先的键获取到内容则直接返回</summary>
@@ -141,7 +141,7 @@ namespace DaLi.Utils.Model {
 			var data = ConvertHelper.ChangeType<IEnumerable<object>>(this[key]);
 			if (data is null) { return null; }
 
-			return [.. data.Select(x => ConvertHelper.ChangeType(x, baseType, null)).Where(x => x is not null)];
+			return [.. data.Select(x => ConvertHelper.ChangeObject(x, baseType, null)).Where(x => x is not null)];
 		}
 
 		/// <summary>通过多个键获取获取列表值，一旦最先的键获取到内容则直接返回</summary>

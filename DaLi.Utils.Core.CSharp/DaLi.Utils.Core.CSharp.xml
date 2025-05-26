@@ -477,29 +477,62 @@
         <member name="T:DaLi.Utils.Helper.LockerHelper.LockContainer">
             <summary>锁容器（确保值类型不会被共享）</summary>
         </member>
+        <member name="T:DaLi.Utils.Helper.PluginLoadContextHelper">
+            <summary>
+            自定义的 AssemblyLoadContext，用于在隔离环境中加载插件。
+            这使得插件可以拥有自己的依赖项，而不会与宿主应用程序或其他插件发生冲突。
+            </summary>
+            <remarks>
+            此上下文将首先尝试从插件目录加载程序集，
+            然后在必要时回退到默认加载上下文以加载共享依赖项。
+            确保每个组件独立运作，同时又为整体做出贡献。
+            </remarks>
+        </member>
+        <member name="F:DaLi.Utils.Helper.PluginLoadContextHelper._Resolver">
+            <summary>依赖解析器</summary>
+        </member>
+        <member name="F:DaLi.Utils.Helper.PluginLoadContextHelper._Path">
+            <summary>默认路径</summary>
+        </member>
+        <member name="M:DaLi.Utils.Helper.PluginLoadContextHelper.#ctor(System.String)">
+            <summary>
+            初始化 <see cref="T:DaLi.Utils.Helper.PluginLoadContextHelper"/> 类的新实例。
+            </summary>
+            <exception cref="T:System.ArgumentNullException">如果 pluginPath 为 null 或为空，则抛出此异常。</exception>
+            <exception cref="T:System.IO.FileNotFoundException">如果 pluginPath 指定的文件不存在，则抛出此异常。</exception>
+        </member>
+        <member name="M:DaLi.Utils.Helper.PluginLoadContextHelper.Load(System.Reflection.AssemblyName)">
+            <summary>
+            按其 <see cref="T:System.Reflection.AssemblyName"/> 加载程序集。
+            </summary>
+            <param name="assemblyName">要加载的程序集的 <see cref="T:System.Reflection.AssemblyName"/>。</param>
+            <returns>已加载的 <see cref="T:System.Reflection.Assembly"/>；如果找不到程序集，则为 null。</returns>
+            <remarks>
+            当需要解析程序集时，运行时会调用此方法。
+            它首先尝试使用 AssemblyDependencyResolver 解析程序集，该解析器知道
+            如何查找插件的依赖项（包括来自 NuGet 包的依赖项）。
+            如果解析器找不到它，它会回退到 Default 上下文，允许插件使用共享的框架程序集。
+            </remarks>
+        </member>
+        <member name="M:DaLi.Utils.Helper.PluginLoadContextHelper.LoadUnmanagedDll(System.String)">
+            <summary>
+            按名称加载非托管库（本机 DLL）。
+            </summary>
+            <param name="unmanagedDllName">要加载的非托管库的名称。</param>
+            <returns>已加载的非托管库的句柄；如果找不到库，则为 <see cref="F:System.IntPtr.Zero"/>。</returns>
+            <remarks>
+            此方法允许插件加载本机依赖项。
+            AssemblyDependencyResolver 也有助于定位这些本机库。
+            </remarks>
+        </member>
+        <member name="M:DaLi.Utils.Helper.PluginLoadContextHelper.Load">
+            <summary>加载默认的程序集</summary>
+        </member>
         <member name="T:DaLi.Utils.Helper.ReflectionHeler">
             <summary>反射操作</summary>
         </member>
-        <member name="F:DaLi.Utils.Helper.ReflectionHeler.BIN_FOLDER">
+        <member name="P:DaLi.Utils.Helper.ReflectionHeler.BIN_FOLDER">
             <summary>默认程序集加载 bin 目录名称</summary>
-        </member>
-        <member name="T:DaLi.Utils.Helper.ReflectionHeler.PluginLoadContext">
-            <summary>插件加载上下文对象，以便隔离与主程序的进程，直接加载对于存在外部引用的插件可能导致无法正常使用。具体参考：https://learn.microsoft.com/zh-cn/dotnet/core/tutorials/creating-app-with-plugin-support</summary>
-        </member>
-        <member name="F:DaLi.Utils.Helper.ReflectionHeler.PluginLoadContext._Resolver">
-            <summary>依赖解析器</summary>
-        </member>
-        <member name="F:DaLi.Utils.Helper.ReflectionHeler.PluginLoadContext._Path">
-            <summary>默认路径</summary>
-        </member>
-        <member name="M:DaLi.Utils.Helper.ReflectionHeler.PluginLoadContext.Load(System.Reflection.AssemblyName)">
-            <summary>根据 AssemblyName 解析并加载程序集</summary>
-        </member>
-        <member name="M:DaLi.Utils.Helper.ReflectionHeler.PluginLoadContext.LoadUnmanagedDll(System.String)">
-            <summary>允许派生的类按名称加载非托管库</summary>
-        </member>
-        <member name="M:DaLi.Utils.Helper.ReflectionHeler.PluginLoadContext.LoadAssembly">
-            <summary>加载默认的程序集</summary>
         </member>
         <member name="F:DaLi.Utils.Helper.ReflectionHeler._InvalidAssemblies">
             <summary>系统 Assembly 名，以便过滤掉系统 Assembly</summary>
@@ -1047,7 +1080,7 @@
             <summary>解析标签内容，提取标签名和属性</summary>
         </member>
         <member name="M:DaLi.Utils.Template.TagExtractor.IsValidNameChar(System.Char)">
-            <summary>检查字符是否为有效的标签名或属性名字符，支持点号，移除冒号</summary>
+            <summary>检查字符是否为有效的标签名或属性名字符，支持点号，移除冒号，以及方括号</summary>
         </member>
         <member name="M:DaLi.Utils.Template.TagExtractor.TagInfoToString(DaLi.Utils.Template.TagInfo)">
             <summary>将标签信息转换为标签字符串</summary>

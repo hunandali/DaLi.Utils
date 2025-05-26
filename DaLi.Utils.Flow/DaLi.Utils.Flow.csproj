@@ -8,12 +8,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="~\**" />
-	  <EmbeddedResource Remove="~\**" />
-	  <None Remove="~\**" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<ProjectReference Include="..\DaLi.Utils.Core\DaLi.Utils.Core.vbproj" />
 	</ItemGroup>
 

@@ -343,8 +343,8 @@ namespace DaLi.Utils.Template {
 			return tagInfo;
 		}
 
-		/// <summary>检查字符是否为有效的标签名或属性名字符，支持点号，移除冒号</summary>
-		private static bool IsValidNameChar(char c) => char.IsLetterOrDigit(c) || c == '-' || c == '_' || c == '.';
+		/// <summary>检查字符是否为有效的标签名或属性名字符，支持点号，移除冒号，以及方括号</summary>
+		private static bool IsValidNameChar(char c) => char.IsLetterOrDigit(c) || c == '-' || c == '_' || c == '.' || c == '[' || c == ']';
 
 		/// <summary>将标签信息转换为标签字符串</summary>
 		/// <param name="tagInfo">标签信息</param>
