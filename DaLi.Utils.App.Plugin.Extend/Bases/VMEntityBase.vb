@@ -20,6 +20,7 @@
 ' ------------------------------------------------------------
 
 Imports System.Reflection
+Imports DaLi.Utils.Json
 Imports FreeSql
 
 Namespace Base
@@ -670,11 +671,20 @@ Namespace Base
 
 			' 扩展数据调整
 			' 对于来自扩展数据的结构，需要先获取原扩展数据，然后更新到新数据后再保存
-			If EntityType.IsComeFrom(Of IEntityExtend) Then
+			'If EntityType.IsComeFrom(Of IEntityExtend) Then
+			'	' 克隆一份扩展数据，否则仓库不会自动更新数据
+			'	Dim pro = EntityType.GetSingleProperty("Extension")
+			'	Dim exts = TryCast(pro.GetValue(entity), NameValueDictionary)
+			'	pro.SetValue(entity, exts?.Clone)
+			'End If
+
+			If EntityType.IsComeFrom(GetType(IEntityExtend(Of))) Then
 				' 克隆一份扩展数据，否则仓库不会自动更新数据
 				Dim pro = EntityType.GetSingleProperty("Extension")
-				Dim exts = TryCast(pro.GetValue(entity), NameValueDictionary)
-				pro.SetValue(entity, exts?.Clone)
+
+				Dim value = pro.GetValue(entity)
+				Dim valueClone = JsonExtension.ToJson(value, False, False, False).FromJson(value.GetType)
+				pro.SetValue(entity, If(valueClone, value))
 			End If
 
 			Return entity

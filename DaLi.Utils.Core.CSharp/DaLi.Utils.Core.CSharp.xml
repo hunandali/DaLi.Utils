@@ -216,6 +216,14 @@
             <param name="type">要检查的类型</param>
             <returns>如果是自定义类型则返回 true，否则返回 false</returns>
         </member>
+        <member name="M:DaLi.Utils.Extension.TypeExtensions.GetGenericTypes(System.Type,System.Type)">
+            <summary>
+            判断一个对象的类型是否包含指定带泛型的基类或接口，并返回该泛型的类型
+            </summary>
+            <param name="type"></param>
+            <param name="genericBaseType">指定的带泛型的基类类型</param>
+            <returns>如果对象是泛型基类或接口的实例，则返回泛型的类型；否则返回 null</returns>
+        </member>
         <member name="T:DaLi.Utils.Extension.ValueExtension">
             <summary>值相关的扩展操作</summary>
         </member>

@@ -25,16 +25,31 @@ Namespace Base
 
 	''' <summary>树形扩展时间数据模型基类</summary>
 	<DbIndex("ParentId")>
-	Public MustInherit Class EntityTreeDateExtendBase(Of T As IEntityTree(Of T))
-		Inherits EntityParentDateExtendBase
-		Implements IEntityTree(Of T)
+	Public MustInherit Class EntityTreeDateExtendBase(Of P As IEntityTree(Of P), E As {Class, New})
+		Inherits EntityParentDateExtendBase(Of E)
+		Implements IEntityTree(Of P)
 
 		''' <summary>父级</summary>
 		<Navigate(NameOf(ParentId))>
-		Public Property Parent As T Implements IEntityTree(Of T).Parent
+		Public Property Parent As P Implements IEntityTree(Of P).Parent
 
 		''' <summary>子集列表</summary>
 		<Navigate(NameOf(ParentId))>
-		Public Property Childs As IEnumerable(Of T) Implements IEntityTree(Of T).Childs
+		Public Property Childs As IEnumerable(Of P) Implements IEntityTree(Of P).Childs
+	End Class
+
+	''' <summary>树形扩展时间数据模型基类</summary>
+	<DbIndex("ParentId")>
+	Public MustInherit Class EntityTreeDateExtendBase(Of P As IEntityTree(Of P))
+		Inherits EntityParentDateExtendBase
+		Implements IEntityTree(Of P)
+
+		''' <summary>父级</summary>
+		<Navigate(NameOf(ParentId))>
+		Public Property Parent As P Implements IEntityTree(Of P).Parent
+
+		''' <summary>子集列表</summary>
+		<Navigate(NameOf(ParentId))>
+		Public Property Childs As IEnumerable(Of P) Implements IEntityTree(Of P).Childs
 	End Class
 End Namespace

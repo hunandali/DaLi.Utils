@@ -25,6 +25,17 @@ Imports FreeSql.Internal.Model
 Namespace Base
 
 	''' <summary>父级扩展时间数据模型基类</summary>
+	Public MustInherit Class EntityParentDateExtendBase(Of T As {Class, New})
+		Inherits EntityDateExtendBase(Of T)
+		Implements IEntityParent
+
+		''' <summary>上级</summary>
+		<Display(Name:="Parent")>
+		<DbQuery(DynamicFilterOperator.Equal)>
+		Public Overridable Property ParentId As Long? Implements IEntityParent.ParentId
+	End Class
+
+	''' <summary>父级扩展时间数据模型基类</summary>
 	Public MustInherit Class EntityParentDateExtendBase
 		Inherits EntityDateExtendBase
 		Implements IEntityParent
