@@ -27,6 +27,21 @@ Imports FreeSql.Internal.Model
 Namespace Base
 
 	''' <summary>带IP时间数据扩展模型基类</summary>
+	Public MustInherit Class EntityDateIPExtendBase(Of T As {Class, New})
+		Inherits EntityDateIPBase
+		Implements IEntityExtend(Of T)
+
+		''' <summary>扩展内容</summary>
+		<Display(Name:="Extension")>
+		<JsonIgnore>
+		<JsonMap>
+		<DbColumn(Position:=-5)>
+		<Output(TristateEnum.FALSE)>
+		<DbQuery(DynamicFilterOperator.Contains)>
+		Public Property Extension As New T Implements IEntityExtend(Of T).Extension
+	End Class
+
+	''' <summary>带IP时间数据扩展模型基类</summary>
 	Public MustInherit Class EntityDateIPExtendBase
 		Inherits EntityDateIPBase
 		Implements IEntityExtend

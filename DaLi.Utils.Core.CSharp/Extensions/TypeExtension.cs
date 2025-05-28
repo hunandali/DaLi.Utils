@@ -96,5 +96,44 @@ namespace DaLi.Utils.Extension {
 				   !(type.Namespace?.StartsWith("System") ?? false) &&
 				   !(type.Namespace?.StartsWith("Microsoft") ?? false);
 		}
+
+		/// <summary>
+		/// 判断一个对象的类型是否包含指定带泛型的基类或接口，并返回该泛型的类型
+		/// </summary>
+		/// <param name="type"></param>
+		/// <param name="genericBaseType">指定的带泛型的基类类型</param>
+		/// <returns>如果对象是泛型基类或接口的实例，则返回泛型的类型；否则返回 null</returns>
+		public static Type[] GetGenericTypes(this Type type, Type genericBaseType) {
+			ArgumentNullException.ThrowIfNull(type);
+			ArgumentNullException.ThrowIfNull(genericBaseType);
+
+			if (!genericBaseType.IsGenericTypeDefinition) {
+				throw new ArgumentException("必须是一个泛型类型定义", nameof(genericBaseType));
+			}
+
+			Type genericType = null;
+
+			// 检查对象的基类是否匹配指定的带泛型的基类
+			var baseType = type;
+			while (baseType != null) {
+				if (baseType.IsGenericType && baseType.GetGenericTypeDefinition() == genericBaseType) {
+					genericType = baseType;
+					break;
+				}
+				baseType = baseType.BaseType;
+			}
+
+			if (genericType is null) {
+				// 检查对象是否实现了指定的带泛型的接口
+				foreach (var i in type.GetInterfaces()) {
+					if (i.IsGenericType && i.GetGenericTypeDefinition() == genericBaseType) {
+						genericType = i;
+						break;
+					}
+				}
+			}
+
+			return genericType?.GetGenericArguments();
+		}
 	}
 }

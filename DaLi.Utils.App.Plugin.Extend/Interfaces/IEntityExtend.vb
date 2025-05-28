@@ -27,7 +27,7 @@ Imports FreeSql.Internal.Model
 Namespace [Interface]
 
 	''' <summary>带扩展操作的数据接口</summary>
-	Public Interface IEntityExtend
+	Public Interface IEntityExtend(Of T As {Class, New})
 		Inherits IEntity
 
 		''' <summary>扩展内容</summary>
@@ -37,7 +37,13 @@ Namespace [Interface]
 		<DbColumn(Position:=-5)>
 		<Output(TristateEnum.FALSE)>
 		<DbQuery(DynamicFilterOperator.Contains)>
-		Property Extension As NameValueDictionary
+		Property Extension As T
+
+	End Interface
+
+	''' <summary>带扩展操作的数据接口</summary>
+	Public Interface IEntityExtend
+		Inherits IEntityExtend(Of NameValueDictionary)
 
 	End Interface
 

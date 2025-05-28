@@ -376,16 +376,16 @@ Namespace Base
 			'-----------------------------
 			' 扩展内容查询
 			'-----------------------------
-			If EntityType.IsComeFrom(GetType(IEntityExtend)) Then
-				Dim ext = GetValue("Extension")
-				If ext.NotEmpty Then
-					Filters.Add(New DynamicFilterInfo With {
-								.Field = "Extension",
-								.[Operator] = DynamicFilterOperator.Contains,
-								.Value = ext
-								})
-				End If
-			End If
+			'If EntityType.IsComeFrom(GetType(IEntityExtend)) Then
+			'	Dim ext = GetValue("Extension")
+			'	If ext.NotEmpty Then
+			'		Filters.Add(New DynamicFilterInfo With {
+			'					.Field = "Extension",
+			'					.[Operator] = DynamicFilterOperator.Contains,
+			'					.Value = ext
+			'					})
+			'	End If
+			'End If
 
 			' 动态查询
 			If Filters.NotEmpty Then

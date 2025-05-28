@@ -27,6 +27,22 @@ Imports FreeSql.Internal.Model
 Namespace Base
 
 	''' <summary>扩展数据模型基类</summary>
+	Public MustInherit Class EntityExtendBase(Of T As {Class, New})
+		Inherits EntityBase
+		Implements IEntityExtend(Of T)
+
+		''' <summary>扩展内容</summary>
+		<Display(Name:="Extension")>
+		<JsonIgnore>
+		<JsonMap>
+		<DbColumn(Position:=-5)>
+		<Output(TristateEnum.FALSE)>
+		<DbQuery(DynamicFilterOperator.Contains)>
+		Public Property Extension As New T Implements IEntityExtend(Of T).Extension
+
+	End Class
+
+	''' <summary>扩展数据模型基类</summary>
 	Public MustInherit Class EntityExtendBase
 		Inherits EntityBase
 		Implements IEntityExtend
