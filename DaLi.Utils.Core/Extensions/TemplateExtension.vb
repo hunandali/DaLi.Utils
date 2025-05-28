@@ -326,6 +326,16 @@ Namespace Extension
 					Try
 						Dim type = value.GetType
 
+						If type.IsDate Then
+							Dim day As Date = value
+							Return day.ToString(strFormat)
+						End If
+
+						If type.IsNumber Then
+							Dim num As Decimal = value
+							Return num.ToString(strFormat)
+						End If
+
 						' 非文本直接使用 String.Format 处理
 						If Not type.IsString Then Return String.Format(strFormat, value)
 

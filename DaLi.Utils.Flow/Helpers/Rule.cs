@@ -25,11 +25,10 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Data;
 using System.Linq;
-using DaLi.Utils.Extension;
 using DaLi.Utils.Flow.Interface;
+using DaLi.Utils.Flow.Model;
+using DaLi.Utils.Extension;
 using DaLi.Utils.Helper;
-using DaLi.Utils.Json;
-using DaLi.Utils.Model;
 
 namespace DaLi.Utils.Flow {
 
@@ -42,26 +41,29 @@ namespace DaLi.Utils.Flow {
 		/// <summary>当前系统中的规则类型</summary>
 		public static ImmutableDictionary<string, Type> Rules {
 			get {
-				_Rules ??= ReflectionHeler
-						.CurrentTypes(true, null, true, typeof(IFlowRule))
+				if (_Rules.IsEmpty()) {
+					_Rules = ReflectionHeler
+						.CurrentTypes(true, null, true, typeof(IRule))
 						.Where(x => x.IsPublic && x.IsClass && !x.IsAbstract)
 						.ToImmutableDictionary(
 							x => x.FullName,
 							x => x,
 							StringComparer.OrdinalIgnoreCase
 						);
+				}
+
 				return _Rules;
 			}
 			set => _Rules = value ?? ImmutableDictionary<string, Type>.Empty;
 		}
 
 		/// <summary>从输入参数中获取规则</summary>
-		public static IFlowRule RuleItem(SODictionary input) {
+		public static IRule RuleItem(RuleData input) {
 			if (input.IsEmpty()) {
 				return null;
 			}
 
-			var typeName = input.GetValue("_type", "type");
+			var typeName = input.Type;
 			if (typeName.IsEmpty()) {
 				return null;
 			}
@@ -82,28 +84,30 @@ namespace DaLi.Utils.Flow {
 			if (type == null) {
 				// 代理运行模式，返回代理规则
 				if (ProxyMode) {
-					return new FlowProxy { Rule = input.ToJson(false, false, false) };
+					//return new FlowProxy { Rule = input.ToJson(false, false, false) };
+					return new FlowProxy { Source = input };
 				}
 				return null;
 			}
 
 			// 反序列为实际规则
-			var rule = (IFlowRule) Activator.CreateInstance(type);
+			var rule = (IRule) Activator.CreateInstance(type);
 			if (rule == null) {
 				return null;
 			}
 
+			// 序列化后再保存
 			rule.SetInput(input);
 			return rule;
 		}
 
 		/// <summary>获取规则</summary>
-		public static IFlowRule RuleItem(string rule)
-			=> RuleItem(new SODictionary(rule));
+		public static IRule RuleItem(string rule)
+			=> RuleItem(new RuleData(rule));
 
 		/// <summary>从流程规则数据中获取规则</summary>
 		/// <param name="rules">规则列表</param>
-		public static List<IFlowRule> RuleList(IEnumerable<SODictionary> rules) {
+		public static List<IRule> RuleList(IEnumerable<RuleData> rules) {
 			if (rules.IsEmpty()) {
 				return null;
 			}
@@ -116,15 +120,5 @@ namespace DaLi.Utils.Flow {
 
 			return ret;
 		}
-
-		///// <summary>执行操作</summary>
-		//public static ExecuteStatus RuleExecute(SODictionary input, ref SODictionary context, CancellationToken cancel = default) {
-		//	var item = RuleItem(input);
-		//	FlowException.ThrowIf(item is null, ExceptionEnum.RULE_INVALID);
-
-		//	var result = new ExecuteStatus(item, input);
-		//	item.Execute(result, ref context, cancel);
-		//	return result;
-		//}
 	}
 }

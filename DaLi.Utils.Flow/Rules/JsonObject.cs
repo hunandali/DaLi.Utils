@@ -21,17 +21,17 @@
  * ------------------------------------------------------------
  */
 
-using System.Collections.Generic;
 using System.Threading;
-using DaLi.Utils.Extension;
 using DaLi.Utils.Flow.Base;
+using DaLi.Utils.Extension;
+using DaLi.Utils.Helper;
 using DaLi.Utils.Json;
 using DaLi.Utils.Model;
 
 namespace DaLi.Utils.Flow.Rule {
 
 	/// <summary>JSON 数据转换</summary>
-	public class JsonObject : FlowRuleBase {
+	public class JsonObject : RuleBase {
 
 		#region PROPERTY
 
@@ -42,13 +42,16 @@ namespace DaLi.Utils.Flow.Rule {
 		public string Source { get; set; }
 
 		/// <summary>获取路径，按顺序往下获取</summary>
-		public string[] Path { get; set; }
+		public string Path { get; set; }
+
+		/// <summary>是否忽略大小写</summary>
+		public bool IgnoreCase { get; set; }
 
 		#endregion
 
 		#region INFORMATION
 
-		/// <summary>验证规则是否存在异常</summary>
+		/// <inheritdoc/>
 		public override bool Validate(ref string message) {
 			if (!Source.IsJson()) {
 				message = "无效 JSON 数据";
@@ -72,32 +75,7 @@ namespace DaLi.Utils.Flow.Rule {
 				return ret;
 			}
 
-			foreach (var key in Path) {
-				if (ret == null) {
-					return null;
-				}
-
-				// 获取路径值
-				if (key.IsEmpty()) {
-					continue;
-				}
-
-				// 如果是数字，则返回列表第几项
-				// 否则返回对应的键
-				if (int.TryParse(key, out var index)) {
-					// 数字键
-					if (ret is List<object> list && list.Count > index) {
-						ret = list[index];
-					}
-				} else {
-					// 字符键
-					if (ret is Dictionary<string, object> dict && dict.TryGetValue(key, out var value)) {
-						ret = value;
-					}
-				}
-			}
-
-			return ret;
+			return ObjectAccessorHelper.GetValue(ret, Path, IgnoreCase);
 		}
 
 		#endregion

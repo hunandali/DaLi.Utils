@@ -24,11 +24,12 @@
 using System.Collections.Generic;
 using System.Threading;
 using DaLi.Utils.Extension;
+using DaLi.Utils.Flow.Model;
 using DaLi.Utils.Model;
 
 namespace DaLi.Utils.Flow.Base {
 	/// <summary>判断基类</summary>
-	public abstract class IfRuleBase : FlowRuleBase {
+	public abstract class IfRuleBase : RuleBase {
 
 		#region PROPERTY
 
@@ -42,12 +43,12 @@ namespace DaLi.Utils.Flow.Base {
 		public bool Reverse { get; set; }
 
 		/// <summary>内部执行的规则</summary>
-		public List<SODictionary> Rules { get; set; }
+		public List<RuleData> Rules { get; set; }
 		#endregion
 
 		#region INFORMATION
 
-		/// <summary>验证规则是否存在异常</summary>
+		/// <inheritdoc/>
 		public override bool Validate(ref string message) {
 			if (Rules.IsEmpty()) {
 				message = "没有用于判断后执行的内部规则";

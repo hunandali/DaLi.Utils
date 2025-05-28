@@ -28,7 +28,7 @@ using DaLi.Utils.Model;
 namespace DaLi.Utils.Flow.Rule {
 
 	/// <summary>调试</summary>
-	public class Debug : FlowRuleBase {
+	public class Debug : RuleBase {
 
 		#region PROPERTY
 
@@ -36,7 +36,7 @@ namespace DaLi.Utils.Flow.Rule {
 		public override string Name => "调试";
 
 		/// <summary>原始内容</summary>
-		public string Content { get; set; }
+		public string Source { get; set; }
 
 		#endregion
 
@@ -47,7 +47,7 @@ namespace DaLi.Utils.Flow.Rule {
 			// 强制忽略错误
 			SkipResult();
 
-			Log(Content, "调试");
+			Log(Source, "调试");
 
 			return null;
 		}

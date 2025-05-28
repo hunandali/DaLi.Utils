@@ -4,91 +4,6 @@
         <name>DaLi.Utils.Flow</name>
     </assembly>
     <members>
-        <member name="T:DaLi.Utils.Flow.Base.FlowRuleBase">
-            <summary>规则基类</summary>
-        </member>
-        <member name="F:DaLi.Utils.Flow.Base.FlowRuleBase._IsDisposed">
-            <summary>是否已经销毁</summary>
-        </member>
-        <member name="P:DaLi.Utils.Flow.Base.FlowRuleBase.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:DaLi.Utils.Flow.Base.FlowRuleBase.Output">
-            <inheritdoc/>
-        </member>
-        <member name="P:DaLi.Utils.Flow.Base.FlowRuleBase.OutputAll">
-            <inheritdoc/>
-        </member>
-        <member name="P:DaLi.Utils.Flow.Base.FlowRuleBase.EmptyIgnore">
-            <inheritdoc/>
-        </member>
-        <member name="P:DaLi.Utils.Flow.Base.FlowRuleBase.ErrorIgnore">
-            <inheritdoc/>
-        </member>
-        <member name="P:DaLi.Utils.Flow.Base.FlowRuleBase.ErrorMessage">
-            <inheritdoc/>
-        </member>
-        <member name="P:DaLi.Utils.Flow.Base.FlowRuleBase.Enabled">
-            <inheritdoc/>
-        </member>
-        <member name="P:DaLi.Utils.Flow.Base.FlowRuleBase.Input">
-            <summary>输入参数</summary>
-        </member>
-        <member name="P:DaLi.Utils.Flow.Base.FlowRuleBase.RuleStatus">
-            <summary>状态</summary>
-        </member>
-        <member name="M:DaLi.Utils.Flow.Base.FlowRuleBase.SetInput(DaLi.Utils.Model.SODictionary)">
-            <inheritdoc/>
-        </member>
-        <member name="M:DaLi.Utils.Flow.Base.FlowRuleBase.Validate(System.String@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:DaLi.Utils.Flow.Base.FlowRuleBase.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
-            <summary>执行操作，并返回当前的变量及相关值</summary>
-            <param name="context">上下文数据，未设置将自动创建，并自动附加最终结果</param>
-            <param name="cancel">取消令牌</param>
-            <remarks>如果执行过程存在错误则直接触发异常</remarks>
-            <returns>执行结果</returns>
-        </member>
-        <member name="M:DaLi.Utils.Flow.Base.FlowRuleBase.Execute(DaLi.Utils.Flow.ExecuteStatus@,DaLi.Utils.Model.SODictionary@,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="M:DaLi.Utils.Flow.Base.FlowRuleBase.GetError(DaLi.Utils.Model.SODictionary,System.Exception,System.String,System.String)">
-            <summary>获取格式化的错误信息</summary>
-        </member>
-        <member name="M:DaLi.Utils.Flow.Base.FlowRuleBase.UpdateInput(DaLi.Utils.Model.SODictionary,System.String@)">
-            <summary>通过上下文数据更新输入值</summary>
-            <param name="context">上下文</param>
-            <param name="message">错误消息</param>
-            <returns>null 更新成功，否则返回失败信息</returns>
-        </member>
-        <member name="M:DaLi.Utils.Flow.Base.FlowRuleBase.UpdateInput(DaLi.Utils.Model.SODictionary,DaLi.Utils.Model.SODictionary,System.String@)">
-            <summary>通过上下文数据更新输入值</summary>
-            <param name="input">输入参数</param>
-            <param name="context">上下文</param>
-            <param name="message">错误消息</param>
-            <returns>null 更新成功，否则返回失败信息</returns>
-        </member>
-        <member name="M:DaLi.Utils.Flow.Base.FlowRuleBase.MergeResult(DaLi.Utils.Model.SODictionary,System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:DaLi.Utils.Flow.Base.FlowRuleBase.SkipResult">
-            <summary>当前规则无任何值输出，强制忽略错误</summary>
-        </member>
-        <member name="M:DaLi.Utils.Flow.Base.FlowRuleBase.Log(System.String,System.String)">
-            <summary>设置日志</summary>
-            <param name="message">消息</param>
-            <param name="prefix">前缀</param>
-        </member>
-        <member name="M:DaLi.Utils.Flow.Base.FlowRuleBase.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:DaLi.Utils.Flow.Base.FlowRuleBase.Close">
-            <summary>销毁</summary>
-        </member>
-        <member name="M:DaLi.Utils.Flow.Base.FlowRuleBase.Dispose">
-            <inheritdoc/>
-        </member>
         <member name="T:DaLi.Utils.Flow.Base.HttpRuleBase">
             <summary>Http 请求规则基类</summary>
         </member>
@@ -129,7 +44,7 @@
             <summary>初始化</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.Base.HttpRuleBase.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+            <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.Base.HttpRuleBase.Clone``1(``0)">
             <summary>克隆</summary>
@@ -153,7 +68,7 @@
             <summary>内部执行的规则</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.Base.IfRuleBase.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+            <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.Base.IfRuleBase.Execute(System.Boolean,DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <summary>执行判断结果</summary>
@@ -161,6 +76,91 @@
             <param name="context">上下文</param>
             <param name="cancel">取消</param>
             <returns>返回结果</returns>
+        </member>
+        <member name="T:DaLi.Utils.Flow.Base.RuleBase">
+            <summary>规则基类</summary>
+        </member>
+        <member name="F:DaLi.Utils.Flow.Base.RuleBase._IsDisposed">
+            <summary>是否已经销毁</summary>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Base.RuleBase.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Base.RuleBase.Output">
+            <inheritdoc/>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Base.RuleBase.OutputAll">
+            <inheritdoc/>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Base.RuleBase.EmptyIgnore">
+            <inheritdoc/>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Base.RuleBase.ErrorIgnore">
+            <inheritdoc/>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Base.RuleBase.ErrorMessage">
+            <inheritdoc/>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Base.RuleBase.Enabled">
+            <inheritdoc/>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Base.RuleBase.Input">
+            <summary>输入参数</summary>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Base.RuleBase.RuleStatus">
+            <summary>状态</summary>
+        </member>
+        <member name="M:DaLi.Utils.Flow.Base.RuleBase.SetInput(DaLi.Utils.Model.SODictionary)">
+            <inheritdoc/>
+        </member>
+        <member name="M:DaLi.Utils.Flow.Base.RuleBase.Validate(System.String@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:DaLi.Utils.Flow.Base.RuleBase.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
+            <summary>执行操作，并返回当前的变量及相关值</summary>
+            <param name="context">上下文数据，未设置将自动创建，并自动附加最终结果</param>
+            <param name="cancel">取消令牌</param>
+            <remarks>如果执行过程存在错误则直接触发异常</remarks>
+            <returns>执行结果</returns>
+        </member>
+        <member name="M:DaLi.Utils.Flow.Base.RuleBase.Execute(DaLi.Utils.Flow.ExecuteStatus@,DaLi.Utils.Model.SODictionary@,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:DaLi.Utils.Flow.Base.RuleBase.GetError(DaLi.Utils.Model.SODictionary,System.Exception,System.String,System.String)">
+            <summary>获取格式化的错误信息</summary>
+        </member>
+        <member name="M:DaLi.Utils.Flow.Base.RuleBase.UpdateInput(DaLi.Utils.Model.SODictionary,System.String@)">
+            <summary>通过上下文数据更新输入值</summary>
+            <param name="context">上下文</param>
+            <param name="message">错误消息</param>
+            <returns>null 更新成功，否则返回失败信息</returns>
+        </member>
+        <member name="M:DaLi.Utils.Flow.Base.RuleBase.UpdateInput``1(``0,DaLi.Utils.Model.SODictionary,System.String@)">
+            <summary>通过上下文数据更新输入值</summary>
+            <param name="input">输入参数</param>
+            <param name="context">上下文</param>
+            <param name="message">错误消息</param>
+            <returns>null 更新成功，否则返回失败信息</returns>
+        </member>
+        <member name="M:DaLi.Utils.Flow.Base.RuleBase.MergeResult(DaLi.Utils.Model.SODictionary,System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:DaLi.Utils.Flow.Base.RuleBase.SkipResult">
+            <summary>当前规则无任何值输出，强制忽略错误</summary>
+        </member>
+        <member name="M:DaLi.Utils.Flow.Base.RuleBase.Log(System.String,System.String)">
+            <summary>设置日志</summary>
+            <param name="message">消息</param>
+            <param name="prefix">前缀</param>
+        </member>
+        <member name="M:DaLi.Utils.Flow.Base.RuleBase.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:DaLi.Utils.Flow.Base.RuleBase.Close">
+            <summary>销毁</summary>
+        </member>
+        <member name="M:DaLi.Utils.Flow.Base.RuleBase.Dispose">
+            <inheritdoc/>
         </member>
         <member name="T:DaLi.Utils.Flow.Base.ValidateRuleBase">
             <summary>验证基类</summary>
@@ -200,7 +200,7 @@
             <summary>单线程或多线程并行执行，小于 2 单线程，大于 1 异步并行执行线程数</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.Base.WhileRuleBase.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+            <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.Base.WhileRuleBase.WhileExecute(System.Int32,System.Int32,System.Int32,DaLi.Utils.Model.SODictionary,System.Func{System.Int32,DaLi.Utils.Model.SODictionary},System.Threading.CancellationToken)">
             <summary>执行循环操作</summary>
@@ -222,8 +222,8 @@
         <member name="T:DaLi.Utils.Flow.ExceptionEnum">
             <summary>错误类型枚举</summary>
         </member>
-        <member name="F:DaLi.Utils.Flow.ExceptionEnum.NORMAL">
-            <summary>通用错误</summary>
+        <member name="F:DaLi.Utils.Flow.ExceptionEnum.NONE">
+            <summary>无错误</summary>
         </member>
         <member name="F:DaLi.Utils.Flow.ExceptionEnum.FLOW_INVALID">
             <summary>流程无效，如：流程错误</summary>
@@ -327,7 +327,7 @@
         <member name="M:DaLi.Utils.Flow.ExecuteStatus.#ctor(DaLi.Utils.Model.SODictionary)">
             <summary>默认构造</summary>
         </member>
-        <member name="M:DaLi.Utils.Flow.ExecuteStatus.#ctor(DaLi.Utils.Flow.Interface.IFlowRule,DaLi.Utils.Model.SODictionary)">
+        <member name="M:DaLi.Utils.Flow.ExecuteStatus.#ctor(DaLi.Utils.Flow.Interface.IRule,DaLi.Utils.Model.SODictionary)">
             <summary>默认构造</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.ExecuteStatus.#ctor(System.String,System.String,DaLi.Utils.Model.SODictionary)">
@@ -356,8 +356,10 @@
         <member name="M:DaLi.Utils.Flow.ExecuteStatus.Update(DaLi.Utils.Flow.ExecuteStatus)">
             <summary>更新规则</summary>
         </member>
-        <member name="M:DaLi.Utils.Flow.ExecuteStatus.GetMessage(System.Int32)">
+        <member name="M:DaLi.Utils.Flow.ExecuteStatus.GetMessage(System.Boolean,System.Int32)">
             <summary>获取结果列表</summary>
+            <param name="level">显示级别</param>
+            <param name="isConsole">是否控制台输出，控制台无法正常显示 emoji</param>
         </member>
         <member name="T:DaLi.Utils.Flow.FlowException">
             <summary>流程异常</summary>
@@ -426,27 +428,36 @@
         <member name="P:DaLi.Utils.Flow.FlowProxy.Name">
             <summary>规则名称</summary>
         </member>
-        <member name="P:DaLi.Utils.Flow.FlowProxy.Rule">
-            <summary>原始规则</summary>
+        <member name="P:DaLi.Utils.Flow.FlowProxy.Source">
+            <summary>规则数据</summary>
         </member>
-        <member name="P:DaLi.Utils.Flow.FlowProxy.GetApiClient">
-            <summary>获取 API 客户端的方法</summary>
+        <member name="P:DaLi.Utils.Flow.FlowProxy.ProxyExecute">
+            <summary>代理操作</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.FlowProxy.#ctor">
             <summary>构造</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.FlowProxy.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+            <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.FlowProxy.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
-            <summary>执行操作，并返回当前的变量及相关值</summary>
+            <inheritdoc/>
         </member>
         <member name="T:DaLi.Utils.Flow.FlowHelper">
             <summary>流程操作</summary>
             <summary>流程操作</summary>
             <summary>流程操作</summary>
         </member>
-        <member name="M:DaLi.Utils.Flow.FlowHelper.FlowExecute(System.Collections.Generic.IEnumerable{DaLi.Utils.Model.SODictionary},DaLi.Utils.Flow.ExecuteStatus@,DaLi.Utils.Model.SODictionary@,DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
+        <member name="M:DaLi.Utils.Flow.FlowHelper.FlowExecute(System.Collections.Generic.IEnumerable{DaLi.Utils.Flow.Interface.IRule},DaLi.Utils.Flow.ExecuteStatus@,DaLi.Utils.Model.SODictionary@,DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
+            <summary>执行流程</summary>
+            <param name="rules">规则列表</param>
+            <param name="context">上下文数据</param>
+            <param name="output">最终输出结果参数，不设置则输出流程中所有数据</param>
+            <param name="status">消息状态</param>
+            <param name="cancel">取消Token</param>
+            <returns>最终执行结果</returns>
+        </member>
+        <member name="M:DaLi.Utils.Flow.FlowHelper.FlowExecute(System.Collections.Generic.IEnumerable{DaLi.Utils.Flow.Model.RuleData},DaLi.Utils.Flow.ExecuteStatus@,DaLi.Utils.Model.SODictionary@,DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <summary>执行流程</summary>
             <param name="rules">规则列表</param>
             <param name="context">上下文数据</param>
@@ -493,7 +504,7 @@
         <member name="P:DaLi.Utils.Flow.FlowHelper.ProxyMode">
             <summary>代理模式，当本机无此规则时，使用远程代理运行方式</summary>
         </member>
-        <member name="P:DaLi.Utils.Flow.FlowHelper.ProxyClient">
+        <member name="P:DaLi.Utils.Flow.FlowHelper.ProxyExecute">
             <summary>代理模式，当本机无此规则时，使用远程代理运行方式</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.FlowHelper.GetValue(System.Object,DaLi.Utils.Model.SODictionary)">
@@ -543,13 +554,13 @@
         <member name="P:DaLi.Utils.Flow.FlowHelper.Rules">
             <summary>当前系统中的规则类型</summary>
         </member>
-        <member name="M:DaLi.Utils.Flow.FlowHelper.RuleItem(DaLi.Utils.Model.SODictionary)">
+        <member name="M:DaLi.Utils.Flow.FlowHelper.RuleItem(DaLi.Utils.Flow.Model.RuleData)">
             <summary>从输入参数中获取规则</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.FlowHelper.RuleItem(System.String)">
             <summary>获取规则</summary>
         </member>
-        <member name="M:DaLi.Utils.Flow.FlowHelper.RuleList(System.Collections.Generic.IEnumerable{DaLi.Utils.Model.SODictionary})">
+        <member name="M:DaLi.Utils.Flow.FlowHelper.RuleList(System.Collections.Generic.IEnumerable{DaLi.Utils.Flow.Model.RuleData})">
             <summary>从流程规则数据中获取规则</summary>
             <param name="rules">规则列表</param>
         </member>
@@ -571,6 +582,9 @@
         <member name="P:DaLi.Utils.Flow.Interface.IFlow.UpdateTime">
             <summary>流程最后更新时间</summary>
         </member>
+        <member name="P:DaLi.Utils.Flow.Interface.IFlow.Debug">
+            <summary>调试模式</summary>
+        </member>
         <member name="P:DaLi.Utils.Flow.Interface.IFlow.Input">
             <summary>输入参数</summary>
         </member>
@@ -580,16 +594,13 @@
         <member name="P:DaLi.Utils.Flow.Interface.IFlow.Rules">
             <summary>流程规则</summary>
         </member>
-        <member name="T:DaLi.Utils.Flow.Interface.IFlowRule">
+        <member name="T:DaLi.Utils.Flow.Interface.IRule">
             <summary>流程规则接口</summary>
         </member>
-        <member name="P:DaLi.Utils.Flow.Interface.IFlowRule.Name">
+        <member name="P:DaLi.Utils.Flow.Interface.IRule.Name">
             <summary>模块名称</summary>
         </member>
-        <member name="P:DaLi.Utils.Flow.Interface.IFlowRule.Output">
-            <summary>输出变量名</summary>
-        </member>
-        <member name="P:DaLi.Utils.Flow.Interface.IFlowRule.OutputAll">
+        <member name="P:DaLi.Utils.Flow.Interface.IRule.OutputAll">
             <summary>对于存在子流程的项目是否将子流程的执行结果直接输出到主流程</summary>
             <remarks>
             - 对于不存在子流程的项目不用设置此值；<para />
@@ -600,32 +611,13 @@
             例如：计时器如果不将内部数据暴露到主流程，外部将无法获取到计时器的内流程的执行结果。
             </remarks>
         </member>
-        <member name="P:DaLi.Utils.Flow.Interface.IFlowRule.EmptyIgnore">
-            <summary>是否忽略无结果</summary>
-            <remarks>False：当未分析到任何内容时报错；True：当未分析到任何内容时忽略此问题</remarks>
+        <member name="M:DaLi.Utils.Flow.Interface.IRule.Validate(System.String@)">
+            <summary>验证规则项目是否异常</summary>
         </member>
-        <member name="P:DaLi.Utils.Flow.Interface.IFlowRule.ErrorIgnore">
-            <summary>忽略错误</summary>
-            <remarks>
-            TRUE：忽略所有错误<para />
-            DEFAULT: 仅忽略执行错误，规则错误不忽略<para />
-            FALSE: 不忽略
-            </remarks>
-        </member>
-        <member name="P:DaLi.Utils.Flow.Interface.IFlowRule.ErrorMessage">
-            <summary>友好错误消息</summary>
-            <remarks>仅针对未忽略错误时执行中的错误</remarks>
-        </member>
-        <member name="P:DaLi.Utils.Flow.Interface.IFlowRule.Enabled">
-            <summary>启用</summary>
-        </member>
-        <member name="M:DaLi.Utils.Flow.Interface.IFlowRule.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
-        </member>
-        <member name="M:DaLi.Utils.Flow.Interface.IFlowRule.SetInput(DaLi.Utils.Model.SODictionary)">
+        <member name="M:DaLi.Utils.Flow.Interface.IRule.SetInput(DaLi.Utils.Model.SODictionary)">
             <summary>设置输入参数</summary>
         </member>
-        <member name="M:DaLi.Utils.Flow.Interface.IFlowRule.Execute(DaLi.Utils.Flow.ExecuteStatus@,DaLi.Utils.Model.SODictionary@,System.Threading.CancellationToken)">
+        <member name="M:DaLi.Utils.Flow.Interface.IRule.Execute(DaLi.Utils.Flow.ExecuteStatus@,DaLi.Utils.Model.SODictionary@,System.Threading.CancellationToken)">
             <summary>执行操作，并返回当前的变量及相关值</summary>
             <param name="status">输入状态及参数，不能为空，必须传入</param>
             <param name="context">上下文数据，未设置将自动创建，并自动附加最终结果</param>
@@ -633,10 +625,125 @@
             <remarks>如果执行过程存在错误则直接触发异常</remarks>
             <returns>执行结果</returns>
         </member>
-        <member name="M:DaLi.Utils.Flow.Interface.IFlowRule.MergeResult(DaLi.Utils.Model.SODictionary,System.Object)">
+        <member name="M:DaLi.Utils.Flow.Interface.IRule.MergeResult(DaLi.Utils.Model.SODictionary,System.Object)">
             <summary>合并结果到上下文</summary>
             <param name="context">上下文</param>
             <param name="result">输出结果</param>
+        </member>
+        <member name="T:DaLi.Utils.Flow.Interface.IRuleBase">
+            <summary>流程规则接口基类</summary>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Interface.IRuleBase.Output">
+            <summary>输出变量名</summary>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Interface.IRuleBase.EmptyIgnore">
+            <summary>是否忽略无结果</summary>
+            <remarks>False：当未分析到任何内容时报错；True：当未分析到任何内容时忽略此问题</remarks>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Interface.IRuleBase.ErrorIgnore">
+            <summary>忽略错误</summary>
+            <remarks>
+            TRUE：忽略所有错误<para />
+            DEFAULT: 仅忽略执行错误，规则错误不忽略<para />
+            FALSE: 不忽略
+            </remarks>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Interface.IRuleBase.ErrorMessage">
+            <summary>友好错误消息</summary>
+            <remarks>仅针对未忽略错误时执行中的错误</remarks>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Interface.IRuleBase.Enabled">
+            <summary>启用</summary>
+        </member>
+        <member name="T:DaLi.Utils.Flow.Interface.IRuleData">
+            <summary>流程规则接口</summary>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Interface.IRuleData.Type">
+            <summary>模块类型</summary>
+        </member>
+        <member name="T:DaLi.Utils.Flow.Model.Flow">
+            <summary>流程</summary>
+        </member>
+        <member name="M:DaLi.Utils.Flow.Model.Flow.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="M:DaLi.Utils.Flow.Model.Flow.#ctor(System.String,DaLi.Utils.Model.SODictionary,System.Collections.Generic.List{DaLi.Utils.Flow.Model.RuleData})">
+            <summary>构造函数</summary>
+            <param name="name">流程名称</param>
+            <param name="input">初始化数据</param>
+            <param name="rules">规则列表</param>
+        </member>
+        <member name="M:DaLi.Utils.Flow.Model.Flow.#ctor(System.String,DaLi.Utils.Model.SODictionary,System.String)">
+            <summary>构造函数</summary>
+            <param name="name">流程名称</param>
+            <param name="input">初始化数据</param>
+            <param name="rules">规则列表 JSON 数据</param>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Model.Flow.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Model.Flow.Description">
+            <inheritdoc/>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Model.Flow.Author">
+            <inheritdoc/>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Model.Flow.CreateTime">
+            <inheritdoc/>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Model.Flow.UpdateTime">
+            <inheritdoc/>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Model.Flow.Debug">
+            <inheritdoc/>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Model.Flow.Input">
+            <inheritdoc/>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Model.Flow.Output">
+            <inheritdoc/>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Model.Flow.Rules">
+            <inheritdoc/>
+        </member>
+        <member name="M:DaLi.Utils.Flow.Model.Flow.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:DaLi.Utils.Flow.Model.RuleData">
+            <summary>规则数据</summary>
+        </member>
+        <member name="M:DaLi.Utils.Flow.Model.RuleData.#ctor">
+            <summary>构造函数，默认启用该规则</summary>
+        </member>
+        <member name="M:DaLi.Utils.Flow.Model.RuleData.#ctor(DaLi.Utils.Model.SODictionary)">
+            <summary>构造函数，默认启用该规则</summary>
+            <param name="rule">规则数据</param>
+        </member>
+        <member name="M:DaLi.Utils.Flow.Model.RuleData.#ctor(System.String,System.String)">
+            <summary>构造函数，默认启用该规则</summary>
+            <param name="type">规则类型</param>
+            <param name="rule">规则 JSON 数据</param>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Model.RuleData.Rule">
+            <summary>规则</summary>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Model.RuleData.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Model.RuleData.Output">
+            <inheritdoc/>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Model.RuleData.EmptyIgnore">
+            <inheritdoc/>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Model.RuleData.ErrorIgnore">
+            <inheritdoc/>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Model.RuleData.ErrorMessage">
+            <inheritdoc/>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Model.RuleData.Enabled">
+            <inheritdoc/>
         </member>
         <member name="T:DaLi.Utils.Flow.Rule.Comment">
             <summary>注释</summary>
@@ -644,11 +751,11 @@
         <member name="P:DaLi.Utils.Flow.Rule.Comment.Name">
             <summary>规则名称</summary>
         </member>
-        <member name="P:DaLi.Utils.Flow.Rule.Comment.Content">
+        <member name="P:DaLi.Utils.Flow.Rule.Comment.Source">
             <summary>原始内容</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.Comment.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+            <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.Comment.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <inheritdoc/>
@@ -659,14 +766,14 @@
         <member name="P:DaLi.Utils.Flow.Rule.Console.Name">
             <summary>规则名称</summary>
         </member>
-        <member name="P:DaLi.Utils.Flow.Rule.Console.Content">
-            <summary>原始内容</summary>
+        <member name="P:DaLi.Utils.Flow.Rule.Console.Source">
+            <summary>原始内容，非文本将使用 JSON 序列化</summary>
         </member>
         <member name="P:DaLi.Utils.Flow.Rule.Console.Mode">
             <summary>打印类型（info/succ/err/warning/normal）</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.Console.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+            <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.Console.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <inheritdoc/>
@@ -677,7 +784,7 @@
         <member name="P:DaLi.Utils.Flow.Rule.Debug.Name">
             <summary>规则名称</summary>
         </member>
-        <member name="P:DaLi.Utils.Flow.Rule.Debug.Content">
+        <member name="P:DaLi.Utils.Flow.Rule.Debug.Source">
             <summary>原始内容</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.Debug.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
@@ -692,59 +799,34 @@
         <member name="M:DaLi.Utils.Flow.Rule.Exception.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="T:DaLi.Utils.Flow.Rule.FileRead">
-            <summary>文件读取</summary>
+        <member name="T:DaLi.Utils.Flow.Rule.File">
+            <summary>文件操作</summary>
         </member>
-        <member name="P:DaLi.Utils.Flow.Rule.FileRead.Name">
+        <member name="P:DaLi.Utils.Flow.Rule.File.Name">
             <summary>规则名称</summary>
         </member>
-        <member name="P:DaLi.Utils.Flow.Rule.FileRead.Path">
+        <member name="P:DaLi.Utils.Flow.Rule.File.Path">
             <summary>文件路径</summary>
         </member>
-        <member name="P:DaLi.Utils.Flow.Rule.FileRead.IsJson">
-            <summary>是否 JSON 格式</summary>
+        <member name="P:DaLi.Utils.Flow.Rule.File.Action">
+            <summary>操作：0. 信息; 1. 读取; 2. 保存; 3. 删除</summary>
         </member>
-        <member name="M:DaLi.Utils.Flow.Rule.FileRead.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+        <member name="P:DaLi.Utils.Flow.Rule.File.Source">
+            <summary>保存时的文件内容，非文本将使用 JSON 格式保存</summary>
         </member>
-        <member name="M:DaLi.Utils.Flow.Rule.FileRead.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
+        <member name="P:DaLi.Utils.Flow.Rule.File.Exists">
+            <summary>保存文件存在处理</summary>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Rule.File.Skip">
+            <summary>
+            读取时是否忽略文件不存在的情况。
+            true 忽略文件不存在的情况，false 抛出异常
+            </summary>
+        </member>
+        <member name="M:DaLi.Utils.Flow.Rule.File.Validate(System.String@)">
             <inheritdoc/>
         </member>
-        <member name="T:DaLi.Utils.Flow.Rule.FileSave">
-            <summary>文件保存</summary>
-        </member>
-        <member name="P:DaLi.Utils.Flow.Rule.FileSave.Name">
-            <summary>规则名称</summary>
-        </member>
-        <member name="P:DaLi.Utils.Flow.Rule.FileSave.Path">
-            <summary>原始内容</summary>
-        </member>
-        <member name="P:DaLi.Utils.Flow.Rule.FileSave.Content">
-            <summary>文件内容</summary>
-            <remarks>，设置为 _Delete 将移除文件</remarks>
-        </member>
-        <member name="M:DaLi.Utils.Flow.Rule.FileSave.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
-        </member>
-        <member name="M:DaLi.Utils.Flow.Rule.FileSave.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="T:DaLi.Utils.Flow.Rule.FlowTime">
-            <summary>流程执行计时器</summary>
-        </member>
-        <member name="P:DaLi.Utils.Flow.Rule.FlowTime.Name">
-            <summary>规则名称</summary>
-        </member>
-        <member name="P:DaLi.Utils.Flow.Rule.FlowTime.Rules">
-            <summary>内部执行的规则</summary>
-        </member>
-        <member name="P:DaLi.Utils.Flow.Rule.FlowTime.OutputAll">
-            <inheritdoc/>	
-        </member>
-        <member name="M:DaLi.Utils.Flow.Rule.FlowTime.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
-        </member>
-        <member name="M:DaLi.Utils.Flow.Rule.FlowTime.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
+        <member name="M:DaLi.Utils.Flow.Rule.File.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="T:DaLi.Utils.Flow.Rule.HttpDownload">
@@ -766,7 +848,7 @@
             <summary>初始化</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.HttpDownload.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+            <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.HttpDownload.Clone">
             <summary>克隆</summary>
@@ -804,16 +886,16 @@
         <member name="M:DaLi.Utils.Flow.Rule.IfDebug.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="T:DaLi.Utils.Flow.Rule.IfValidate">
+        <member name="T:DaLi.Utils.Flow.Rule.IfEmpty">
             <summary>判断操作</summary>
         </member>
-        <member name="P:DaLi.Utils.Flow.Rule.IfValidate.Name">
+        <member name="P:DaLi.Utils.Flow.Rule.IfEmpty.Name">
             <summary>规则名称</summary>
         </member>
-        <member name="P:DaLi.Utils.Flow.Rule.IfValidate.Source">
+        <member name="P:DaLi.Utils.Flow.Rule.IfEmpty.Source">
             <summary>原始数据变量名</summary>
         </member>
-        <member name="M:DaLi.Utils.Flow.Rule.IfValidate.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
+        <member name="M:DaLi.Utils.Flow.Rule.IfEmpty.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="T:DaLi.Utils.Flow.Rule.IfInclude">
@@ -836,7 +918,7 @@
             <summary>忽略大笑写</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.IfInclude.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+            <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.IfInclude.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <inheritdoc/>
@@ -871,8 +953,11 @@
         <member name="P:DaLi.Utils.Flow.Rule.JsonObject.Path">
             <summary>获取路径，按顺序往下获取</summary>
         </member>
+        <member name="P:DaLi.Utils.Flow.Rule.JsonObject.IgnoreCase">
+            <summary>是否忽略大小写</summary>
+        </member>
         <member name="M:DaLi.Utils.Flow.Rule.JsonObject.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+            <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.JsonObject.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <inheritdoc/>
@@ -887,7 +972,7 @@
             <summary>原始数据</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.JsonString.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+            <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.JsonString.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <inheritdoc/>
@@ -902,28 +987,28 @@
             <summary>来源数据</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.Length.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+            <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.Length.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="T:DaLi.Utils.Flow.Rule.Math">
-            <summary>表达式计算</summary>
+            <summary>算数计算</summary>
         </member>
         <member name="P:DaLi.Utils.Flow.Rule.Math.Name">
             <summary>规则名称</summary>
         </member>
-        <member name="P:DaLi.Utils.Flow.Rule.Math.Expression">
+        <member name="P:DaLi.Utils.Flow.Rule.Math.Source">
             <summary>表达式</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.Math.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+            <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.Math.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="T:DaLi.Utils.Flow.Rule.Parameter">
-            <summary>自定义单项参数</summary>
+            <summary>自定义参数</summary>
         </member>
         <member name="P:DaLi.Utils.Flow.Rule.Parameter.Name">
             <summary>规则名称</summary>
@@ -932,7 +1017,7 @@
             <summary>参数列表</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.Parameter.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+            <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.Parameter.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <inheritdoc/>
@@ -947,7 +1032,7 @@
             <summary>参数列表</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.Parameters.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+            <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.Parameters.Clone">
             <summary>克隆</summary>
@@ -968,7 +1053,7 @@
             <summary>最大值</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.Random.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+            <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.Random.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <inheritdoc/>
@@ -983,7 +1068,7 @@
             <summary>延时时长，单位：秒</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.Sleep.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+            <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.Sleep.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <inheritdoc/>
@@ -1016,7 +1101,7 @@
             <summary>清除单元格中的标签</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.TextArea.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+            <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.TextArea.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <inheritdoc/>
@@ -1037,7 +1122,7 @@
             <summary>是否过滤重复内容</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.TextArray.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+            <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.TextArray.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <inheritdoc/>
@@ -1058,7 +1143,7 @@
             <summary>替换的 HTML 标签</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.TextReplace.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+            <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.TextReplace.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <inheritdoc/>
@@ -1081,8 +1166,24 @@
         <member name="P:DaLi.Utils.Flow.Rule.TextTable.Td">
             <summary>单元格开始区域</summary>
         </member>
+        <member name="P:DaLi.Utils.Flow.Rule.TextTable.Multi">
+            <summary>是否多个表格区域</summary>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Rule.TextTable.ClearTags">
+            <summary>清除单元格中的标签</summary>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Rule.TextTable.IgnoreIndex">
+            <summary>忽略表格的前几行（防止表头），默认：1</summary>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Rule.TextTable.ValueAction">
+            <summary>
+            表格值操作记录，如果设置此指，则结果将用字典列表返回，而不再是数组列表。<para />
+            名称为字段名，值为字段处理字符串。<para />
+            每行数据可以用 _data[index] 来代替第 N 列，从 0 开始
+            </summary>
+        </member>
         <member name="M:DaLi.Utils.Flow.Rule.TextTable.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+            <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.TextTable.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <inheritdoc/>
@@ -1115,7 +1216,7 @@
             <summary>是否所有日期都需要匹配</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.ValidateDate.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+            <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.ValidateDate.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <inheritdoc/>
@@ -1136,7 +1237,7 @@
             <summary>规则名称</summary>
         </member>
         <member name="P:DaLi.Utils.Flow.Rule.ValidateEmpty.Source">
-            <summary>原始日期数据，不设置为当前时间</summary>
+            <summary>原始数据变量名</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.ValidateEmpty.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <inheritdoc/>
@@ -1161,7 +1262,7 @@
             <summary>忽略大笑写</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.ValidateInclude.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+            <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.ValidateInclude.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <inheritdoc/>
@@ -1182,7 +1283,7 @@
             <summary>结束时间 (HH:mm:ss)</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.ValidateTime.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+            <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.ValidateTime.IsTimeInRange(System.DateTime,System.DateTime,System.DateTime)">
             <summary>判断时间是否在指定范围内</summary>
@@ -1209,6 +1310,24 @@
             <summary>判断操作，先转换成文本后再比较</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.ValidateValue.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:DaLi.Utils.Flow.Rule.WatchTime">
+            <summary>流程执行计时器</summary>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Rule.WatchTime.Name">
+            <summary>规则名称</summary>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Rule.WatchTime.Rules">
+            <summary>内部执行的规则</summary>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Rule.WatchTime.OutputAll">
+            <inheritdoc/>	
+        </member>
+        <member name="M:DaLi.Utils.Flow.Rule.WatchTime.Validate(System.String@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:DaLi.Utils.Flow.Rule.WatchTime.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="T:DaLi.Utils.Flow.Rule.WhileBreak">
@@ -1239,7 +1358,7 @@
             <summary>进度。大于零：从小到大；小于零：从大到小</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.WhileInterval.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+            <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.WhileInterval.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <inheritdoc/>
@@ -1260,7 +1379,7 @@
             <summary>处理多少条，默认处理全部</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.WhileObject.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+            <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.WhileObject.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <inheritdoc/>
@@ -1275,7 +1394,7 @@
             <summary>循环次数</summary>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.WhileTimes.Validate(System.String@)">
-            <summary>验证规则是否存在异常</summary>
+            <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.Rule.WhileTimes.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
             <inheritdoc/>

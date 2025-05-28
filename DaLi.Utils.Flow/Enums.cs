@@ -27,9 +27,9 @@ namespace DaLi.Utils.Flow {
 	/// <summary>错误类型枚举</summary>
 	public enum ExceptionEnum {
 
-		/// <summary>通用错误</summary>
-		[Description("通用错误")]
-		NORMAL,
+		/// <summary>无错误</summary>
+		[Description("无错误")]
+		NONE,
 
 		/// <summary>流程无效，如：流程错误</summary>
 		[Description("流程无效")]
@@ -60,7 +60,7 @@ namespace DaLi.Utils.Flow {
 		INNER_EXCEPTION,
 
 		/// <summary>无结果</summary>
-		[Description("无结果")]
+		[Description("执行后无结果")]
 		NO_RESULT,
 
 		/// <summary>循环停止</summary>

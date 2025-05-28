@@ -23,8 +23,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using DaLi.Utils.Extension;
 using DaLi.Utils.Flow.Interface;
+using DaLi.Utils;
+using DaLi.Utils.Extension;
 using DaLi.Utils.Model;
 
 namespace DaLi.Utils.Flow {
@@ -68,8 +69,8 @@ namespace DaLi.Utils.Flow {
 		/// <summary>默认构造</summary>
 		public ExecuteStatus() {
 			Success = false;
-			Exception = ExceptionEnum.NORMAL;
-			TimeStart = DateTime.Now;
+			Exception = ExceptionEnum.NONE;
+			TimeStart = Main.DATE_NOW;
 			Name = "";
 			Type = "";
 			Input = null;
@@ -86,7 +87,7 @@ namespace DaLi.Utils.Flow {
 		}
 
 		/// <summary>默认构造</summary>
-		public ExecuteStatus(IFlowRule rule, SODictionary input = null) : this() {
+		public ExecuteStatus(IRule rule, SODictionary input = null) : this() {
 			Input = input;
 			if (rule == null) { return; }
 
@@ -105,9 +106,9 @@ namespace DaLi.Utils.Flow {
 		/// <param name="success">是否执行成功</param>
 		/// <param name="message">消息内容，失败时如果消息未设置则不处理，成功时如果未设置则清空原始消息</param>
 		public ExecuteStatus SetStatus(bool success, string message = null) {
-			TimeFinish = DateTime.Now;
+			TimeFinish = Main.DATE_NOW;
 			Success = success;
-			Exception = ExceptionEnum.NORMAL;
+			Exception = ExceptionEnum.NONE;
 			ExceptionMessage = message;
 			Output = null;
 
@@ -118,7 +119,7 @@ namespace DaLi.Utils.Flow {
 		/// <param name="status">执行状态</param>
 		/// <param name="message">消息内容，失败时如果消息未设置则不处理，成功时如果未设置则清空原始消息</param>
 		public ExecuteStatus SetStatus(ExceptionEnum status, string message = null) {
-			TimeFinish = DateTime.Now;
+			TimeFinish = Main.DATE_NOW;
 			Success = false;
 			Exception = status;
 			ExceptionMessage = message;
@@ -130,9 +131,9 @@ namespace DaLi.Utils.Flow {
 		/// <summary>设置消息状态</summary>
 		/// <param name="output">输出结果</param>
 		public ExecuteStatus SetStatus(object output) {
-			TimeFinish = DateTime.Now;
+			TimeFinish = Main.DATE_NOW;
 			Success = true;
-			Exception = ExceptionEnum.NORMAL;
+			Exception = ExceptionEnum.NONE;
 			ExceptionMessage = "";
 			Output = output;
 
@@ -141,6 +142,8 @@ namespace DaLi.Utils.Flow {
 
 		/// <summary>复制规则</summary>
 		public void Add(ExecuteStatus msg) {
+			TimeFinish = Main.DATE_NOW;
+
 			if (msg == null) { return; }
 
 			lock (Children) {
@@ -177,20 +180,27 @@ namespace DaLi.Utils.Flow {
 		}
 
 		/// <summary>获取结果列表</summary>
-		public string GetMessage(int level = 0) {
+		/// <param name="level">显示级别</param>
+		/// <param name="isConsole">是否控制台输出，控制台无法正常显示 emoji</param>
+		public string GetMessage(bool isConsole = false, int level = 0) {
 			var sb = new StringBuilder();
-			sb.Append($"[{TimeFinish:HH:mm:ss}] ");
+			sb.Append($"[{TimeFinish:HH:mm:ss fff}] ");
 
 			ExceptionMessage ??= "";
 
 			if (ExceptionMessage.StartsWith("调试")) {
-				sb.Append("👽 ");
+				// 调试
+				sb.Append(isConsole ? "[DEBUG] " : "👽 ");
 			} else if (Success) {
-				sb.Append("😊 ");
+				// 成功
+				sb.Append(isConsole ? "[SUCC] " : "😊 ");
+			} else if (Exception == ExceptionEnum.NONE) {
+				// 无错误
+				sb.Append(isConsole ? "" : "🧐 ");
 			} else {
 				// 获取枚举描述
 				var description = Exception.Description();
-				sb.Append($"😈 [{description}] ");
+				sb.Append($"{(isConsole ? "[FAIL]" : "😈")} [{description}] ");
 			}
 
 			if (string.IsNullOrEmpty(Name)) {
@@ -202,17 +212,19 @@ namespace DaLi.Utils.Flow {
 				}
 			}
 
-			sb.Append($"：{ExceptionMessage}{Environment.NewLine}");
+			if (ExceptionMessage.NotEmpty()) {
+				sb.Append($"：{ExceptionMessage}");
+			}
+
+			sb.AppendLine();
 
 			lock (Children) {
 				level += 1;
 				foreach (var msg in Children) {
 					sb.Append(new string('\t', level));
-					sb.Append(msg.GetMessage(level));
-					sb.Append(Environment.NewLine);
+					sb.Append(msg.GetMessage(isConsole, level));
 				}
 			}
-
 			return sb.ToString();
 		}
 

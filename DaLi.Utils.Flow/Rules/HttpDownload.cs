@@ -52,7 +52,7 @@ namespace DaLi.Utils.Flow.Rule {
 
 		#region INFORMATION
 
-		/// <summary>验证规则是否存在异常</summary>
+		/// <inheritdoc/>
 		public override bool Validate(ref string message) {
 			if (Folder.IsEmpty()) {
 				message = "下载目录未设置";

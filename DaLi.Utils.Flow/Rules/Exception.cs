@@ -28,7 +28,7 @@ using DaLi.Utils.Model;
 namespace DaLi.Utils.Flow.Rule {
 
 	/// <summary>输出异常</summary>
-	public class Exception : FlowRuleBase {
+	public class Exception : RuleBase {
 
 		#region PROPERTY
 

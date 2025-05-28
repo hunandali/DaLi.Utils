@@ -12,7 +12,7 @@
  * 
  * ------------------------------------------------------------
  * 
- * 	自定义单项参数
+ * 	自定义参数
  * 
  * 	name: Rule.Parameter
  * 	create: 2025-03-17
@@ -27,13 +27,13 @@ using DaLi.Utils.Model;
 
 namespace DaLi.Utils.Flow.Rule {
 
-	/// <summary>自定义单项参数</summary>
-	public class Parameter : FlowRuleBase {
+	/// <summary>自定义参数</summary>
+	public class Parameter : RuleBase {
 
 		#region PROPERTY
 
 		/// <summary>规则名称</summary>
-		public override string Name => "自定义单项参数";
+		public override string Name => "自定义参数";
 
 		/// <summary>参数列表</summary>
 		public object Source { get; set; }
@@ -42,7 +42,7 @@ namespace DaLi.Utils.Flow.Rule {
 
 		#region INFORMATION
 
-		/// <summary>验证规则是否存在异常</summary>
+		/// <inheritdoc/>
 		public override bool Validate(ref string message) {
 			if (Source is null) {
 				message = "参数未设置";

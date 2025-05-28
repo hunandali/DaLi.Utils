@@ -48,7 +48,7 @@ namespace DaLi.Utils.Flow.Rule {
 
 		#region INFORMATION
 
-		/// <summary>验证规则是否存在异常</summary>
+		/// <inheritdoc/>
 		public override bool Validate(ref string message) {
 			if (Interval == 0) {
 				message = "进度不能为零";

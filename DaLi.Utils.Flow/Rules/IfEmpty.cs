@@ -22,14 +22,14 @@
  */
 
 using System.Threading;
-using DaLi.Utils.Extension;
 using DaLi.Utils.Flow.Base;
+using DaLi.Utils.Extension;
 using DaLi.Utils.Model;
 
 namespace DaLi.Utils.Flow.Rule {
 
 	/// <summary>判断操作</summary>
-	public class IfValidate : IfRuleBase {
+	public class IfEmpty : IfRuleBase {
 
 		#region PROPERTY
 

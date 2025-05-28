@@ -22,6 +22,7 @@
  */
 
 using System;
+using DaLi.Utils;
 using DaLi.Utils.Extension;
 using DaLi.Utils.Http;
 using DaLi.Utils.Http.Model;
@@ -30,7 +31,7 @@ using DaLi.Utils.Model;
 namespace DaLi.Utils.Flow.Base {
 
 	/// <summary>Http 请求规则基类</summary>
-	public abstract class HttpRuleBase : FlowRuleBase {
+	public abstract class HttpRuleBase : RuleBase {
 
 		#region PROPERTY
 
@@ -77,7 +78,7 @@ namespace DaLi.Utils.Flow.Base {
 
 		#region INFORMATION
 
-		/// <summary>验证规则是否存在异常</summary>
+		/// <inheritdoc/>
 		public override bool Validate(ref string message) {
 			if (!URL.IsUrl()) {
 				message = "请求网址无效";

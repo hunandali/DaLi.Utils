@@ -27,12 +27,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using DaLi.Utils.Flow.Model;
 using DaLi.Utils.Extension;
 using DaLi.Utils.Model;
 
 namespace DaLi.Utils.Flow.Base {
 	/// <summary>循环基类</summary>
-	public abstract class WhileRuleBase : FlowRuleBase {
+	public abstract class WhileRuleBase : RuleBase {
 
 		#region PROPERTY
 
@@ -43,7 +44,7 @@ namespace DaLi.Utils.Flow.Base {
 		public string Sum { get; set; }
 
 		/// <summary>内部执行的规则</summary>
-		public List<SODictionary> Rules { get; set; }
+		public List<RuleData> Rules { get; set; }
 
 		/// <summary>单线程或多线程并行执行，小于 2 单线程，大于 1 异步并行执行线程数</summary>
 		public int ParallelNumber { get; set; }
@@ -52,7 +53,7 @@ namespace DaLi.Utils.Flow.Base {
 
 		#region INFORMATION
 
-		/// <summary>验证规则是否存在异常</summary>
+		/// <inheritdoc/>
 		public override bool Validate(ref string message) {
 			if (Rules.IsEmpty()) {
 				message = "没有用于循环执行的内部规则";

@@ -12,41 +12,41 @@
  * 
  * ------------------------------------------------------------
  * 
- * 	表达式计算
+ * 	算数计算
  * 
  * 	name: Rule.Math
  * 	create: 2025-03-17
- * 	memo: 表达式计算
+ * 	memo: 算数计算
  * 	
  * ------------------------------------------------------------
  */
 
 using System.Data;
 using System.Threading;
-using DaLi.Utils.Extension;
 using DaLi.Utils.Flow.Base;
+using DaLi.Utils.Extension;
 using DaLi.Utils.Model;
 
 namespace DaLi.Utils.Flow.Rule {
 
-	/// <summary>表达式计算</summary>
-	public class Math : FlowRuleBase {
+	/// <summary>算数计算</summary>
+	public class Math : RuleBase {
 
 		#region PROPERTY
 
 		/// <summary>规则名称</summary>
-		public override string Name => "表达式计算";
+		public override string Name => "算数计算";
 
 		/// <summary>表达式</summary>
-		public string Expression { get; set; }
+		public string Source { get; set; }
 
 		#endregion
 
 		#region INFORMATION
 
-		/// <summary>验证规则是否存在异常</summary>
+		/// <inheritdoc/>
 		public override bool Validate(ref string message) {
-			if (Expression.IsEmpty()) {
+			if (Source.IsEmpty()) {
 				message = "表达式未设置";
 				return false;
 			}
@@ -59,7 +59,7 @@ namespace DaLi.Utils.Flow.Rule {
 		#region EXECUTE
 
 		/// <inheritdoc/>
-		protected override object Execute(SODictionary context, CancellationToken cancel) => new DataTable().Compute(Expression, null);
+		protected override object Execute(SODictionary context, CancellationToken cancel) => new DataTable().Compute(Source, null);
 
 		#endregion
 	}

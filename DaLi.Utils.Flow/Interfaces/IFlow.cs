@@ -1,4 +1,5 @@
-/* ------------------------------------------------------------
+/*
+ * ------------------------------------------------------------
  * 
  * 	Copyright © 2021 湖南大沥网络科技有限公司.
  * 	Dali.Utils Is licensed under Mulan PSL v2.
@@ -22,12 +23,13 @@
 
 using System;
 using System.Collections.Generic;
+using DaLi.Utils.Flow.Model;
 using DaLi.Utils.Model;
 
 namespace DaLi.Utils.Flow.Interface {
 
 	/// <summary>流程接口</summary>
-	public interface IFlow : ICloneable, IDisposable {
+	public interface IFlow : ICloneable {
 
 		/// <summary>流程名称</summary>
 		string Name { get; set; }
@@ -44,6 +46,9 @@ namespace DaLi.Utils.Flow.Interface {
 		/// <summary>流程最后更新时间</summary>
 		DateTime UpdateTime { get; set; }
 
+		/// <summary>调试模式</summary>
+		bool Debug { get; set; }
+
 		/// <summary>输入参数</summary>
 		SODictionary Input { get; set; }
 
@@ -51,6 +56,6 @@ namespace DaLi.Utils.Flow.Interface {
 		SODictionary Output { get; set; }
 
 		/// <summary>流程规则</summary>
-		List<SODictionary> Rules { get; set; }
+		List<RuleData> Rules { get; set; }
 	}
 }

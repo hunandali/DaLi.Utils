@@ -28,7 +28,7 @@ using DaLi.Utils.Model;
 namespace DaLi.Utils.Flow.Rule {
 
 	/// <summary>随机数</summary>
-	public class Random : FlowRuleBase {
+	public class Random : RuleBase {
 
 		#region PROPERTY
 
@@ -45,7 +45,7 @@ namespace DaLi.Utils.Flow.Rule {
 
 		#region INFORMATION
 
-		/// <summary>验证规则是否存在异常</summary>
+		/// <inheritdoc/>
 		public override bool Validate(ref string message) {
 			if (Max < 1) {
 				message = "最大值必须设置且大于 0";

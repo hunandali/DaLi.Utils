@@ -1,4 +1,4 @@
-/*
+﻿/*
  * ------------------------------------------------------------
  * 
  * 	Copyright © 2021 湖南大沥网络科技有限公司.
@@ -12,11 +12,11 @@
  * 
  * ------------------------------------------------------------
  * 
- * 	文件读取
+ * 	Source 转 Markdown
  * 
- * 	name: Rule.FileRead
- * 	create: 2025-03-14
- * 	memo: 文件读取
+ * 	name: Rule.Html2Markdown
+ * 	create: 2025-05-27
+ * 	memo: Source 转 Markdown
  * 	
  * ------------------------------------------------------------
  */
@@ -24,34 +24,28 @@
 using System.Threading;
 using DaLi.Utils.Extension;
 using DaLi.Utils.Flow.Base;
-using DaLi.Utils.Helper;
-using DaLi.Utils.Json;
 using DaLi.Utils.Model;
 
 namespace DaLi.Utils.Flow.Rule {
-
-	/// <summary>文件读取</summary>
-	public class FileRead : FlowRuleBase {
+	/// <summary>缓存数据读取</summary>
+	public class Html2Markdown : RuleBase {
 
 		#region PROPERTY
 
 		/// <summary>规则名称</summary>
-		public override string Name => "文件读取";
+		public override string Name => "Html 转 Markdown";
 
-		/// <summary>文件路径</summary>
-		public string Path { get; set; }
-
-		/// <summary>是否 JSON 格式</summary>
-		public bool IsJson { get; set; }
+		/// <summary>要转换的 Source 内容</summary>
+		public string Source { get; set; }
 
 		#endregion
 
 		#region INFORMATION
 
-		/// <summary>验证规则是否存在异常</summary>
+		/// <inheritdoc/>
 		public override bool Validate(ref string message) {
-			if (Path.IsEmpty()) {
-				message = "文件路径未设置";
+			if (Source.IsEmpty()) {
+				message = "要转换的 Html 内容未设置";
 				return false;
 			}
 
@@ -62,19 +56,24 @@ namespace DaLi.Utils.Flow.Rule {
 
 		#region EXECUTE
 
+		/// <summary>转换器</summary>
+		private static ReverseMarkdown.Converter _Converter;
+
+		/// <summary>转换器</summary>
+		protected static ReverseMarkdown.Converter Converter {
+			get {
+				_Converter ??= new ReverseMarkdown.Converter();
+				return _Converter;
+			}
+		}
+
 		/// <inheritdoc/>
 		protected override object Execute(SODictionary context, CancellationToken cancel) {
-			var filePath = Path;
-			if (!PathHelper.FileExist(ref filePath)) {
-				FlowException.Throw(ExceptionEnum.EXECUTE_ERROR, "文件不存在");
-			}
-
-			var content = PathHelper.FileRead(filePath);
-			var result = IsJson ? content.FromJson() : content;
-
-			return result;
+			Source = Source.ClearHtml("comment", "style", "script", "doctype");
+			return Converter.Convert(Source);
 		}
 
 		#endregion
+
 	}
 }

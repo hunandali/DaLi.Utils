@@ -166,8 +166,8 @@ namespace DaLi.Utils.Template {
 
 		#region 模板分析
 
-		/// <summary>字典数据缓存，用于存储扁平化对象的结果</summary>
-		private static readonly ConditionalWeakTable<IDictionary<string, object>, IDictionary<string, object>> _Cache = [];
+		///// <summary>字典数据缓存，用于存储扁平化对象的结果</summary>
+		//private static readonly ConditionalWeakTable<IDictionary<string, object>, IDictionary<string, object>> _Cache = [];
 
 		/// <summary>使用数据字典格式化模板，默认使用 {} 前后缀</summary>
 		/// <param name="template">模板文本</param>
@@ -197,17 +197,20 @@ namespace DaLi.Utils.Template {
 			if (tags.IsEmpty()) { return template; }
 
 			// 获取扁平化的数据字典
-			if (!_Cache.TryGetValue(data, out var dict)) {
-				dict = data.ToFlatDictionary(StringComparer.OrdinalIgnoreCase);
-				_Cache.Add(data, dict);
-			}
+			//if (!_Cache.TryGetValue(data, out var dict)) {
+			//	dict = data.ToFlatDictionary(StringComparer.OrdinalIgnoreCase);
+			//	_Cache.Add(data, dict);
+			//}
 
 			// 对于只有一个标签的模板，且模板由前后缀包围，则直接处理并返回
 			if (template.StartsWith(prefix) && template.EndsWith(suffix) && tags.Count == 1) {
 				var tag = tags[0];
 
 				// 获取标签名对应的数据值，返回原始内容
-				if (!dict.TryGetValue(tag.Name, out var value)) { return clearTag ? null : template; }
+				var value = ObjectAccessorHelper.GetValue(data, tag.Name);
+				if (value is null) { return clearTag ? null : template; }
+
+				//if (!dict.TryGetValue(tag.Name, out var value)) { return clearTag ? null : template; }
 
 				// 应用格式化函数
 				value = skipAttribute || tag.Attributes.IsEmpty() ? value : Execute(value, tag.Attributes);
@@ -226,7 +229,10 @@ namespace DaLi.Utils.Template {
 			foreach (var tag in tagOrder) {
 				// 获取标签名对应的数据值
 				// 如果数据字典中没有对应的值，保留原标签
-				if (!dict.TryGetValue(tag.Name, out var value)) {
+				var value = ObjectAccessorHelper.GetValue(data, tag.Name);
+
+				//if (!dict.TryGetValue(tag.Name, out var value)) {
+				if (value is null) {
 					// 不清除不存在的标签，则直接下一轮
 					if (!clearTag) { continue; }
 				} else {

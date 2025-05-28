@@ -1,37 +1,39 @@
 /* ------------------------------------------------------------
- * 
- * 	Copyright © 2021 湖南大沥网络科技有限公司.
- * 	Dali.Utils Is licensed under Mulan PSL v2.
- * 
- * 		  author:	木炭(WOODCOAL)
- * 		   email:	i@woodcoal.cn
- * 		homepage:	http://www.hunandali.com/
- * 
- * 	请依据 Mulan PSL v2 的条款使用本项目。获取 Mulan PSL v2 请浏览 http://license.coscl.org.cn/MulanPSL2
- * 
- * ------------------------------------------------------------
- * 
- *  规则基类
- * 
- * 	name: FlowRuleBase
- * 	create: 2025-03-14
- * 	memo: 规则基类
- * 
- * ------------------------------------------------------------
- */
+* 
+* 	Copyright © 2021 湖南大沥网络科技有限公司.
+* 	Dali.Utils Is licensed under Mulan PSL v2.
+* 
+* 		  author:	木炭(WOODCOAL)
+* 		   email:	i@woodcoal.cn
+* 		homepage:	http://www.hunandali.com/
+* 
+* 	请依据 Mulan PSL v2 的条款使用本项目。获取 Mulan PSL v2 请浏览 http://license.coscl.org.cn/MulanPSL2
+* 
+* ------------------------------------------------------------
+* 
+*  规则基类
+* 
+* 	name: RuleBase
+* 	create: 2025-03-14
+* 	memo: 规则基类
+* 
+* ------------------------------------------------------------
+*/
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using DaLi.Utils.Extension;
 using DaLi.Utils.Flow.Interface;
+using DaLi.Utils.Flow.Model;
+using DaLi.Utils;
+using DaLi.Utils.Extension;
 using DaLi.Utils.Model;
 
 namespace DaLi.Utils.Flow.Base {
 
 	/// <summary>规则基类</summary>
-	public abstract class FlowRuleBase : IFlowRule {
+	public abstract class RuleBase : IRule {
 
 		/// <summary>是否已经销毁</summary>
 		private bool _IsDisposed;
@@ -64,7 +66,7 @@ namespace DaLi.Utils.Flow.Base {
 		protected ExecuteStatus RuleStatus { get; set; }
 
 		/// <inheritdoc/>
-		public void SetInput(SODictionary input) => Input = input;
+		public void SetInput(SODictionary input) => Input = input ?? [];
 
 		/// <inheritdoc/>
 		public virtual bool Validate(ref string message) {
@@ -92,7 +94,9 @@ namespace DaLi.Utils.Flow.Base {
 			context ??= [];
 			var message = "";
 			var flag = UpdateInput(status.Input, context, ref message);
-			FlowException.ThrowIf(flag.HasValue, flag.Value, message);
+			if (flag.HasValue) {
+				FlowException.Throw(flag.Value, message);
+			}
 
 			// 取消检查
 			cancel.ThrowIfCancellationRequested();
@@ -122,6 +126,8 @@ namespace DaLi.Utils.Flow.Base {
 					FlowException.Throw(ex, err);
 				}
 			}
+
+			status.TimeFinish = Main.DATE_NOW;
 
 			return result;
 		}
@@ -154,7 +160,7 @@ namespace DaLi.Utils.Flow.Base {
 		/// <param name="context">上下文</param>
 		/// <param name="message">错误消息</param>
 		/// <returns>null 更新成功，否则返回失败信息</returns>
-		public ExceptionEnum? UpdateInput(SODictionary input, SODictionary context, ref string message) {
+		public ExceptionEnum? UpdateInput<T>(T input, SODictionary context, ref string message) where T : SODictionary {
 			message = null;
 
 			// 检查是否存在需要更新的属性
@@ -172,10 +178,12 @@ namespace DaLi.Utils.Flow.Base {
 			}
 
 			// 更新输入值
+			var data = new RuleData(input);
 			try {
-				foreach (var kv in input) {
+				foreach (var kv in data) {
 					var prop = type.GetSingleProperty(kv.Key);
 					if (prop != null && prop.CanWrite) {
+						// 对于规则不能进行二次处理 List<RuleData>
 						var value = FlowHelper.GetValue(kv.Value, context, prop.PropertyType);
 						prop.SetValue(this, value);
 					}

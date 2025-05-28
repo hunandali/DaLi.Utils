@@ -23,12 +23,13 @@
 
 using System.Threading;
 using DaLi.Utils.Flow.Base;
+using DaLi.Utils;
 using DaLi.Utils.Model;
 
 namespace DaLi.Utils.Flow.Rule {
 
 	/// <summary>当前时间</summary>
-	public class TimeNow : FlowRuleBase {
+	public class TimeNow : RuleBase {
 
 		#region PROPERTY
 

@@ -29,7 +29,7 @@ using DaLi.Utils.Model;
 namespace DaLi.Utils.Flow.Rule {
 
 	/// <summary>序列化数据为 JSON</summary>
-	public class JsonString : FlowRuleBase {
+	public class JsonString : RuleBase {
 
 		#region PROPERTY
 
@@ -43,7 +43,7 @@ namespace DaLi.Utils.Flow.Rule {
 
 		#region INFORMATION
 
-		/// <summary>验证规则是否存在异常</summary>
+		/// <inheritdoc/>
 		public override bool Validate(ref string message) {
 			if (Source is null) {
 				message = "原始数据未设置";

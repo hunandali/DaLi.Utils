@@ -21,6 +21,7 @@
  */
 
 using System;
+using DaLi.Utils.Extension;
 
 namespace DaLi.Utils.Flow {
 
@@ -33,7 +34,7 @@ namespace DaLi.Utils.Flow {
 		/// <summary>初始化异常</summary>
 		/// <param name="status">异常类型</param>
 		/// <param name="message">异常消息</param>
-		public FlowException(ExceptionEnum status, string message = null) : base(message) => Status = status;
+		public FlowException(ExceptionEnum status, string message = null) : base(message ?? status.Description()) => Status = status;
 
 		/// <summary>初始化异常</summary>
 		/// <param name="exception">异常</param>

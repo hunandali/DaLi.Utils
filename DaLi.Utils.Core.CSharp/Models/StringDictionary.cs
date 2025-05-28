@@ -42,7 +42,7 @@ namespace DaLi.Utils.Model {
 		public StringDictionary() : base(StringComparer.OrdinalIgnoreCase) { }
 
 		/// <summary>构造</summary>
-		public StringDictionary(string json) {
+		public StringDictionary(string json) : base(StringComparer.OrdinalIgnoreCase) {
 			var dict = json.FromJson<Dictionary<string, T>>();
 			if (dict is null || dict.Count == 0) { return; }
 

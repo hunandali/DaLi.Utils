@@ -23,8 +23,9 @@
 
 using System;
 using System.Threading;
-using DaLi.Utils.Extension;
 using DaLi.Utils.Flow.Base;
+using DaLi.Utils;
+using DaLi.Utils.Extension;
 using DaLi.Utils.Model;
 
 namespace DaLi.Utils.Flow.Rule {
@@ -50,7 +51,7 @@ namespace DaLi.Utils.Flow.Rule {
 
 		#region INFORMATION
 
-		/// <summary>验证规则是否存在异常</summary>
+		/// <inheritdoc/>
 		public override bool Validate(ref string message) {
 			if (!Source.IsValidate()) {
 				message = "用于验证的日期无效";

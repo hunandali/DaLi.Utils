@@ -24,10 +24,10 @@ using System;
 using System.Data;
 using System.Reflection;
 using System.Text;
-using DaLi.Utils.Auto;
+using DaLi.Utils.Flow.Model;
+using DaLi.Utils;
 using DaLi.Utils.Extension;
 using DaLi.Utils.Helper;
-using DaLi.Utils.Http;
 using DaLi.Utils.Json;
 using DaLi.Utils.Misc.SnowFlake;
 using DaLi.Utils.Model;
@@ -99,8 +99,11 @@ namespace DaLi.Utils.Flow {
 		/// <summary>代理模式，当本机无此规则时，使用远程代理运行方式</summary>
 		public static bool ProxyMode { get; set; }
 
+		///// <summary>代理模式，当本机无此规则时，使用远程代理运行方式</summary>
+		//public static Func<ApiClient> ProxyClient { get => FlowProxy.GetApiClient; set => FlowProxy.GetApiClient = value; }
+
 		/// <summary>代理模式，当本机无此规则时，使用远程代理运行方式</summary>
-		public static Func<ApiClient> ProxyClient { get => RuleProxy.GetApiClient; set => RuleProxy.GetApiClient = value; }
+		public static Func<RuleData, SODictionary, ExecuteStatus> ProxyExecute { get => FlowProxy.ProxyExecute; set => FlowProxy.ProxyExecute = value; }
 
 		#endregion
 
@@ -145,7 +148,7 @@ namespace DaLi.Utils.Flow {
 			}
 
 			// 转换字典或者集合，并处理每项值
-			var ret = value.ToString().FromJson(true, x => Default.FormatTemplate(x, context, true));
+			var ret = value.ToString().FromJson(true, x => Default.FormatTemplate(x, context, false));
 			return ConvertHelper.ChangeObject(ret, baseType);
 		}
 

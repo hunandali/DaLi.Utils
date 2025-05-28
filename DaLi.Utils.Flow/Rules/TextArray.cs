@@ -30,7 +30,7 @@ using DaLi.Utils.Model;
 namespace DaLi.Utils.Flow.Rule {
 
 	/// <summary>文本转数组</summary>
-	public class TextArray : FlowRuleBase {
+	public class TextArray : RuleBase {
 
 		#region PROPERTY
 
@@ -50,7 +50,7 @@ namespace DaLi.Utils.Flow.Rule {
 
 		#region INFORMATION
 
-		/// <summary>验证规则是否存在异常</summary>
+		/// <inheritdoc/>
 		public override bool Validate(ref string message) {
 			if (string.IsNullOrEmpty(Source)) {
 				message = "未设置原始内容";

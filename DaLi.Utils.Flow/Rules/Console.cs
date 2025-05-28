@@ -23,22 +23,23 @@
 
 using System;
 using System.Threading;
-using DaLi.Utils.Extension;
 using DaLi.Utils.Flow.Base;
+using DaLi.Utils.Extension;
+using DaLi.Utils.Json;
 using DaLi.Utils.Model;
 
 namespace DaLi.Utils.Flow.Rule {
 
 	/// <summary>控制台打印</summary>
-	public class Console : FlowRuleBase {
+	public class Console : RuleBase {
 
 		#region PROPERTY
 
 		/// <summary>规则名称</summary>
 		public override string Name => "控制台打印";
 
-		/// <summary>原始内容</summary>
-		public string Content { get; set; }
+		/// <summary>原始内容，非文本将使用 JSON 序列化</summary>
+		public object Source { get; set; }
 
 		/// <summary>打印类型（info/succ/err/warning/normal）</summary>
 		public string Mode { get; set; }
@@ -47,9 +48,9 @@ namespace DaLi.Utils.Flow.Rule {
 
 		#region INFORMATION
 
-		/// <summary>验证规则是否存在异常</summary>
+		/// <inheritdoc/>
 		public override bool Validate(ref string message) {
-			if (Content.IsEmpty()) {
+			if (Source is null) {
 				message = "控制台打印内容不能为空";
 				return false;
 			}
@@ -81,7 +82,9 @@ namespace DaLi.Utils.Flow.Rule {
 					break;
 			}
 
-			System.Console.WriteLine(Content);
+			var content = Source is string str ? str : Source.ToJson();
+
+			System.Console.WriteLine(content);
 			System.Console.ResetColor();
 
 			return null;

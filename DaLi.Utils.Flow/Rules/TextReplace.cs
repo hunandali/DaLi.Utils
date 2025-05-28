@@ -22,14 +22,14 @@
  */
 
 using System.Threading;
-using DaLi.Utils.Extension;
 using DaLi.Utils.Flow.Base;
+using DaLi.Utils.Extension;
 using DaLi.Utils.Model;
 
 namespace DaLi.Utils.Flow.Rule {
 
 	/// <summary>文本内容替换</summary>
-	public class TextReplace : FlowRuleBase {
+	public class TextReplace : RuleBase {
 
 		#region PROPERTY
 
@@ -49,7 +49,7 @@ namespace DaLi.Utils.Flow.Rule {
 
 		#region INFORMATION
 
-		/// <summary>验证规则是否存在异常</summary>
+		/// <inheritdoc/>
 		public override bool Validate(ref string message) {
 			if (string.IsNullOrEmpty(Source)) {
 				message = "未设置原始内容";
@@ -76,9 +76,7 @@ namespace DaLi.Utils.Flow.Rule {
 			}
 
 			// 清理 HTML 标签
-			if (ClearTags.NotEmpty()) {
-				Source = Source.ClearHtml(ClearTags);
-			}
+			Source = Source.ClearHtml(ClearTags);
 
 			// 返回结果
 			return Source;

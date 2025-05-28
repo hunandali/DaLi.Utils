@@ -26,6 +26,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using DaLi.Utils.Extension;
+using DaLi.Utils.Json;
 
 namespace DaLi.Utils.Helper {
 	/// <summary>类型转换</summary>
@@ -44,14 +45,18 @@ namespace DaLi.Utils.Helper {
 			// 如果输入和目标类型相同，直接返回
 			if (input.GetType() == type) { return input; }
 
+			// 如果input的类型可以直接赋值给T，直接进行类型转换
+			if (type.IsAssignableFrom(input.GetType())) {
+				return input;
+			}
+
 			try {
 				// 尝试直接转换
 				return Convert.ChangeType(input, type) ?? defaultValue;
 			} catch {
 				try {
 					// 如果直接转换失败，尝试通过 JSON 序列化和反序列化
-					var json = JsonSerializer.Serialize(input);
-					return JsonSerializer.Deserialize(json, type);
+					return input.ToJson().FromJson(type);
 				} catch (Exception) {
 					return defaultValue;
 				}

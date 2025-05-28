@@ -14,7 +14,7 @@
  * 
  * 	按次数循环
  * 
- * 	name: DaLi.Utils.Flow.Rules.WhileTimes
+ * 	name: DaLi.Flow.Rules.WhileTimes
  * 	create: 2025-03-17
  * 	memo: 按次数循环
  * 
@@ -41,7 +41,7 @@ namespace DaLi.Utils.Flow.Rule {
 
 		#region INFORMATION
 
-		/// <summary>验证规则是否存在异常</summary>
+		/// <inheritdoc/>
 		public override bool Validate(ref string message) {
 			if (Count < 1) {
 				message = "循环次数必须大于0";

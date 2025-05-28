@@ -26,7 +26,7 @@ using DaLi.Utils.Model;
 
 namespace DaLi.Utils.Flow.Base {
 	/// <summary>验证基类</summary>
-	public abstract class ValidateRuleBase : FlowRuleBase {
+	public abstract class ValidateRuleBase : RuleBase {
 
 		#region PROPERTY
 

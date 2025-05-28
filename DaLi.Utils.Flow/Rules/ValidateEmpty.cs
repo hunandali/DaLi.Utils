@@ -22,8 +22,8 @@
  */
 
 using System.Threading;
-using DaLi.Utils.Extension;
 using DaLi.Utils.Flow.Base;
+using DaLi.Utils.Extension;
 using DaLi.Utils.Model;
 
 namespace DaLi.Utils.Flow.Rule {
@@ -36,7 +36,7 @@ namespace DaLi.Utils.Flow.Rule {
 		/// <summary>规则名称</summary>
 		public override string Name => "验证值是否存在内容";
 
-		/// <summary>原始日期数据，不设置为当前时间</summary>
+		/// <summary>原始数据变量名</summary>
 		public object Source { get; set; }
 
 		#endregion

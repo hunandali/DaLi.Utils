@@ -259,9 +259,10 @@ Namespace Extension
 		Public Function ClearSpace(this As String, Optional keepSpace As Boolean = True) As String
 			If this.IsNull Then Return ""
 
+			this = this.Trim
 			If this.Length > LONG_THRESHOLD Then
 				If keepSpace Then
-					Return Regex.Replace(this, "(\s){2,}", "$1").Trim()
+					Return Regex.Replace(this, "(\s){2,}", "$1")
 				Else
 					Return Regex.Replace(this, "(\s){2,}", "")
 				End If
@@ -269,16 +270,17 @@ Namespace Extension
 				Dim sb As New StringBuilder()
 				Dim lastChar As Char = ControlChars.NullChar
 				For Each c As Char In this
-					' 空字符串
+					' 是否空字符
 					' 不保留：不输出
 					' 保留：比较最后一个字符，一致则不输出
-					If Char.IsWhiteSpace(c) AndAlso (Not keepSpace OrElse c = lastChar) Then
-						Continue For
-					End If
-
-					' 不保留空格的无需记录上一字符串数据
-					If Not keepSpace Then
-						lastChar = c
+					If Char.IsWhiteSpace(c) Then
+						If Not keepSpace OrElse lastChar = " " Then
+							Continue For
+						Else
+							lastChar = " "
+						End If
+					Else
+						lastChar = ControlChars.NullChar
 					End If
 
 					sb.Append(c)
@@ -341,7 +343,10 @@ Namespace Extension
 			If Not tagList.Any Then Return this
 
 			' 包含 all 时只保留 all
-			If tagList.Contains("all", StringComparer.OrdinalIgnoreCase) Then tagList = {"all"}
+			If tagList.Contains("all", StringComparer.OrdinalIgnoreCase) Then
+				Dim keepTags = {"all", "tab", "enter", "space", "control", "trim"}
+				tagList = tagList.Where(Function(x) keepTags.Contains(x))
+			End If
 
 			' 循环清理
 			For Each tag As String In tagList
@@ -387,6 +392,9 @@ Namespace Extension
 
 					Case "space"
 						this = this.ClearSpace() ' 包括全角空格
+
+					Case "control"
+						this = this.ClearControl()
 
 					Case "trim"
 						this = this.TrimFull() ' 使用内置的 Trim 方法

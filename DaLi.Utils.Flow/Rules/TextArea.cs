@@ -24,14 +24,14 @@
 using System;
 using System.Linq;
 using System.Threading;
-using DaLi.Utils.Extension;
 using DaLi.Utils.Flow.Base;
+using DaLi.Utils.Extension;
 using DaLi.Utils.Model;
 
 namespace DaLi.Utils.Flow.Rule {
 
 	/// <summary>区域文本截取</summary>
-	public class TextArea : FlowRuleBase {
+	public class TextArea : RuleBase {
 
 		#region PROPERTY
 
@@ -63,7 +63,7 @@ namespace DaLi.Utils.Flow.Rule {
 
 		#region INFORMATION
 
-		/// <summary>验证规则是否存在异常</summary>
+		/// <inheritdoc/>
 		public override bool Validate(ref string message) {
 			if (string.IsNullOrEmpty(Source)) {
 				message = "未设置原始内容";
@@ -87,7 +87,7 @@ namespace DaLi.Utils.Flow.Rule {
 			// 区域切割
 			var isMuti = !string.IsNullOrEmpty(Separator);
 			var area = Source.Cut(AreaBegin, AreaEnd, isMuti, true);
-			FlowException.ThrowIf(area is null, ExceptionEnum.EXECUTE_ERROR, "未分析到任何有效内容");
+			FlowException.ThrowNull(area, ExceptionEnum.EXECUTE_ERROR, "未分析到任何有效内容");
 
 			// 处理内容
 			var result = "";

@@ -1,79 +1,31 @@
 # DaLi.Utils.Flow
 
-一个轻量级的工作流引擎，用于构建和执行自动化流程。
+## 项目概述
 
-## 功能特性
+`DaLi.Utils.Flow` 是大沥网络科技有限公司开发的一款自动流程处理框架核心模块。它旨在提供一个灵活、可扩展的机制，用于定义、执行和管理各种业务流程。通过模块化的设计，该框架能够轻松集成不同的规则和操作，实现高度自动化的任务处理。
 
-- 基于规则的流程执行
-- 灵活的参数配置
-- 支持异步操作
-- 内置多种常用规则
-- 可扩展的规则系统
+## 核心规则
 
-## 快速开始
+当前模块默认包含以下基础规则：
 
-### 安装
+-   **控制流规则**: `IfDebug`, `IfEmpty`, `IfInclude`, `IfValue`, `WhileBreak`, `WhileInterval`, `WhileObject`, `WhileTimes` 等，用于实现条件判断和循环控制。
+-   **数据处理规则**: `Parameter`, `Parameters`, `JsonObject`, `JsonString`, `TextArray`, `TextReplace`, `TextTable`, `Math`, `Random`, `TimeNow` 等，用于数据的获取、转换和计算。
+-   **系统操作规则**: `Console`, `Debug`, `Comment`, `Sleep`, `WatchTime`, `Exception` 等，用于日志输出、调试、注释、暂停和异常处理。
+-   **验证规则**: `ValidateDate`, `ValidateDebug`, `ValidateEmpty`, `ValidateInclude`, `ValidateTime`, `ValidateValue` 等，用于各种数据格式和内容的验证。
+-   **文件和网络规则**: `File`, `HttpDownload`, `HttpRequest` 等，用于文件操作和 HTTP 请求。
 
-```bash
-dotnet add package DaLi.Utils.Flow
-```
+## 扩展性
 
-### 基本使用
+框架设计充分考虑了扩展性，用户可以通过以下方式自定义和扩展功能：
 
-```csharp
-// 创建一个简单的控制台输出规则
-var consoleRule = new DaLi.Utils.Flow.Rules.Console
-{
-    Content = "Hello, DaLi Flow!",
-    NewLine = true
-};
-
-// 执行规则
-var context = new Dictionary<string, object>();
-var result = await consoleRule.ExecuteAsync(context);
-```
-
-## 核心组件
-
-### FlowRuleBase
-
-所有规则的基类，提供了规则执行的基本框架。
-
-### 内置规则
-
-- Console：控制台输出规则
-- 更多规则正在开发中...
-
-## 扩展开发
-
-您可以通过继承 `FlowRuleBase` 类来创建自定义规则：
-
-```csharp
-public class CustomRule : FlowRuleBase
-{
-    public override string Name => "自定义规则";
-
-    protected override IDictionary<string, object> Execute(
-        IDictionary<string, object> context,
-        ExecuteStatus status,
-        CancellationToken cancel)
-    {
-        // 实现您的规则逻辑
-        return new Dictionary<string, object>();
-    }
-}
-```
+-   **新增规则**: 继承 `RuleBase` 或其派生类，实现 `Execute` 方法，即可创建新的业务规则。
+-   **自定义辅助类**: 在 `Helpers` 目录中添加新的辅助类，提供特定的数据处理或流程控制逻辑。
+-   **扩展接口**: 根据需要定义新的接口，并在规则或流程中实现，以满足更复杂的业务场景。
 
 ## 许可证
 
-本项目基于 Mulan PSL v2 许可证开源。
+本项目遵循 Mulan PSL v2 许可证。详情请参阅 `LICENSE` 文件或访问 [http://license.coscl.org.cn/MulanPSL2](http://license.coscl.org.cn/MulanPSL2)。
 
-## 贡献
+---
 
-欢迎提交问题和建议，一起改进这个项目！
-
-## 关于
-
-- 作者：木炭(WOODCOAL)
-- 邮箱：i@woodcoal.cn
-- 主页：http://www.hunandali.com/
+_Copyright © 2021 湖南大沥网络科技有限公司. All Rights Reserved._

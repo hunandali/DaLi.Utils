@@ -22,14 +22,14 @@
  */
 
 using System.Threading;
-using DaLi.Utils.Extension;
 using DaLi.Utils.Flow.Base;
+using DaLi.Utils.Extension;
 using DaLi.Utils.Model;
 
 namespace DaLi.Utils.Flow.Rule {
 
 	/// <summary>注释</summary>
-	public class Comment : FlowRuleBase {
+	public class Comment : RuleBase {
 
 		#region PROPERTY
 
@@ -37,15 +37,15 @@ namespace DaLi.Utils.Flow.Rule {
 		public override string Name => "备注";
 
 		/// <summary>原始内容</summary>
-		public string Content { get; set; }
+		public string Source { get; set; }
 
 		#endregion
 
 		#region INFORMATION
 
-		/// <summary>验证规则是否存在异常</summary>
+		/// <inheritdoc/>
 		public override bool Validate(ref string message) {
-			if (Content.IsEmpty()) {
+			if (Source.IsEmpty()) {
 				message = "备注内容不能为空";
 				return false;
 			}
@@ -56,6 +56,7 @@ namespace DaLi.Utils.Flow.Rule {
 		#endregion
 
 		#region EXECUTE
+
 		/// <inheritdoc/>
 		protected override object Execute(SODictionary context, CancellationToken cancel) {
 			SkipResult();

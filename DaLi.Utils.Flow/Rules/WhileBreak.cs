@@ -27,7 +27,7 @@ using DaLi.Utils.Model;
 
 namespace DaLi.Utils.Flow.Rule {
 	/// <summary>循环中断</summary>
-	public class WhileBreak : FlowRuleBase {
+	public class WhileBreak : RuleBase {
 
 		#region PROPERTY
 

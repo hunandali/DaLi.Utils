@@ -29,7 +29,7 @@ using DaLi.Utils.Model;
 namespace DaLi.Utils.Flow.Rule {
 
 	/// <summary>自定义参数组</summary>
-	public class Parameters : FlowRuleBase {
+	public class Parameters : RuleBase {
 
 		#region PROPERTY
 
@@ -43,7 +43,7 @@ namespace DaLi.Utils.Flow.Rule {
 
 		#region INFORMATION
 
-		/// <summary>验证规则是否存在异常</summary>
+		/// <inheritdoc/>
 		public override bool Validate(ref string message) {
 			if (Source.IsEmpty()) {
 				message = "参数未设置";

@@ -24,14 +24,15 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
-using DaLi.Utils.Extension;
 using DaLi.Utils.Flow.Base;
+using DaLi.Utils.Flow.Model;
+using DaLi.Utils.Extension;
 using DaLi.Utils.Model;
 
 namespace DaLi.Utils.Flow.Rule {
 
 	/// <summary>流程执行计时器</summary>
-	public class FlowTime : FlowRuleBase {
+	public class WatchTime : RuleBase {
 
 		#region PROPERTY
 
@@ -39,7 +40,7 @@ namespace DaLi.Utils.Flow.Rule {
 		public override string Name => "流程计时器";
 
 		/// <summary>内部执行的规则</summary>
-		public List<SODictionary> Rules { get; set; }
+		public List<RuleData> Rules { get; set; }
 
 		/// <inheritdoc/>	
 		public override bool OutputAll => true;
@@ -48,7 +49,7 @@ namespace DaLi.Utils.Flow.Rule {
 
 		#region INFORMATION
 
-		/// <summary>验证规则是否存在异常</summary>
+		/// <inheritdoc/>
 		public override bool Validate(ref string message) {
 			if (Rules.IsEmpty()) {
 				message = "没有用于执行的内部规则";

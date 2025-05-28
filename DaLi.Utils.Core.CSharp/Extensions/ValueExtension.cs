@@ -117,7 +117,7 @@ namespace DaLi.Utils.Extension {
 					pattern = Regex.Escape(pattern).Replace(@"\*", "((.|\n)*?)");
 					return Regex.IsMatch(input, pattern, options);
 				} else {
-					return input.Contains(value, comparison);
+					return input.Contains(pattern, comparison);
 				}
 			}
 
@@ -135,7 +135,7 @@ namespace DaLi.Utils.Extension {
 			if (value.StartsWith('(') && value.EndsWith(')')) {
 				var pattern = value[1..^1];
 				if (string.IsNullOrEmpty(pattern)) { return false; }
-				return Regex.IsMatch(input, value, options);
+				return Regex.IsMatch(input, pattern, options);
 			}
 
 			// xxxx*yyyy 表示 以 xxxx 开头，yyyy 结尾的数据；

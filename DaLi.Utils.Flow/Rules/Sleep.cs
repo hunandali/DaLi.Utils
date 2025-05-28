@@ -28,7 +28,7 @@ using DaLi.Utils.Model;
 namespace DaLi.Utils.Flow.Rule {
 
 	/// <summary>延时</summary>
-	public class Sleep : FlowRuleBase {
+	public class Sleep : RuleBase {
 
 		#region PROPERTY
 
@@ -42,7 +42,7 @@ namespace DaLi.Utils.Flow.Rule {
 
 		#region INFORMATION
 
-		/// <summary>验证规则是否存在异常</summary>
+		/// <inheritdoc/>
 		public override bool Validate(ref string message) {
 			if (Length < 0) {
 				message = "延时时长不能小于 0 ";

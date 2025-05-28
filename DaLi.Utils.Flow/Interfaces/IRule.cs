@@ -13,7 +13,7 @@
  * 
  *  流程规则接口
  * 
- * 	name: IFlowRule
+ * 	name: IRule
  * 	create: 2025-03-13
  * 	memo: 基础流程规则，类似黑盒子，无需知道如何实现，仅需要提供输出参数，分析出结果即可。至于最终结果是什么，由调用它的项目决定
  * 
@@ -27,13 +27,10 @@ using DaLi.Utils.Model;
 namespace DaLi.Utils.Flow.Interface {
 
 	/// <summary>流程规则接口</summary>
-	public interface IFlowRule : ICloneable, IDisposable {
+	public interface IRule : IRuleBase, IDisposable {
 
 		/// <summary>模块名称</summary>
 		string Name { get; }
-
-		/// <summary>输出变量名</summary>
-		string Output { get; set; }
 
 		/// <summary>对于存在子流程的项目是否将子流程的执行结果直接输出到主流程</summary>
 		/// <remarks>
@@ -46,26 +43,7 @@ namespace DaLi.Utils.Flow.Interface {
 		/// </remarks>
 		bool OutputAll { get; }
 
-		/// <summary>是否忽略无结果</summary>
-		/// <remarks>False：当未分析到任何内容时报错；True：当未分析到任何内容时忽略此问题</remarks>
-		bool EmptyIgnore { get; set; }
-
-		/// <summary>忽略错误</summary>
-		/// <remarks>
-		/// TRUE：忽略所有错误<para />
-		/// DEFAULT: 仅忽略执行错误，规则错误不忽略<para />
-		/// FALSE: 不忽略
-		/// </remarks>
-		TristateEnum ErrorIgnore { get; set; }
-
-		/// <summary>友好错误消息</summary>
-		/// <remarks>仅针对未忽略错误时执行中的错误</remarks>
-		string ErrorMessage { get; set; }
-
-		/// <summary>启用</summary>
-		bool Enabled { get; set; }
-
-		/// <summary>验证规则是否存在异常</summary>
+		/// <summary>验证规则项目是否异常</summary>
 		bool Validate(ref string message);
 
 		/// <summary>设置输入参数</summary>
