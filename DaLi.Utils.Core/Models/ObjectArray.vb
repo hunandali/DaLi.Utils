@@ -256,7 +256,7 @@ Namespace Model
 		End Sub
 
 		''' <summary>循环处理</summary>
-		Public Sub ForEach(action As Action(Of T, Index))
+		Public Sub ForEach(action As Action(Of T, Integer))
 			If action Is Nothing Then Return
 
 			For I = 0 To _Instance.Length - 1
@@ -265,7 +265,7 @@ Namespace Model
 		End Sub
 
 		''' <summary>循环处理</summary>
-		Public Sub ForEach(action As Action(Of T, Index, T()))
+		Public Sub ForEach(action As Action(Of T, Integer, T()))
 			If action Is Nothing Then Return
 
 			For I = 0 To _Instance.Length - 1
@@ -274,7 +274,7 @@ Namespace Model
 		End Sub
 
 		''' <summary>查找指定项</summary>
-		Public Function Find(where As Func(Of T, Index, Boolean)) As T
+		Public Function Find(where As Func(Of T, Integer, Boolean)) As T
 			If where Is Nothing Then Return Nothing
 
 			For I = 0 To _Instance.Length - 1
@@ -298,7 +298,7 @@ Namespace Model
 		End Function
 
 		''' <summary>是否存在</summary>
-		Public Function Exist(where As Func(Of T, Index, Boolean)) As Boolean
+		Public Function Exist(where As Func(Of T, Integer, Boolean)) As Boolean
 			If where Is Nothing Then Return False
 
 			For I = 0 To _Instance.Length - 1

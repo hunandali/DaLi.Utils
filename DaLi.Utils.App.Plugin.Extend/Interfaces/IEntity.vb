@@ -41,6 +41,13 @@ Namespace [Interface]
 		''' <param name="source">编辑时更新前的原始值</param>
 		Sub Validate(action As EntityBaseActionEnum, errorMessage As ErrorMessage, db As IFreeSql, Optional context As IAppContext = Nothing, Optional source As IEntity = Nothing)
 
+		''' <summary>实体加改删成功之后的操作</summary>
+		''' <param name="action">基础操作类型：add/edit/delete</param>
+		''' <param name="errorMessage">错误消息容器</param>
+		''' <param name="db">数据库对象</param>
+		''' <param name="context">请求上下文</param>
+		Sub Finish(action As EntityBaseActionEnum, errorMessage As ErrorMessage, db As IFreeSql, Optional context As IAppContext = Nothing)
+
 		''' <summary>不能重复字段</summary>
 		''' <returns>用于定义字段中不能重复的字段组合，也可以通过 DbIndex 来设置唯一索引键来定义</returns>
 		ReadOnly Property DuplicatedFields As List(Of ObjectArray(Of String))

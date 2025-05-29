@@ -102,12 +102,7 @@ Namespace Base
 
 #End Region
 
-		''' <summary>实体加改删操作之前的验证</summary>
-		''' <param name="action">基础操作类型：add/edit/delete</param>
-		''' <param name="errorMessage">错误消息容器</param>
-		''' <param name="db">数据库对象</param>
-		''' <param name="context">请求上下文</param>
-		''' <param name="source">编辑时更新前的原始值</param>
+		''' <inheritdoc />
 		Public Sub Validate(action As EntityBaseActionEnum, errorMessage As ErrorMessage, db As IFreeSql, Optional context As IAppContext = Nothing, Optional source As IEntity = Nothing) Implements IEntity.Validate
 			' 编辑模式如果原始数据不存在查询数据库
 			If action = EntityBaseActionEnum.EDIT Then
@@ -153,6 +148,22 @@ Namespace Base
 		''' <param name="context">请求上下文</param>
 		''' <param name="source">编辑时更新前的原始值</param>
 		Protected Overridable Sub EntityValidate(action As EntityBaseActionEnum, errorMessage As ErrorMessage, db As IFreeSql, context As IAppContext, Optional source As IEntity = Nothing)
+		End Sub
+
+		''' <inheritdoc />
+		Public Sub Finish(action As EntityBaseActionEnum, errorMessage As ErrorMessage, db As IFreeSql, Optional context As IAppContext = Nothing) Implements IEntity.Finish
+			context = If(context, SYS.GetService(Of IAppContext))
+
+			' 实体参数验证
+			EntityFinish(action, errorMessage, db, context)
+		End Sub
+
+		''' <summary>实体加改删成功之后的操作</summary>
+		''' <param name="action">基础操作类型：add/edit/delete</param>
+		''' <param name="errorMessage">错误消息容器</param>
+		''' <param name="db">数据库对象</param>
+		''' <param name="context">请求上下文</param>
+		Protected Overridable Sub EntityFinish(action As EntityBaseActionEnum, errorMessage As ErrorMessage, db As IFreeSql, context As IAppContext)
 		End Sub
 
 		''' <summary>不能重复字段</summary>
@@ -304,6 +315,7 @@ Namespace Base
 
 			pro.SetValue(entity, hash)
 		End Sub
+
 	End Class
 
 End Namespace

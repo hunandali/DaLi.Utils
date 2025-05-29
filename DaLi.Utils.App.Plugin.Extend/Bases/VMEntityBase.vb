@@ -66,6 +66,50 @@ Namespace Base
 		''' <param name="action">操作类型：item/add/edit/delete/list/export...</param>
 		''' <param name="data">单项操作时单个数值，多项时为数组</param>
 		Private Sub ExecuteFinish_Before(action As EntityActionEnum, data As ObjectArray(Of T))
+			' 对于加、改、删进行入库后检查操作
+			Select Case action
+				Case EntityActionEnum.ADD, EntityActionEnum.EDIT, EntityActionEnum.DELETE
+					' 操作类型
+					Dim baseAction As EntityBaseActionEnum
+					Dim nameAction As String
+					If action = EntityActionEnum.EDIT Then
+						baseAction = EntityBaseActionEnum.EDIT
+						nameAction = "修改"
+
+					ElseIf action = EntityActionEnum.DELETE Then
+						baseAction = EntityBaseActionEnum.DELETE
+						nameAction = "删除"
+
+					Else
+						baseAction = EntityBaseActionEnum.ADD
+						nameAction = "添加"
+
+					End If
+
+					' 项目检查
+					If data.IsMuti Then
+						' 批量操作
+						Dim messages As New List(Of String)
+
+						data.ForEach(Sub(item, index)
+										 ErrorMessage.Reset()
+
+										 item.Finish(baseAction, ErrorMessage, Db, AppContext)
+										 If Not ErrorMessage.IsPass Then messages.Add($"{index + 1}. 项目 {item.ID} {nameAction}后异常：{ErrorMessage}")
+									 End Sub)
+
+						' 存在异常
+						ErrorMessage.Reset()
+						If messages.NotEmpty Then ErrorMessage.Notification = messages.JoinString($"；{vbCrLf}")
+					Else
+						' 单个操作
+						data.First.Finish(baseAction, ErrorMessage, Db, AppContext)
+					End If
+
+					' 存在异常不再后续处理
+					If Not ErrorMessage.IsPass Then Return
+			End Select
+
 			Plugins?.ForEach(Sub(plugin) If ErrorMessage.IsPass Then plugin.ExecuteFinish(action, data, AppContext, ErrorMessage, Db))
 		End Sub
 
