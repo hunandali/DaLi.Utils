@@ -25,9 +25,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Data;
 using System.Linq;
+using DaLi.Utils.Extension;
 using DaLi.Utils.Flow.Interface;
 using DaLi.Utils.Flow.Model;
-using DaLi.Utils.Extension;
 using DaLi.Utils.Helper;
 
 namespace DaLi.Utils.Flow {
@@ -36,21 +36,19 @@ namespace DaLi.Utils.Flow {
 	public static partial class FlowHelper {
 
 		/// <summary>当前系统中的规则类型</summary>
-		private static ImmutableDictionary<string, Type> _Rules = ImmutableDictionary<string, Type>.Empty;
+		private static ImmutableDictionary<string, Type> _Rules = null;
 
 		/// <summary>当前系统中的规则类型</summary>
 		public static ImmutableDictionary<string, Type> Rules {
 			get {
-				if (_Rules.IsEmpty()) {
-					_Rules = ReflectionHeler
-						.CurrentTypes(true, null, true, typeof(IRule))
-						.Where(x => x.IsPublic && x.IsClass && !x.IsAbstract)
-						.ToImmutableDictionary(
-							x => x.FullName,
-							x => x,
-							StringComparer.OrdinalIgnoreCase
-						);
-				}
+				_Rules ??= ReflectionHeler
+					.CurrentTypes(true, null, true, typeof(IRule))
+					.Where(x => x.IsPublic && x.IsClass && !x.IsAbstract)
+					.ToImmutableDictionary(
+						x => x.Name,
+						x => x,
+						StringComparer.OrdinalIgnoreCase
+					);
 
 				return _Rules;
 			}
@@ -71,10 +69,9 @@ namespace DaLi.Utils.Flow {
 			// 获取实际规则类型
 			if (!Rules.TryGetValue(typeName, out var type)) {
 				// 尝试使用短名称匹配（即：规则类型不包含命名空间的类型）
-				if (!typeName.Contains('.')) {
-					typeName = $".{typeName}";
+				if (typeName.Contains('.')) {
 					type = Rules
-						.Where(x => x.Key.EndsWith(typeName, StringComparison.OrdinalIgnoreCase))
+						.Where(x => x.Value.FullName.EndsWith(typeName, StringComparison.OrdinalIgnoreCase))
 						.Select(x => x.Value)
 						.FirstOrDefault();
 				}
@@ -84,7 +81,6 @@ namespace DaLi.Utils.Flow {
 			if (type == null) {
 				// 代理运行模式，返回代理规则
 				if (ProxyMode) {
-					//return new FlowProxy { Rule = input.ToJson(false, false, false) };
 					return new FlowProxy { Source = input };
 				}
 				return null;
