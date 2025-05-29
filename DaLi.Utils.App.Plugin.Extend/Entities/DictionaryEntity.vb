@@ -20,11 +20,13 @@
 ' ------------------------------------------------------------
 
 Imports System.ComponentModel.DataAnnotations
+Imports FreeSql.Internal.Model
 
 Namespace Entity
 
 	''' <summary>字典数据</summary>
 	<DbTable("App_Dictionary")>
+	<DbIndex(NameOf(DictionaryEntity.Key), True)>
 	<DbModule(2, "字典")>
 	Public Class DictionaryEntity
 		Inherits EntityTreeBase(Of DictionaryEntity)
@@ -32,14 +34,14 @@ Namespace Entity
 		''' <summary>标识</summary>
 		<Display(Name:="标识")>
 		<MaxLength(50)>
-		<DbQuery(FreeSql.Internal.Model.DynamicFilterOperator.Contains)>
+		<DbQuery(DynamicFilterOperator.Contains)>
 		Public Property Key As String
 
 		''' <summary>值</summary>
 		<Display(Name:="值")>
 		<Required>
 		<MaxLength(200)>
-		<DbQuery(FreeSql.Internal.Model.DynamicFilterOperator.Contains)>
+		<DbQuery(DynamicFilterOperator.Contains)>
 		Public Property Value As String
 
 		''' <summary>节点类型（-1. 分组，0.值对象，1. 单选，>1 多选数量）</summary>

@@ -113,8 +113,9 @@ Namespace Base
 			Plugins?.ForEach(Sub(plugin) If ErrorMessage.IsPass Then plugin.ExecuteFinish(action, data, AppContext, ErrorMessage, Db))
 		End Sub
 
-		''' <summary>不允许重复的字段设置</summary>
-		Public Overridable ReadOnly Property DuplicatedInfo As DuplicatedFields(Of T) = Nothing
+		'''' <summary>不允许重复的字段设置</summary>
+		'<Obsolete("请使用 DuplicatedFields 属性或者索引 DbIndex(唯一键) 来代替")>
+		'Public Overridable ReadOnly Property DuplicatedInfo As DuplicatedFields(Of T) = Nothing
 
 		''' <summary>项目查询前预处理</summary>
 		''' <param name="action">操作类型：item/list/export...</param>

@@ -25,7 +25,7 @@ Namespace Entity
 
 	''' <summary>参数设置</summary>
 	<DbTable("App_Config")>
-	<DbIndex("CreateTime")>
+	<DbIndex({NameOf(ConfigEntity.Field), NameOf(ConfigEntity.Module)}, True)>
 	<DbModule(1, "参数")>
 	Public Class ConfigEntity
 		Inherits EntityDateBase

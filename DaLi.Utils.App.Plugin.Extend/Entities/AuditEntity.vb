@@ -27,7 +27,7 @@ Namespace Entity
 
 	''' <summary>数据审计</summary>
 	<DbTable("App_Audit_{yyyy}", AsTable:="CreateTime=2024-01-01(1 year)")>
-	<DbIndex({"ModuleValue", "ModuleID"})>
+	<DbIndex({NameOf(AuditEntity.ModuleId), NameOf(AuditEntity.ModuleValue)})>
 	<DbModule(3, "审计")>
 	Public Class AuditEntity
 		Inherits EntityDateExtendBase

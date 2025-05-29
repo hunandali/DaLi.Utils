@@ -23,6 +23,7 @@ Imports System.ComponentModel.DataAnnotations
 Imports System.ComponentModel.DataAnnotations.Schema
 Imports System.Reflection
 Imports System.Text.Json
+Imports System.Text.Json.Serialization
 Imports DaLi.Utils.Json
 Imports FreeSql
 Imports FreeSql.Internal.Model
@@ -168,6 +169,8 @@ Namespace Base
 
 		''' <summary>不能重复字段</summary>
 		''' <returns>用于定义字段中不能重复的字段组合，也可以通过 DbIndex 来设置唯一索引键来定义</returns>
+		<Output(TristateEnum.FALSE)>
+		<JsonIgnore>
 		Protected Overridable ReadOnly Property DuplicatedFields As List(Of ObjectArray(Of String)) Implements IEntity.DuplicatedFields
 
 		''' <summary>通过唯一索引验证字段实体数据是否存在重复</summary>
@@ -304,7 +307,7 @@ Namespace Base
 			While True
 				Dim where = New DynamicFilterInfo With {.Logic = DynamicFilterLogic.And, .Filters = New List(Of DynamicFilterInfo)}
 				where.Filters.Add(New DynamicFilterInfo With {.Field = "ID", .[Operator] = DynamicFilterOperator.NotEqual, .Value = entity.ID})
-				where.Filters.Add(New DynamicFilterInfo With {.field = field, .[Operator] = DynamicFilterOperator.Equal, .value = hash})
+				where.Filters.Add(New DynamicFilterInfo With {.Field = field, .[Operator] = DynamicFilterOperator.Equal, .Value = hash})
 
 				If db.Select(Of T).WhereDynamicFilter(where).Any Then
 					hash = $"{value}_{SnowFlakeHelper.NextID}"

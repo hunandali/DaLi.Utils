@@ -25,6 +25,7 @@ Namespace Entity
 
 	''' <summary>模块登记表</summary>
 	<DbTable("App_Module")>
+	<DbIndex(NameOf(ModuleEntity.Name), True)>
 	<DbModule(0, "模型实体")>
 	Public Class ModuleEntity
 		Inherits EntityBase

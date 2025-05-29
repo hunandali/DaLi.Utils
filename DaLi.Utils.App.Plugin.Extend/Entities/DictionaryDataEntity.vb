@@ -25,9 +25,8 @@ Namespace Entity
 
 	''' <summary>字典关系</summary>
 	<DbTable("App_Dictionary_Data")>
-	<DbIndex({"DictionaryId", "ModuleId", "ModuleValue"}, IsUnique:=True)>
-	<DbIndex({"ModuleId", "ModuleValue"})>
-	<DbIndex("DictionaryId")>
+	<DbIndex(NameOf(DictionaryDataEntity.DictionaryId))>
+	<DbIndex({NameOf(DictionaryDataEntity.ModuleId), NameOf(DictionaryDataEntity.ModuleValue), NameOf(DictionaryDataEntity.DictionaryId)}, True)>
 	<DbModule(False)>
 	Public Class DictionaryDataEntity
 		Inherits EntityBase
