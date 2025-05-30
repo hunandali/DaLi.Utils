@@ -52,8 +52,17 @@ namespace DaLi.Utils.Flow.Interface {
 		/// <summary>输入参数</summary>
 		SODictionary Input { get; set; }
 
-		/// <summary>输出结果参数</summary>
+		/// <summary>输出结果参数规则，设置则 Result 则只输出 Output 中限定的内容，否则将输出整个流程的信息</summary>
 		SODictionary Output { get; set; }
+
+		/// <summary>最终执行结果，此值根据 Output 参数调整而变化</summary>
+		SODictionary Result { get; set; }
+
+		/// <summary>运行结果消息，正常返回 Output[result] 的值，否则返回错误信息</summary>
+		string Message { get; set; }
+
+		/// <summary>运行状态，成功或者失败</summary>
+		bool Status { get; set; }
 
 		/// <summary>流程规则</summary>
 		List<RuleData> Rules { get; set; }

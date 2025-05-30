@@ -24,10 +24,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using DaLi.Utils.Extension;
 using DaLi.Utils.Flow.Interface;
 using DaLi.Utils.Flow.Model;
-using DaLi.Utils;
-using DaLi.Utils.Extension;
 using DaLi.Utils.Model;
 
 namespace DaLi.Utils.Flow.Base {
@@ -208,10 +207,12 @@ namespace DaLi.Utils.Flow.Base {
 				Output = null;
 
 				// 必须为字典数据
-				FlowException.ThrowIf(result is not SODictionary, ExceptionEnum.EXECUTE_ERROR, "结果必须为字典数据");
+				if (result is IDictionary<string, object> dict) {
+					// 保留子流程结果
+					context.TryMerge(dict);
+				}
 
-				// 保留子流程结果
-				context.TryMerge((SODictionary) result);
+				FlowException.Throw(ExceptionEnum.EXECUTE_ERROR, "结果必须为字典数据");
 			} else if (Output.IsEmpty()) {
 				// 不需要输出，直接返回结果
 				result = null;

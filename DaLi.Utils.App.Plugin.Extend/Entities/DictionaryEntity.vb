@@ -26,7 +26,7 @@ Namespace Entity
 
 	''' <summary>字典数据</summary>
 	<DbTable("App_Dictionary")>
-	<DbIndex(NameOf(DictionaryEntity.Key), True)>
+	<DbIndex(NameOf(DictionaryEntity.Key))>
 	<DbModule(2, "字典")>
 	Public Class DictionaryEntity
 		Inherits EntityTreeBase(Of DictionaryEntity)

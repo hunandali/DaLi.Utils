@@ -24,9 +24,8 @@ using System;
 using System.Data;
 using System.Reflection;
 using System.Text;
-using DaLi.Utils.Flow.Model;
-using DaLi.Utils;
 using DaLi.Utils.Extension;
+using DaLi.Utils.Flow.Model;
 using DaLi.Utils.Helper;
 using DaLi.Utils.Json;
 using DaLi.Utils.Misc.SnowFlake;
@@ -84,7 +83,7 @@ namespace DaLi.Utils.Flow {
 
 		/// <summary>更新上下文中的环境变量</summary>
 		/// <param name="context">上下文数据</param>
-		public static SODictionary UpdateEnvironment(SODictionary context) {
+		public static SODictionary UpdateEnvironment(ref SODictionary context) {
 			context ??= [];
 			context.Add("_SYS_", Environment);
 			return context;
@@ -202,12 +201,12 @@ namespace DaLi.Utils.Flow {
 
 		#endregion
 
-		#region 返回值处理
+		//#region 返回值处理
 
-		/// <summary>简单结果，仅一个返回值</summary>
-		public static SODictionary SimpleResult(object value) => value is null ? null : new() { { "result", value } };
+		///// <summary>简单结果，仅一个返回值</summary>
+		//public static SODictionary SimpleResult(object value) => value is null ? null : new() { { "result", value } };
 
-		#endregion
+		//#endregion
 
 	}
 }

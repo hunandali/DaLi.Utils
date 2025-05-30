@@ -26,10 +26,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
+using DaLi.Utils.Extension;
 using DaLi.Utils.Flow.Interface;
 using DaLi.Utils.Flow.Model;
-using DaLi.Utils;
-using DaLi.Utils.Extension;
 using DaLi.Utils.Json;
 using DaLi.Utils.Model;
 
@@ -105,9 +104,11 @@ namespace DaLi.Utils.Flow {
 
 				if (output.NotEmpty() && context.NotEmpty()) {
 					var data = context;
-					output.Update((key, value) => GetValue(value, data));
 
-					status.SetStatus(output);
+					// 结果赋值，防止修改 output 原始内容，只输出 output 中设定的数据
+					result.Clear();
+					output.ForEach((key, value) => result[key] = GetValue(value, data));
+					status.SetStatus(result);
 				} else {
 					status.SetStatus(context);
 				}
@@ -128,7 +129,7 @@ namespace DaLi.Utils.Flow {
 			}
 
 			// 返回结果
-			return output ?? result;
+			return result;
 		}
 
 		/// <summary>执行流程</summary>
@@ -143,7 +144,7 @@ namespace DaLi.Utils.Flow {
 			ref ExecuteStatus status,
 			ref SODictionary context,
 			SODictionary output = null,
-			CancellationToken cancel = default) => FlowExecute(RuleList(rules), ref status, ref context, output, cancel);
+			CancellationToken cancel = default) => FlowExecute(RuleList(rules, true, false, true), ref status, ref context, output, cancel);
 
 		/// <summary>执行操作</summary>
 		/// <param name="flow">流程规则</param>
@@ -158,7 +159,7 @@ namespace DaLi.Utils.Flow {
 			context ??= [];
 			context.TryMerge(flow.Input);
 			context.Add("_FLOW_", flow);
-			UpdateEnvironment(context);
+			UpdateEnvironment(ref context);
 
 			// 调试模式
 			SetDebug(context, flow.Debug);
@@ -171,10 +172,6 @@ namespace DaLi.Utils.Flow {
 			var result = FlowExecute(flow.Rules, ref status, ref context, flow.Output, cancel);
 			s.Stop();
 
-			//if (!status.Success) {
-			//	return status;
-			//}
-
 			// 全局数据合并
 			result ??= [];
 			result.Update("_FLOW_", new Dictionary<string, object> {
@@ -183,6 +180,20 @@ namespace DaLi.Utils.Flow {
 				["duration"] = s.ElapsedMilliseconds,
 				["durationDisplay"] = s.Elapsed.Show(),
 			}, true);
+
+			// 更新 flow 结果
+			flow.Status = status.Success;
+			if (status.Success) {
+				var template = flow.Output.GetValue("result");
+				flow.Message = GetStringValue(template, result);
+			} else {
+				flow.Message = status.ExceptionMessage ?? status.Exception.Description();
+			}
+			flow.Output = result;
+
+			//if (!status.Success) {
+			//	return status;
+			//}
 
 			status.Output = result;
 			status.TimeFinish = Main.DATE_NOW;

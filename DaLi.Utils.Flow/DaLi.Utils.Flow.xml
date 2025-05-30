@@ -491,7 +491,7 @@
             可通过重写此属性来扩展或自定义环境数据
             </remarks>
         </member>
-        <member name="M:DaLi.Utils.Flow.FlowHelper.UpdateEnvironment(DaLi.Utils.Model.SODictionary)">
+        <member name="M:DaLi.Utils.Flow.FlowHelper.UpdateEnvironment(DaLi.Utils.Model.SODictionary@)">
             <summary>更新上下文中的环境变量</summary>
             <param name="context">上下文数据</param>
         </member>
@@ -545,9 +545,6 @@
             使用 JSON 反序列时仍然会对每一个文本项目做一次 GetValue 处理
             </remarks>
         </member>
-        <member name="M:DaLi.Utils.Flow.FlowHelper.SimpleResult(System.Object)">
-            <summary>简单结果，仅一个返回值</summary>
-        </member>
         <member name="F:DaLi.Utils.Flow.FlowHelper._Rules">
             <summary>当前系统中的规则类型</summary>
         </member>
@@ -560,9 +557,18 @@
         <member name="M:DaLi.Utils.Flow.FlowHelper.RuleItem(System.String)">
             <summary>获取规则</summary>
         </member>
-        <member name="M:DaLi.Utils.Flow.FlowHelper.RuleList(System.Collections.Generic.IEnumerable{DaLi.Utils.Flow.Model.RuleData})">
+        <member name="M:DaLi.Utils.Flow.FlowHelper.RuleList(System.Collections.Generic.IEnumerable{DaLi.Utils.Flow.Model.RuleData},System.Boolean,System.Boolean,System.Boolean)">
             <summary>从流程规则数据中获取规则</summary>
             <param name="rules">规则列表</param>
+            <param name="removeDisabled">移除禁用项目，默认：移除</param>
+            <param name="removeDebug">移除调试规则，默认：不移除</param>
+            <param name="removeComment">移除注释规则，默认：移除</param>
+        </member>
+        <member name="M:DaLi.Utils.Flow.FlowHelper.RuleExecute(DaLi.Utils.Flow.Interface.IRule,DaLi.Utils.Model.SODictionary@,System.Threading.CancellationToken)">
+            <summary>执行操作</summary>
+            <param name="rule">规则</param>
+            <param name="context">上下文数据，未设置将自动创建，并自动附加最终结果</param>
+            <param name="cancel">取消令牌</param>
         </member>
         <member name="T:DaLi.Utils.Flow.Interface.IFlow">
             <summary>流程接口</summary>
@@ -589,7 +595,16 @@
             <summary>输入参数</summary>
         </member>
         <member name="P:DaLi.Utils.Flow.Interface.IFlow.Output">
-            <summary>输出结果参数</summary>
+            <summary>输出结果参数规则，设置则 Result 则只输出 Output 中限定的内容，否则将输出整个流程的信息</summary>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Interface.IFlow.Result">
+            <summary>最终执行结果，此值根据 Output 参数调整而变化</summary>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Interface.IFlow.Message">
+            <summary>运行结果消息，正常返回 Output[result] 的值，否则返回错误信息</summary>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Interface.IFlow.Status">
+            <summary>运行状态，成功或者失败</summary>
         </member>
         <member name="P:DaLi.Utils.Flow.Interface.IFlow.Rules">
             <summary>流程规则</summary>
@@ -703,11 +718,25 @@
         <member name="P:DaLi.Utils.Flow.Model.Flow.Output">
             <inheritdoc/>
         </member>
+        <member name="P:DaLi.Utils.Flow.Model.Flow.Result">
+            <inheritdoc/>
+        </member>
         <member name="P:DaLi.Utils.Flow.Model.Flow.Rules">
+            <inheritdoc/>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Model.Flow.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:DaLi.Utils.Flow.Model.Flow.Status">
             <inheritdoc/>
         </member>
         <member name="M:DaLi.Utils.Flow.Model.Flow.Clone">
             <inheritdoc/>
+        </member>
+        <member name="M:DaLi.Utils.Flow.Model.Flow.Execute(DaLi.Utils.Model.SODictionary,System.Threading.CancellationToken)">
+            <summary>执行操作</summary>
+            <param name="context">初始输入参数，将合并流程中的输入参数；最终将返回整个流程的上下文数据</param>
+            <param name="cancel">取消Token</param>
         </member>
         <member name="T:DaLi.Utils.Flow.Model.RuleData">
             <summary>规则数据</summary>

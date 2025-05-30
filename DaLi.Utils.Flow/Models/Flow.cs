@@ -23,8 +23,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using DaLi.Utils.Flow.Interface;
-using DaLi.Utils;
 using DaLi.Utils.Json;
 using DaLi.Utils.Model;
 
@@ -72,9 +72,23 @@ namespace DaLi.Utils.Flow.Model {
 		public SODictionary Output { get; set; }
 
 		/// <inheritdoc/>
+		public SODictionary Result { get; set; }
+
+		/// <inheritdoc/>
 		public List<RuleData> Rules { get; set; }
 
 		/// <inheritdoc/>
+		public string Message { get; set; }
+
+		/// <inheritdoc/>
+		public bool Status { get; set; }
+
+		/// <inheritdoc/>
 		public object Clone() => this.ToJson(false, false, false).FromJson<Flow>();
+
+		/// <summary>执行操作</summary>
+		/// <param name="context">初始输入参数，将合并流程中的输入参数；最终将返回整个流程的上下文数据</param>
+		/// <param name="cancel">取消Token</param>
+		public ExecuteStatus Execute(SODictionary context = null, CancellationToken cancel = default) => FlowHelper.FlowExecute(this, ref context, cancel);
 	}
 }
