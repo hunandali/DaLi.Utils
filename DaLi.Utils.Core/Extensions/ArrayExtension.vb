@@ -75,11 +75,12 @@ Namespace Extension
 			' 是否清除多余结果
 			Dim SplitOpt = If((splitOption And SplitEnum.REMOVE_EMPTY_ENTRIES) = SplitEnum.REMOVE_EMPTY_ENTRIES, SplitEnum.REMOVE_EMPTY_ENTRIES, SplitEnum.NONE)
 
-			If separator.NotEmpty > 0 Then
+			If separator.NotEmpty Then
 				' 处理回车的兼容性，防止只有换行符号无法分割
 				' 将回车转换成回车换行
 				If separator.Any(Function(x) x = vbCrLf) Then
-					this = this.Replace(vbCr, "{VB_Cr_Lf}").Replace(vbLf, "{VB_Cr_Lf}").Replace("{VB_Cr_Lf}{VB_Cr_Lf}", "{VB_Cr_Lf}").Replace("{VB_Cr_Lf}", vbCrLf)
+					'this = this.Replace(vbCr, "{VB_Cr_Lf}").Replace(vbLf, "{VB_Cr_Lf}").Replace("{VB_Cr_Lf}{VB_Cr_Lf}", "{VB_Cr_Lf}").Replace("{VB_Cr_Lf}", vbCrLf)
+					this = this.Replace(vbCr, "").Replace(vbLf, vbCrLf)
 				End If
 			Else
 				separator = SEPARATOR_DEFAULT

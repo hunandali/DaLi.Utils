@@ -223,7 +223,7 @@ Namespace Extension
 
 		''' <summary>过滤 ASCII 码中的控制字符</summary>
 		''' <param name="this">要处理的字符串</param>
-		''' <param name="replace">对于出现的控制符使用何种字符代替，不设置则清楚控制符</param>
+		''' <param name="replace">对于出现的控制符使用何种字符代替，不设置则清除控制符</param>
 		''' <returns>过滤后的字符串</returns>
 		<Extension()>
 		Public Function ClearControl(this As String, Optional replace As String = Nothing) As String
