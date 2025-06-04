@@ -88,37 +88,37 @@ Namespace Base
 #Region "结果"
 
 		''' <summary>输出文本结果</summary>
-		Public Shared Function Text(data As String, Optional contentType As String = "application/javascript; charset=utf-8") As IActionResult
+		Protected Function Text(data As String, Optional contentType As String = "application/javascript; charset=utf-8") As IActionResult
 			Return New ResponseContent(data, contentType).ActionResult
 		End Function
 
 		''' <summary>输出 html</summary>
-		Public Shared Function Html(data As String) As IActionResult
+		Protected Function Html(data As String) As IActionResult
 			Return New ResponseContent(data).ActionResult
 		End Function
 
 		''' <summary>返回成功结果</summary>
-		Public Function Succ(Optional data As Object = Nothing, Optional message As String = "") As IActionResult
+		Protected Function Succ(Optional data As Object = Nothing, Optional message As String = "") As IActionResult
 			Return New ResponseJson(If(data, ""), Localizer(message).EmptyValue(ErrorMessage.SuccessMessage), HttpContext).ActionResult
 		End Function
 
 		''' <summary>返回失败结果</summary>
-		Public Function Err(code As Integer, message As String) As IActionResult
+		Protected Function Err(code As Integer, message As String) As IActionResult
 			Return New ResponseJson(code, Localizer(message), HttpContext).ActionResult
 		End Function
 
 		''' <summary>返回失败结果</summary>
-		Public Function Err(message As String) As IActionResult
+		Protected Function Err(message As String) As IActionResult
 			Return Err(400, message.EmptyValue("Error.NotFound"))
 		End Function
 
 		''' <summary>返回表单失败结果</summary>
-		Public Function Err(data As Object, Optional code As Integer = 400) As IActionResult
+		Protected Function Err(data As Object, Optional code As Integer = 400) As IActionResult
 			Return ResponseJson.Default(code, data, HttpContext)
 		End Function
 
 		''' <summary>返回表单失败结果</summary>
-		Public Function Err(Optional statusCode As Integer? = Nothing) As IActionResult
+		Protected Function Err(Optional statusCode As Integer? = Nothing) As IActionResult
 			'' 如果未设置错误提示，则使用无效参数
 			'If ErrorMessage.IsPass Then Return Succ
 			If ErrorMessage.IsPass AndAlso statusCode Is Nothing Then Return Err(400, "Error.Invalid")
