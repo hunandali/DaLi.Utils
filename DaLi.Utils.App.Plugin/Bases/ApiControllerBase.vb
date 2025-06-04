@@ -56,26 +56,22 @@ Namespace Base
 			End Get
 		End Property
 
-		''' <summary>本地化语言</summary>
-		Protected ReadOnly Property Localizer(name As String, Optional args As Object() = Nothing) As String
-			Get
-				If args.IsEmpty Then
-					Return SYS.Localizer(name)
-				Else
-					Return SYS.Localizer(name, args)
-				End If
-			End Get
-		End Property
-
-		''' <summary>本地化语言</summary>
-		Protected ReadOnly Property Localizer(name As String, prefix As String) As String
-			Get
-				Return SYS.Localizer(name, prefix)
-			End Get
-		End Property
-
 		''' <summary>错误消息项目</summary>
 		Public Overridable ReadOnly Property ErrorMessage As New ErrorMessage
+
+		''' <summary>本地化语言</summary>
+		Protected Function Localizer(name As String, Optional args As Object() = Nothing) As String
+			If args.IsEmpty Then
+				Return SYS.Localizer(name)
+			Else
+				Return SYS.Localizer(name, args)
+			End If
+		End Function
+
+		''' <summary>本地化语言</summary>
+		Protected Function Localizer(name As String, prefix As String) As String
+			Return SYS.Localizer(name, prefix)
+		End Function
 
 		''' <summary>获取参数</summary>
 		Protected Function GetSetting(Of T As ISetting)() As T
@@ -92,56 +88,42 @@ Namespace Base
 #Region "结果"
 
 		''' <summary>输出文本结果</summary>
-		Public Shared ReadOnly Property Text(data As String, Optional contentType As String = "application/javascript; charset=utf-8") As IActionResult
-			Get
-				Return New ResponseContent(data, contentType).ActionResult
-			End Get
-		End Property
+		Public Shared Function Text(data As String, Optional contentType As String = "application/javascript; charset=utf-8") As IActionResult
+			Return New ResponseContent(data, contentType).ActionResult
+		End Function
 
 		''' <summary>输出 html</summary>
-		Public Shared ReadOnly Property Html(data As String) As IActionResult
-			Get
-				Return New ResponseContent(data).ActionResult
-			End Get
-		End Property
+		Public Shared Function Html(data As String) As IActionResult
+			Return New ResponseContent(data).ActionResult
+		End Function
 
 		''' <summary>返回成功结果</summary>
-		Public ReadOnly Property Succ(Optional data As Object = Nothing, Optional message As String = "") As IActionResult
-			Get
-				Return New ResponseJson(If(data, ""), Localizer(message).EmptyValue(ErrorMessage.SuccessMessage), HttpContext).ActionResult
-			End Get
-		End Property
+		Public Function Succ(Optional data As Object = Nothing, Optional message As String = "") As IActionResult
+			Return New ResponseJson(If(data, ""), Localizer(message).EmptyValue(ErrorMessage.SuccessMessage), HttpContext).ActionResult
+		End Function
 
 		''' <summary>返回失败结果</summary>
-		Public ReadOnly Property Err(code As Integer, message As String) As IActionResult
-			Get
-				Return New ResponseJson(code, Localizer(message), HttpContext).ActionResult
-			End Get
-		End Property
+		Public Function Err(code As Integer, message As String) As IActionResult
+			Return New ResponseJson(code, Localizer(message), HttpContext).ActionResult
+		End Function
 
 		''' <summary>返回失败结果</summary>
-		Public ReadOnly Property Err(message As String) As IActionResult
-			Get
-				Return Err(400, message.EmptyValue("Error.NotFound"))
-			End Get
-		End Property
+		Public Function Err(message As String) As IActionResult
+			Return Err(400, message.EmptyValue("Error.NotFound"))
+		End Function
 
 		''' <summary>返回表单失败结果</summary>
-		Public ReadOnly Property Err(data As Object, Optional code As Integer = 400) As IActionResult
-			Get
-				Return ResponseJson.Default(code, data, HttpContext)
-			End Get
-		End Property
+		Public Function Err(data As Object, Optional code As Integer = 400) As IActionResult
+			Return ResponseJson.Default(code, data, HttpContext)
+		End Function
 
 		''' <summary>返回表单失败结果</summary>
-		Public ReadOnly Property Err(Optional statusCode As Integer? = Nothing) As IActionResult
-			Get
-				'' 如果未设置错误提示，则使用无效参数
-				'If ErrorMessage.IsPass Then Return Succ
-				If ErrorMessage.IsPass AndAlso statusCode Is Nothing Then Return Err(400, "Error.Invalid")
-				Return ResponseJson.Err(ErrorMessage, HttpContext, statusCode)
-			End Get
-		End Property
+		Public Function Err(Optional statusCode As Integer? = Nothing) As IActionResult
+			'' 如果未设置错误提示，则使用无效参数
+			'If ErrorMessage.IsPass Then Return Succ
+			If ErrorMessage.IsPass AndAlso statusCode Is Nothing Then Return Err(400, "Error.Invalid")
+			Return ResponseJson.Err(ErrorMessage, HttpContext, statusCode)
+		End Function
 
 #End Region
 
