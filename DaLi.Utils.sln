@@ -42,6 +42,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DaLi.Utils.Flow.Extend", "D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Flow", "3. Flow", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DaLi.Utils.App.Plugin.Client", "DaLi.Utils.App.Plugin.Client\DaLi.Utils.App.Plugin.Client.csproj", "{BAEB90A9-5CAD-E900-82DD-395E43FF7D0D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,6 +94,10 @@ Global
 		{B856D80E-F762-0BEF-6D08-16BB7F95DED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B856D80E-F762-0BEF-6D08-16BB7F95DED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B856D80E-F762-0BEF-6D08-16BB7F95DED4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAEB90A9-5CAD-E900-82DD-395E43FF7D0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAEB90A9-5CAD-E900-82DD-395E43FF7D0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAEB90A9-5CAD-E900-82DD-395E43FF7D0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAEB90A9-5CAD-E900-82DD-395E43FF7D0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -109,9 +115,10 @@ Global
 		{08ACF583-2A25-40B1-9058-23B6B485310D} = {618F679E-387D-4BE0-B2A5-366302AAD9C3}
 		{23B610E7-B1B1-7D76-D9CF-E5969AE3A861} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{B856D80E-F762-0BEF-6D08-16BB7F95DED4} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{BAEB90A9-5CAD-E900-82DD-395E43FF7D0D} = {FD5036CF-229D-4FBC-9987-8FFA5FAF12A3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C41280E8-A0F4-4D4D-8DD0-47D6C52CF9E2}
 		VisualSVNWorkingCopyRoot = .
+		SolutionGuid = {C41280E8-A0F4-4D4D-8DD0-47D6C52CF9E2}
 	EndGlobalSection
 EndGlobal

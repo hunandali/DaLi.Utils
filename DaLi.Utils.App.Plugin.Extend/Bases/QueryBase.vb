@@ -374,6 +374,41 @@ Namespace Base
 			End If
 
 			'-----------------------------
+			' 模型接口数据
+			'-----------------------------
+			If EntityType.IsComeFrom(GetType(IEntityModule)) Then
+				Dim moduleId = GetValue("moduleId")
+				Dim moduleValue = GetValue("moduleValue")
+
+				' 通过模块获取标识
+				Dim moduleObj = GetValue(Of KeyValueDictionary)("module")
+				If moduleObj.NotEmpty Then
+					moduleId = moduleObj.GetValue("moduleId").EmptyValue(moduleId)
+					moduleValue = moduleObj.GetValue("moduleValue").EmptyValue(moduleValue)
+				End If
+
+				If moduleId.NotEmpty OrElse moduleValue.NotEmpty Then
+					Dim mID = If(moduleId.IsNumber, moduleId.ToUInteger, ExtendHelper.GetModuleId(moduleId))
+					Dim mValue = If(moduleValue.IsNumber, moduleValue.ToLong, 0)
+
+					If mID > 0 AndAlso mValue.NotEmpty Then
+						Dim dy As New DynamicFilterInfo With {
+							.Logic = DynamicFilterLogic.And,
+							.Filters = New List(Of DynamicFilterInfo)({
+																	  New DynamicFilterInfo With {.Field = "ModuleId", .Value = mID, .[Operator] = DynamicFilterOperator.Eq},
+																	  New DynamicFilterInfo With {.Field = "moduleValue", .Value = mValue, .[Operator] = DynamicFilterOperator.Eq}
+																	})
+						}
+						query.WhereDynamicFilter(dy)
+					Else
+						query.Where("0=1")
+					End If
+				End If
+
+				Remove("module", "moduleId", "moduleValue")
+			End If
+
+			'-----------------------------
 			' 扩展内容查询
 			'-----------------------------
 			'If EntityType.IsComeFrom(GetType(IEntityExtend)) Then
