@@ -20,16 +20,14 @@
  * *********************************************************/
 
 using System.ComponentModel;
-using DaLi.Utils.App.Base;
 using DaLi.Utils.App.Extension;
 using DaLi.Utils.App.Helper;
-using DaLi.Utils.App.Helpers;
 using DaLi.Utils.App.Interface;
 using DaLi.Utils.App.Model;
 using FreeSql;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DaLi.Utils.App.Bases {
+namespace DaLi.Utils.App.Base {
 	/// <summary>通用分类控制器基类</summary>
 	public abstract class CtrCategoryBase<P, E> : CtrDataBase<P>
 		where P : EntityCategoryBase<P>, new()

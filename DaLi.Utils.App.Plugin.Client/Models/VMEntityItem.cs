@@ -23,7 +23,7 @@ using System;
 using DaLi.Utils.App.Base;
 using DaLi.Utils.App.Interface;
 
-namespace DaLi.Utils.App.Models {
+namespace DaLi.Utils.App.Model {
 	/// <summary>单项操作视图</summary>
 	public class VMEntityItem<T> : VMEntityItemBase<T> where T : class, IEntity {
 

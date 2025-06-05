@@ -19,7 +19,7 @@
  *
  * *********************************************************/
 
-using DaLi.Utils.App.Bases;
+using DaLi.Utils.App.Base;
 
 namespace DaLi.Utils.App.Interface {
 

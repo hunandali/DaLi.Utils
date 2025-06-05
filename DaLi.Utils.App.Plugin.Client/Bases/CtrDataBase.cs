@@ -19,11 +19,10 @@
  *
  * *********************************************************/
 
-using DaLi.Utils.App.Base;
 using DaLi.Utils.App.Interface;
-using DaLi.Utils.App.Models;
+using DaLi.Utils.App.Model;
 
-namespace DaLi.Utils.App.Bases {
+namespace DaLi.Utils.App.Base {
 	/// <summary>应用控制器基类</summary>
 	public abstract class CtrDataBase<T> : CtrEntityBase<T, VMEntityItem<T>, VMEntityList<T>, QueryBase<T>>
 	where T : class, IEntity {

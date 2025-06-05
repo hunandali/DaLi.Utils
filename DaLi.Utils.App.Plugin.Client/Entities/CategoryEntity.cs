@@ -22,7 +22,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using DaLi.Utils.App.Attribute;
-using DaLi.Utils.App.Bases;
+using DaLi.Utils.App.Base;
 using DaLi.Utils.App.Interface;
 using DaLi.Utils.App.Model;
 using DaLi.Utils.Attribute;
@@ -30,7 +30,7 @@ using DaLi.Utils.Model;
 using FreeSql.DataAnnotations;
 using FreeSql.Internal.Model;
 
-namespace DaLi.Utils.App.Entities {
+namespace DaLi.Utils.App.Entity {
 	/// <summary>通用分类</summary>
 	[DbTable("App_Categories")]
 	[DbIndex(nameof(ParentId))]
@@ -52,5 +52,6 @@ namespace DaLi.Utils.App.Entities {
 		[Output(TristateEnum.FALSE)]
 		[DbQuery(DynamicFilterOperator.Contains)]
 		public NameValueDictionary Extension { get; set; } = [];
+
 	}
 }

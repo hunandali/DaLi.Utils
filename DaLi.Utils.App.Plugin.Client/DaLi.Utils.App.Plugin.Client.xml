@@ -4,25 +4,25 @@
         <name>DaLi.Utils.App.Plugin.Client</name>
     </assembly>
     <members>
-        <member name="T:DaLi.Utils.App.Bases.CtrCategoryBase`2">
+        <member name="T:DaLi.Utils.App.Base.CtrCategoryBase`2">
             <summary>通用分类控制器基类</summary>
         </member>
-        <member name="P:DaLi.Utils.App.Bases.CtrCategoryBase`2.ModuleId">
+        <member name="P:DaLi.Utils.App.Base.CtrCategoryBase`2.ModuleId">
             <summary>当前模型</summary>
         </member>
-        <member name="M:DaLi.Utils.App.Bases.CtrCategoryBase`2.ExecuteQuery(DaLi.Utils.App.Model.EntityActionEnum,FreeSql.ISelect{`0},DaLi.Utils.App.Base.QueryBase{`0})">
+        <member name="M:DaLi.Utils.App.Base.CtrCategoryBase`2.ExecuteQuery(DaLi.Utils.App.Model.EntityActionEnum,FreeSql.ISelect{`0},DaLi.Utils.App.Base.QueryBase{`0})">
             <inheritdoc/>
         </member>
-        <member name="M:DaLi.Utils.App.Bases.CtrCategoryBase`2.ExecuteValidate(DaLi.Utils.App.Model.EntityActionEnum,`0,`0)">
+        <member name="M:DaLi.Utils.App.Base.CtrCategoryBase`2.ExecuteValidate(DaLi.Utils.App.Model.EntityActionEnum,`0,`0)">
             <inheritdoc/>
         </member>
-        <member name="M:DaLi.Utils.App.Bases.CtrCategoryBase`2.Categories(System.Nullable{System.Int64})">
+        <member name="M:DaLi.Utils.App.Base.CtrCategoryBase`2.Categories(System.Nullable{System.Int64})">
             <summary>分类列表</summary>
         </member>
-        <member name="M:DaLi.Utils.App.Bases.CtrCategoryBase`2.CategoryQuery(DaLi.Utils.App.Base.QueryBase{`0})">
+        <member name="M:DaLi.Utils.App.Base.CtrCategoryBase`2.CategoryQuery(DaLi.Utils.App.Base.QueryBase{`0})">
             <summary>分类列表</summary>
         </member>
-        <member name="M:DaLi.Utils.App.Bases.CtrCategoryBase`2.ResourcesList(System.Int64,DaLi.Utils.App.Base.QueryBase{`1},System.String,System.String,System.Boolean)">
+        <member name="M:DaLi.Utils.App.Base.CtrCategoryBase`2.ResourcesList(System.Int64,DaLi.Utils.App.Base.QueryBase{`1},System.String,System.String,System.Boolean)">
             <summary>资源列表</summary>
             <param name="parentId">分类标识</param>
             <param name="queryVM">信息查询</param>
@@ -30,86 +30,86 @@
             <param name="extField">信息扩展字段</param>
             <param name="isTree">是否以树形结构返回数据</param>
         </member>
-        <member name="M:DaLi.Utils.App.Bases.CtrCategoryBase`2.ResourcesQuery(DaLi.Utils.App.Base.QueryBase{`0},DaLi.Utils.App.Base.QueryBase{`1},System.String,System.String)">
+        <member name="M:DaLi.Utils.App.Base.CtrCategoryBase`2.ResourcesQuery(DaLi.Utils.App.Base.QueryBase{`0},DaLi.Utils.App.Base.QueryBase{`1},System.String,System.String)">
             <summary>资源列表</summary>
             <param name="queryCateVM">分类查询</param>
             <param name="queryInfoVM">信息查询</param>
             <param name="nameField">信息文本字段</param>
             <param name="extField">信息扩展字段</param>
         </member>
-        <member name="M:DaLi.Utils.App.Bases.CtrCategoryBase`2.Resources(DaLi.Utils.App.Base.QueryBase{`1},System.String,System.String,System.Boolean)">
+        <member name="M:DaLi.Utils.App.Base.CtrCategoryBase`2.Resources(DaLi.Utils.App.Base.QueryBase{`1},System.String,System.String,System.Boolean)">
             <summary>资源列表</summary>
             <param name="queryVM">信息查询</param>
             <param name="nameField">信息文本字段</param>
             <param name="extField">信息扩展字段</param>
             <param name="isTree">是否以树形结构返回数据</param>
         </member>
-        <member name="T:DaLi.Utils.App.Bases.CtrDataBase`1">
+        <member name="T:DaLi.Utils.App.Base.CtrDataBase`1">
             <summary>应用控制器基类</summary>
         </member>
-        <member name="T:DaLi.Utils.App.Bases.EntityCategoryBase`1">
+        <member name="T:DaLi.Utils.App.Base.EntityCategoryBase`1">
             <summary>数据分类基类</summary>
         </member>
-        <member name="P:DaLi.Utils.App.Bases.EntityCategoryBase`1.ModuleId">
+        <member name="P:DaLi.Utils.App.Base.EntityCategoryBase`1.ModuleId">
             <summary>资源类型</summary>
         </member>
-        <member name="P:DaLi.Utils.App.Bases.EntityCategoryBase`1.Module">
+        <member name="P:DaLi.Utils.App.Base.EntityCategoryBase`1.Module">
             <summary>资源类型</summary>
         </member>
-        <member name="P:DaLi.Utils.App.Bases.EntityCategoryBase`1.Name">
+        <member name="P:DaLi.Utils.App.Base.EntityCategoryBase`1.Name">
             <summary>名称</summary>
         </member>
-        <member name="P:DaLi.Utils.App.Bases.EntityCategoryBase`1.Memo">
+        <member name="P:DaLi.Utils.App.Base.EntityCategoryBase`1.Memo">
             <summary>备注</summary>
         </member>
-        <member name="P:DaLi.Utils.App.Bases.EntityCategoryBase`1.Enabled">
+        <member name="P:DaLi.Utils.App.Base.EntityCategoryBase`1.Enabled">
             <summary>启用</summary>
         </member>
-        <member name="T:DaLi.Utils.App.Entities.CategoryEntity">
+        <member name="T:DaLi.Utils.App.Entity.CategoryEntity">
             <summary>通用分类</summary>
         </member>
-        <member name="P:DaLi.Utils.App.Entities.CategoryEntity.Content">
+        <member name="P:DaLi.Utils.App.Entity.CategoryEntity.Content">
             <summary>说明</summary>
         </member>
-        <member name="P:DaLi.Utils.App.Entities.CategoryEntity.Extension">
+        <member name="P:DaLi.Utils.App.Entity.CategoryEntity.Extension">
             <summary>扩展内容</summary>
         </member>
-        <member name="T:DaLi.Utils.App.Helpers.CategoryHelper">
+        <member name="T:DaLi.Utils.App.Helper.CategoryHelper">
             <summary>分类相关操作</summary>
         </member>
-        <member name="P:DaLi.Utils.App.Helpers.CategoryHelper.CACHE_TIME">
+        <member name="P:DaLi.Utils.App.Helper.CategoryHelper.CACHE_TIME">
             <summary>缓存时间(秒)</summary>
             <remarks>信息缓存时间，如果用于列表缓存将是此值的 5 倍；默认调试模式为 10 秒，正式模式为 60 秒</remarks>
         </member>
-        <member name="F:DaLi.Utils.App.Helpers.CategoryHelper._Cache">
+        <member name="F:DaLi.Utils.App.Helper.CategoryHelper._Cache">
             <summary>缓存列表</summary>
         </member>
-        <member name="M:DaLi.Utils.App.Helpers.CategoryHelper.Categories``1(IFreeSql,System.UInt32,DaLi.Utils.App.Base.QueryBase{``0},System.String)">
+        <member name="M:DaLi.Utils.App.Helper.CategoryHelper.Categories``1(IFreeSql,System.UInt32,DaLi.Utils.App.Base.QueryBase{``0},System.String)">
             <summary>获取分类列表</summary>
             <param name="db">数据库上下文</param>
             <param name="moduleId">数据模型标识</param>
             <param name="queryVM">上级查询条件</param>
             <param name="extField">扩展字段名</param>
         </member>
-        <member name="M:DaLi.Utils.App.Helpers.CategoryHelper.Categories``2(IFreeSql,DaLi.Utils.App.Base.QueryBase{``0},System.String)">
+        <member name="M:DaLi.Utils.App.Helper.CategoryHelper.Categories``2(IFreeSql,DaLi.Utils.App.Base.QueryBase{``0},System.String)">
             <summary>获取分类列表</summary>
             <param name="db">数据库上下文</param>
             <param name="queryVM">上级查询条件</param>
             <param name="extField">扩展字段名</param>
         </member>
-        <member name="M:DaLi.Utils.App.Helpers.CategoryHelper.Categories``2(IFreeSql,System.Nullable{System.Int64},System.String)">
+        <member name="M:DaLi.Utils.App.Helper.CategoryHelper.Categories``2(IFreeSql,System.Nullable{System.Int64},System.String)">
             <summary>获取分类列表</summary>
             <param name="db">数据库上下文</param>
             <param name="id">当前标识</param>
             <param name="extField">扩展字段名</param>
         </member>
-        <member name="M:DaLi.Utils.App.Helpers.CategoryHelper.Categories``1(IFreeSql,System.Nullable{System.Int64},System.String)">
+        <member name="M:DaLi.Utils.App.Helper.CategoryHelper.Categories``1(IFreeSql,System.Nullable{System.Int64},System.String)">
             <summary>获取通用分类列表</summary>
             <param name="db"></param>
             <param name="id">当前标识</param>
             <param name="extField"></param>
         </member>
-        <member name="M:DaLi.Utils.App.Helpers.CategoryHelper.Resources``2(IFreeSql,System.Collections.Generic.List{DaLi.Utils.App.Model.DataList{System.Int64}},DaLi.Utils.App.Base.QueryBase{``1},System.String,System.String)">
+        <member name="M:DaLi.Utils.App.Helper.CategoryHelper.Resources``2(IFreeSql,System.Collections.Generic.List{DaLi.Utils.App.Model.DataList{System.Int64}},DaLi.Utils.App.Base.QueryBase{``1},System.String,System.String)">
             <summary>获取指定分类下资源的数据，并以列表结构展示</summary>
             <param name="db"></param>
             <param name="categories">分类数据列表</param>
@@ -117,7 +117,7 @@
             <param name="nameField">显示名称字段</param>
             <param name="extField">扩展字段名</param>
         </member>
-        <member name="M:DaLi.Utils.App.Helpers.CategoryHelper.Resources``2(IFreeSql,DaLi.Utils.App.Base.QueryBase{``0},DaLi.Utils.App.Base.QueryBase{``1},System.String,System.String)">
+        <member name="M:DaLi.Utils.App.Helper.CategoryHelper.Resources``2(IFreeSql,DaLi.Utils.App.Base.QueryBase{``0},DaLi.Utils.App.Base.QueryBase{``1},System.String,System.String)">
             <summary>获取指定分类下资源的数据，并以列表结构展示</summary>
             <param name="db"></param>
             <param name="queryCateVM">上级查询条件</param>
@@ -125,7 +125,7 @@
             <param name="nameField">显示名称字段</param>
             <param name="extField">扩展字段名</param>
         </member>
-        <member name="M:DaLi.Utils.App.Helpers.CategoryHelper.Resources``2(IFreeSql,System.Nullable{System.Int64},DaLi.Utils.App.Base.QueryBase{``1},System.String,System.String)">
+        <member name="M:DaLi.Utils.App.Helper.CategoryHelper.Resources``2(IFreeSql,System.Nullable{System.Int64},DaLi.Utils.App.Base.QueryBase{``1},System.String,System.String)">
             <summary>获取指定分类下资源的数据，并以列表结构展示</summary>
             <param name="db"></param>
             <param name="parentId">上级标识</param>
@@ -133,7 +133,7 @@
             <param name="nameField">显示名称字段</param>
             <param name="extField">扩展字段名</param>
         </member>
-        <member name="M:DaLi.Utils.App.Helpers.CategoryHelper.Resources``1(IFreeSql,System.Nullable{System.Int64},DaLi.Utils.App.Base.QueryBase{``0},System.String,System.String)">
+        <member name="M:DaLi.Utils.App.Helper.CategoryHelper.Resources``1(IFreeSql,System.Nullable{System.Int64},DaLi.Utils.App.Base.QueryBase{``0},System.String,System.String)">
             <summary>获取通用分类下资源的数据，并以列表结构展示</summary>
             <param name="db"></param>
             <param name="parentId">上级标识</param>
@@ -147,16 +147,16 @@
         <member name="P:DaLi.Utils.App.Interface.IEntityCategory`1.Parent">
             <summary>上级</summary>
         </member>
-        <member name="T:DaLi.Utils.App.Models.VMEntityItem`1">
+        <member name="T:DaLi.Utils.App.Model.VMEntityItem`1">
             <summary>单项操作视图</summary>
         </member>
-        <member name="P:DaLi.Utils.App.Models.VMEntityItem`1.User">
+        <member name="P:DaLi.Utils.App.Model.VMEntityItem`1.User">
             <summary>当前操作用户</summary>
         </member>
-        <member name="T:DaLi.Utils.App.Models.VMEntityList`1">
+        <member name="T:DaLi.Utils.App.Model.VMEntityList`1">
             <summary>批量操作视图</summary>
         </member>
-        <member name="P:DaLi.Utils.App.Models.VMEntityList`1.User">
+        <member name="P:DaLi.Utils.App.Model.VMEntityList`1.User">
             <summary>当前操作用户</summary>
         </member>
     </members>

@@ -23,14 +23,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DaLi.Utils.App.Base;
-using DaLi.Utils.App.Bases;
-using DaLi.Utils.App.Entities;
+using DaLi.Utils.App.Entity;
 using DaLi.Utils.App.Extension;
-using DaLi.Utils.App.Helper;
 using DaLi.Utils.App.Interface;
 using DaLi.Utils.App.Model;
 
-namespace DaLi.Utils.App.Helpers {
+namespace DaLi.Utils.App.Helper {
 	/// <summary>分类相关操作</summary>
 	public static class CategoryHelper {
 		/// <summary>缓存时间(秒)</summary>

@@ -21,13 +21,12 @@
 
 using System.ComponentModel.DataAnnotations;
 using DaLi.Utils.App.Attribute;
-using DaLi.Utils.App.Base;
 using DaLi.Utils.App.Entity;
 using DaLi.Utils.App.Model;
 using FreeSql.DataAnnotations;
 using FreeSql.Internal.Model;
 
-namespace DaLi.Utils.App.Bases {
+namespace DaLi.Utils.App.Base {
 	/// <summary>数据分类基类</summary>
 	public abstract class EntityCategoryBase<T> : EntityTreeDateBase<T> where T : EntityCategoryBase<T> {
 		/// <summary>资源类型</summary>
