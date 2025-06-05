@@ -19,6 +19,8 @@
 '
 ' ------------------------------------------------------------
 
+Imports DaLi.Plugin.Utils
+
 Public Class Program
 	Public Shared Sub Main()
 		' 含数据库启动模式
@@ -29,6 +31,7 @@ Public Class Program
 
 		' 手动启动模式
 		' 直接从此开始启动代码
+		If False Then Dim x As New SwashbuckleSetting
 	End Sub
 
 End Class

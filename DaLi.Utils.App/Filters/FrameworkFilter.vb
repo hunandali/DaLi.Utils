@@ -50,13 +50,29 @@ Namespace Filter
 			context.HttpContext.ContextItem(START_TIME, DATE_FULL_NOW)
 
 			' 检查运行环境
+			Dim envMessage = If(SYS.Debug, "调试模式下不能执行正式环境 API"， "正式环境不能执行调试 API")
 			Dim envAttr = ControllerHelper.GetAttribute(Of EnvAttribute)(context.ActionDescriptor)
-			Dim envPass = envAttr Is Nothing OrElse envAttr.IsRuntime(SYS.Debug)
+			Dim envPass = envAttr Is Nothing OrElse envAttr.IsRuntime(SYS.Debug, Function()
+																					 ' 授权码验证模式
+																					 Dim key = SYS.GetSetting(Of ICommonSetting).ApiKey
+																					 If key.IsEmpty Then
+																						 envMessage = "API KEY 授权验证模式，请先在系统配置中设置用于通讯的 APIKEY"
+																						 Return False
+																					 End If
+
+																					 ' 尝试获取 Token
+																					 Dim token = context.HttpContext.Request.Token
+																					 If token <> key Then
+																						 envMessage = "API KEY 验证无效，无此操作权限"
+																						 Return False
+																					 End If
+
+																					 Return True
+																				 End Function)
 
 			' 未通过环境检测
 			If Not envPass Then
-				Dim message = If(SYS.Debug, "调试模式下不能执行正式环境 API"， "正式环境不能执行调试 API")
-				context.Result = ResponseJson.Err(400, message, context.HttpContext)
+				FilterHelper.FilterStoped(context, envMessage, 400)
 				Return
 			End If
 

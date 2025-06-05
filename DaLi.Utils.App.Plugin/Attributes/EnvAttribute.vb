@@ -30,15 +30,22 @@ Namespace Attribute
 		Public Property Run As EnvRunEnum
 
 		''' <summary>是否有效的运行环境</summary>
-		''' <param name="debug">当前是否调试模式</param>
-		Public Function IsRuntime(debug As Boolean) As Boolean
-			If Run = EnvRunEnum.ALL Then Return True
+		''' <param name="isDebug">当前是否调试模式</param>
+		''' <param name="keyValidate">API KEY 模式的验证方法</param>
+		Public Function IsRuntime(isDebug As Boolean, Optional keyValidate As Func(Of Boolean) = Nothing) As Boolean
+			Select Case Run
+				Case EnvRunEnum.DEBUG
+					Return isDebug
 
-			If debug Then
-				Return Run = EnvRunEnum.DEBUG
-			Else
-				Return Run = EnvRunEnum.PRODUCT
-			End If
+				Case EnvRunEnum.PRODUCT
+					Return Not isDebug
+
+				Case EnvRunEnum.APIKEY
+					Return keyValidate IsNot Nothing AndAlso keyValidate.Invoke()
+
+				Case Else
+					Return True
+			End Select
 		End Function
 
 		''' <summary>环境参数</summary>

@@ -178,6 +178,9 @@ Namespace Model
 
 			''' <summary>仅正式环境运行</summary>
 			PRODUCT
+
+			''' <summary>仅匹配 API KEY 的情况下运行</summary>
+			APIKEY
 		End Enum
 
 		''' <summary>状态消息类型</summary>

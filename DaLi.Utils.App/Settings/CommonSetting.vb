@@ -73,6 +73,10 @@ Namespace Setting
 		<FieldChange(FieldTypeEnum.ASCII)>
 		Public Property RoutePrefix As String = "" Implements ICommonSetting.RoutePrefix
 
+		''' <summary>当前 API 通讯的 KEY，控制器上如有设置则需要验证此值，仅当头部 Authorization 值与此值一致则允许操作</summary>
+		<FieldType(FieldValidateEnum.ASCII)>
+		Public Property ApiKey As String Implements ICommonSetting.ApiKey
+
 		''' <summary>参数初始化</summary>
 		Protected Overrides Sub Initialize(provider As ISettingProvider)
 			Dim folders = StaticFolder

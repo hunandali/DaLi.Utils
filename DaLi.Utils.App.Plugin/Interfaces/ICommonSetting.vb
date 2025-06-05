@@ -30,6 +30,9 @@ Namespace [Interface]
 		''' <summary>当前应用名称</summary>
 		Property AppName As String
 
+		''' <summary>当前 API 通讯的 KEY，控制器上如有设置则需要验证此值，仅当头部 Authorization 值与此值一致则允许操作</summary>
+		Property ApiKey As String
+
 		''' <summary>系统时间差</summary>
 		Property TimeDelay As Integer
 

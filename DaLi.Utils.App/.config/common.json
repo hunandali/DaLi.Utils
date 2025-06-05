@@ -18,5 +18,7 @@
 	"UseStatic": true, // 是否使用静态文件，只有启用了 StaticFolder 才有效；不设置 StaticFolder 则只是用默认主目录
 	"CookiePrefix": "DaLi", // Cookies 前缀
 	"CookieTimeout": 3600, // 3600 Cookies 失效时长
-	"ServerId": 1 // 服务器标识，雪花算法时用于标识设备 ID (范围：1-8)
+	"ServerId": 1, // 服务器标识，雪花算法时用于标识设备 ID (范围：1-8)
+
+	"ApiKey": "" // API 密钥，用于验证 API 请求
 }

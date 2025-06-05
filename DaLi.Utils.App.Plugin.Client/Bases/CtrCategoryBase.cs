@@ -34,7 +34,7 @@ namespace DaLi.Utils.App.Base {
 		where E : class, IEntityCategory<P> {
 
 		/// <summary>当前模型</summary>
-		protected uint ModuleId => ExtendHelper.GetModuleId<P>();
+		protected uint ModuleId => ExtendHelper.GetModuleId<E>();
 
 		#region 事件
 

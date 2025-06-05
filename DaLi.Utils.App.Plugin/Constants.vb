@@ -21,6 +21,7 @@
 
 ''' <summary>应用基础常量定义</summary>
 Public Module Constants
+
 #Region "常量"
 
 	''' <summary>系统信息 Redis 键</summary>

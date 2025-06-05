@@ -31,7 +31,7 @@ Namespace Helper
 		' Authorization: Bearer <token>
 		' Cookies: token=
 
-		Public Shared [Default] As Lazy(Of JWTHelper)
+		Public Shared Property [Default] As Lazy(Of JWTHelper)
 
 #Region "公共参数"
 
@@ -39,7 +39,7 @@ Namespace Helper
 		Private ReadOnly _Setting As IJWTSetting
 
 		''' <summary>默认储存 JWT Token 的字段，默认已包含 Authorization</summary>
-		Public Shared TokenName As String
+		Public Shared Property TokenName As String
 
 		''' <summary>JWT 管理器</summary>
 		Private ReadOnly _Handler As JwtSecurityTokenHandler

@@ -53,6 +53,9 @@ Namespace Filter
 		End Sub
 
 		Public Overrides Sub OnResultExecuted(context As ResultExecutedContext)
+			' 检查是否存在是否需要强制中止的操作
+			If FilterHelper.FilterStoped(context) Then Return
+
 			' 如果验证 ErrorMessage 存在异常，将此异常数据反馈到 ResultExecutedContext 中，以便日志记录
 			If context.Exception Is Nothing Then
 				Dim ctrl = TryCast(context.Controller, CtrBase)
